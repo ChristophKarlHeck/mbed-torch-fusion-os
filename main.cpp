@@ -4,7 +4,7 @@ int main()
 {
 	while(true) 
 	{
-		printf("hello\n");
+		printf("jhjo\n");
 		ThisThread::sleep_for(1s);
 	}
 
