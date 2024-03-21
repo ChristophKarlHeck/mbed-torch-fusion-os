@@ -21,14 +21,33 @@ add_subdirectory(mbed-os) # Load Mbed OS build targets.  Must be added before an
 
 project(MbedTorchFusionOS) # TODO: change this to your project name
 
-# Add the directory containing the headers you want to include with <>
-
-set(SOURCES
-     main.cpp
-     ${CMAKE_CURRENT_SOURCE_DIR}/executorch
+# Add sources of libexecutorch.a
+set(LIBEXECUTORCH_SRC
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/kernels/prim_ops/et_copy_index.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/kernels/prim_ops/register_prim_ops.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/backend/interface.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/core/evalue.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/core/exec_aten/util/tensor_util_portable.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/core/portable_type/tensor_impl.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/executor/method.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/executor/method_meta.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/executor/program.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/executor/tensor_parser_exec_aten.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/executor/tensor_parser_portable.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/kernel/operator_registry.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/platform/abort.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/platform/log.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/platform/profiler.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/platform/runtime.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/platform/target/Posix.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/schema/extended_header.cpp
 )
 
-add_executable(SoftMaxTorchRunner ${SOURCES})
+
+add_executable(SoftMaxTorchRunner
+                    main.cpp
+                    ${LIBEXECUTORCH_SRC}
+               )
 
 target_link_libraries(SoftMaxTorchRunner mbed-os) # Can also link to mbed-baremetal here
 
