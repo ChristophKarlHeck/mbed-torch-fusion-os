@@ -8,13 +8,18 @@ MbedTorch Fusion OS: Seamlessly merges Mbed OS with Torch ML models for the P-Nu
 ### pyOCD
 > source mbed-os/venv/bin/activate
 > python3 -m pip install -U pyocd
+
 > pyocd pack --update
+
 > pyocd pack --install stm32wb55rg
 
 ### Connect with serial port
 Open a new terminal. Plug in Nucleo-WB55RG. Install Mbed CLI 2 and use it to find serial port.
 > sudo apt-get install python3-dev
+
 > python3 -m pip install mbed-tools
+
 > mbed-tools detect
+
 Remember serial port. Use minicom to get see console output. 
 > minicom -D /dev/ttyACM0
