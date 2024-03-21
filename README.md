@@ -23,6 +23,7 @@ Open a new terminal. Plug in Nucleo-WB55RG. Install Mbed CLI 2 and use it to fin
 
 Remember serial port. Use minicom to see console output. 
 > minicom -D /dev/ttyACM0
+ctrl a & x to exit
 
 ### Create your model_pte.h file
 https://pytorch.org/executorch/main/executorch-arm-delegate-tutorial.html
