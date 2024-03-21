@@ -1,0 +1,23 @@
+buildType:
+  default: Develop
+  choices:
+    Develop:
+      short: Develop
+      long: Emit debug information but also optimize
+      buildType: Develop
+    Debug:
+      short: Debug
+      long: Emit debug information and don't optimize
+      buildType: Debug
+    Release:
+      short: Release
+      long: Optimize generated code
+      buildType: Release
+board:
+  default: NUCLEO_WB55RG
+  choices:
+    YOUR_MBED_TARGET:
+      short: NUCLEO_WB55RG
+      settings:
+        MBED_TARGET: NUCLEO_WB55RG
+        UPLOAD_METHOD: OPENOCD
