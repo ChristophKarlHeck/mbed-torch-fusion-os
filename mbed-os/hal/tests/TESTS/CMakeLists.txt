@@ -1,2 +1,0 @@
-add_subdirectory(mbed_hal)
-add_subdirectory(pin_names)

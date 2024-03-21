@@ -1,5 +1,0 @@
-add_subdirectory(dns)
-add_subdirectory(nidd)
-add_subdirectory(tcp)
-add_subdirectory(tls)
-add_subdirectory(udp)
