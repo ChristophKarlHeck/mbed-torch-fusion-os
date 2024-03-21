@@ -1,0 +1,6 @@
+[submodule "mbed-ce-hello-world"]
+	path = mbed-ce-hello-world
+	url = https://github.com/mbed-ce/mbed-ce-hello-world.git
+[submodule "mbed-os"]
+	path = mbed-os
+	url = https://github.com/mbed-ce/mbed-os.git
