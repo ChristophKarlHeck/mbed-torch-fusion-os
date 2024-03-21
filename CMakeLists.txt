@@ -21,9 +21,18 @@ add_subdirectory(mbed-os) # Load Mbed OS build targets.  Must be added before an
 
 project(MbedTorchFusionOS) # TODO: change this to your project name
 
-add_executable(SoftMaxTorchRunner main.cpp)
+# Add the directory containing the headers you want to include with <>
+
+set(SOURCES
+     main.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch
+)
+
+add_executable(SoftMaxTorchRunner ${SOURCES})
 
 target_link_libraries(SoftMaxTorchRunner mbed-os) # Can also link to mbed-baremetal here
+
+target_include_directories(SoftMaxTorchRunner PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 mbed_set_post_build(SoftMaxTorchRunner) # Must call this for each target to set up bin file creation, code upload, etc
 

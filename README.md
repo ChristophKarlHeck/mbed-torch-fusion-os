@@ -21,5 +21,10 @@ Open a new terminal. Plug in Nucleo-WB55RG. Install Mbed CLI 2 and use it to fin
 
 > mbed-tools detect
 
-Remember serial port. Use minicom to get see console output. 
+Remember serial port. Use minicom to see console output. 
 > minicom -D /dev/ttyACM0
+
+### Create your model_pte.h file
+https://pytorch.org/executorch/main/executorch-arm-delegate-tutorial.html
+Suitable script will be added soon but the following command is important:
+> python3 -m examples.arm.aot_arm_compiler --model_name="softmax"
