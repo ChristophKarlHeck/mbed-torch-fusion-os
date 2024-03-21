@@ -1,0 +1,2 @@
+/usr/local/gcc-arm/bin/arm-none-eabi-ar qc libarm_portable_ops_lib.a CMakeFiles/arm_portable_ops_lib.dir/RegisterCodegenUnboxedKernelsEverything.cpp.obj
+/usr/local/gcc-arm/bin/arm-none-eabi-ranlib libarm_portable_ops_lib.a

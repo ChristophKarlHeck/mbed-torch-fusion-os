@@ -1,0 +1,15 @@
+build_features: []
+custom_classes: []
+et_kernel_metadata:
+  aten::_softmax.out:
+  - default
+include_all_non_op_selectives: false
+include_all_operators: false
+kernel_metadata: {}
+operators:
+  aten::_softmax.out:
+    debug_info:
+    - None
+    include_all_overloads: false
+    is_root_operator: true
+    is_used_for_training: true

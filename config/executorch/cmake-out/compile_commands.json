@@ -1,0 +1,1118 @@
+[
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/kernels/prim_ops/et_copy_index.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/prim_ops/et_copy_index.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/prim_ops/et_copy_index.cpp",
+  "output": "CMakeFiles/executorch.dir/kernels/prim_ops/et_copy_index.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/kernels/prim_ops/register_prim_ops.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/prim_ops/register_prim_ops.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/prim_ops/register_prim_ops.cpp",
+  "output": "CMakeFiles/executorch.dir/kernels/prim_ops/register_prim_ops.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/backend/interface.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/backend/interface.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/backend/interface.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/backend/interface.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/core/evalue.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/core/evalue.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/core/evalue.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/core/evalue.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/core/exec_aten/util/tensor_util_portable.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/core/exec_aten/util/tensor_util_portable.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/core/exec_aten/util/tensor_util_portable.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/core/exec_aten/util/tensor_util_portable.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/core/portable_type/tensor_impl.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/core/portable_type/tensor_impl.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/core/portable_type/tensor_impl.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/core/portable_type/tensor_impl.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/executor/method.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/executor/method.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/executor/method.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/executor/method.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/executor/method_meta.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/executor/method_meta.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/executor/method_meta.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/executor/method_meta.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/executor/program.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/executor/program.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/executor/program.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/executor/program.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/executor/tensor_parser_exec_aten.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/executor/tensor_parser_exec_aten.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/executor/tensor_parser_exec_aten.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/executor/tensor_parser_exec_aten.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/executor/tensor_parser_portable.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/executor/tensor_parser_portable.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/executor/tensor_parser_portable.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/executor/tensor_parser_portable.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/kernel/operator_registry.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/kernel/operator_registry.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/kernel/operator_registry.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/kernel/operator_registry.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/platform/abort.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/platform/abort.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/platform/abort.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/platform/abort.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/platform/log.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/platform/log.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/platform/log.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/platform/log.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/platform/profiler.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/platform/profiler.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/platform/profiler.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/platform/profiler.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/platform/runtime.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/platform/runtime.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/platform/runtime.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/platform/runtime.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/runtime/platform/target/Posix.cpp.obj -c /home/chris/et-tut-1/executorch/runtime/platform/target/Posix.cpp",
+  "file": "/home/chris/et-tut-1/executorch/runtime/platform/target/Posix.cpp",
+  "output": "CMakeFiles/executorch.dir/runtime/platform/target/Posix.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -I/home/chris/et-tut-1/executorch/cmake-out/schema/include -I/home/chris/et-tut-1/executorch/schema/../third-party/flatbuffers/include -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/executorch.dir/schema/extended_header.cpp.obj -c /home/chris/et-tut-1/executorch/schema/extended_header.cpp",
+  "file": "/home/chris/et-tut-1/executorch/schema/extended_header.cpp",
+  "output": "CMakeFiles/executorch.dir/schema/extended_header.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_abs.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_abs.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_abs.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_abs.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_acos.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_acos.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_acos.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_acos.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_acosh.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_acosh.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_acosh.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_acosh.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_add.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_add.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_add.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_add.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_addmm.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_addmm.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_addmm.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_addmm.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_alias_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_alias_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_alias_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_alias_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_allclose.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_allclose.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_allclose.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_allclose.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_amax.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_amax.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_amax.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_amax.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_amin.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_amin.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_amin.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_amin.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_any.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_any.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_any.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_any.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_arange.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_arange.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_arange.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_arange.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_argmax.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_argmax.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_argmax.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_argmax.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_argmin.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_argmin.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_argmin.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_argmin.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_as_strided_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_as_strided_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_as_strided_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_as_strided_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_asin.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_asin.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_asin.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_asin.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_asinh.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_asinh.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_asinh.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_asinh.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_atan.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_atan.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_atan.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_atan.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_atan2.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_atan2.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_atan2.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_atan2.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_atanh.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_atanh.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_atanh.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_atanh.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_avg_pool2d.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_avg_pool2d.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_avg_pool2d.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_avg_pool2d.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_bitwise_and.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_bitwise_and.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_bitwise_and.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_bitwise_and.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_bitwise_not.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_bitwise_not.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_bitwise_not.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_bitwise_not.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_bitwise_or.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_bitwise_or.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_bitwise_or.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_bitwise_or.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_bitwise_xor.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_bitwise_xor.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_bitwise_xor.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_bitwise_xor.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_bmm.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_bmm.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_bmm.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_bmm.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_cat.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_cat.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_cat.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_cat.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_cdist_forward.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_cdist_forward.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_cdist_forward.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_cdist_forward.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_ceil.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_ceil.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_ceil.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_ceil.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_clamp.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_clamp.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_clamp.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_clamp.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_clone.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_clone.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_clone.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_clone.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_constant_pad_nd.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_constant_pad_nd.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_constant_pad_nd.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_constant_pad_nd.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_convolution.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_convolution.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_convolution.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_convolution.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_cos.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_cos.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_cos.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_cos.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_cosh.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_cosh.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_cosh.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_cosh.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_cumsum.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_cumsum.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_cumsum.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_cumsum.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_detach_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_detach_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_detach_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_detach_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_diagonal_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_diagonal_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_diagonal_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_diagonal_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_div.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_div.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_div.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_div.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_embedding.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_embedding.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_embedding.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_embedding.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_empty.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_empty.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_empty.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_empty.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_eq.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_eq.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_eq.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_eq.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_erf.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_erf.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_erf.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_erf.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_exp.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_exp.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_exp.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_exp.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_expand_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_expand_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_expand_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_expand_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_expm1.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_expm1.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_expm1.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_expm1.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_fill.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_fill.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_fill.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_fill.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_flip.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_flip.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_flip.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_flip.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_floor.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_floor.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_floor.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_floor.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_floor_divide.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_floor_divide.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_floor_divide.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_floor_divide.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_fmod.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_fmod.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_fmod.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_fmod.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_full.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_full.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_full.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_full.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_full_like.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_full_like.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_full_like.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_full_like.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_ge.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_ge.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_ge.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_ge.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_gelu.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_gelu.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_gelu.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_gelu.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_glu.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_glu.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_glu.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_glu.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_gt.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_gt.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_gt.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_gt.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_hardtanh.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_hardtanh.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_hardtanh.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_hardtanh.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_index.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_index.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_index.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_index.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_index_put.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_index_put.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_index_put.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_index_put.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_index_select.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_index_select.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_index_select.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_index_select.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_isinf.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_isinf.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_isinf.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_isinf.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_isnan.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_isnan.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_isnan.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_isnan.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_le.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_le.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_le.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_le.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_leaky_relu.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_leaky_relu.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_leaky_relu.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_leaky_relu.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_lift_fresh_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_lift_fresh_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_lift_fresh_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_lift_fresh_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_linear_scratch_example.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_linear_scratch_example.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_linear_scratch_example.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_linear_scratch_example.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_log.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_log.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_log.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_log.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_log10.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_log10.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_log10.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_log10.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_log1p.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_log1p.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_log1p.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_log1p.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_log2.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_log2.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_log2.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_log2.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_log_softmax.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_log_softmax.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_log_softmax.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_log_softmax.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_logical_and.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_logical_and.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_logical_and.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_logical_and.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_logical_not.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_logical_not.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_logical_not.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_logical_not.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_logical_or.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_logical_or.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_logical_or.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_logical_or.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_logical_xor.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_logical_xor.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_logical_xor.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_logical_xor.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_logit.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_logit.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_logit.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_logit.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_lt.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_lt.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_lt.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_lt.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_masked_fill.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_masked_fill.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_masked_fill.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_masked_fill.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_max.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_max.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_max.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_max.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_max_pool2d_with_indices.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_max_pool2d_with_indices.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_max_pool2d_with_indices.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_max_pool2d_with_indices.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_maximum.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_maximum.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_maximum.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_maximum.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_mean.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_mean.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_mean.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_mean.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_min.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_min.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_min.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_min.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_minimum.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_minimum.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_minimum.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_minimum.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_mm.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_mm.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_mm.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_mm.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_mul.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_mul.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_mul.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_mul.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_native_batch_norm.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_native_batch_norm.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_native_batch_norm.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_native_batch_norm.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_native_group_norm.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_native_group_norm.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_native_group_norm.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_native_group_norm.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_native_layer_norm.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_native_layer_norm.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_native_layer_norm.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_native_layer_norm.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_ne.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_ne.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_ne.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_ne.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_neg.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_neg.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_neg.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_neg.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_nonzero.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_nonzero.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_nonzero.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_nonzero.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_ones.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_ones.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_ones.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_ones.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_pdist_forward.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_pdist_forward.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_pdist_forward.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_pdist_forward.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_permute_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_permute_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_permute_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_permute_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_pixel_shuffle.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_pixel_shuffle.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_pixel_shuffle.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_pixel_shuffle.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_pow.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_pow.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_pow.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_pow.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_prod.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_prod.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_prod.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_prod.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_reciprocal.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_reciprocal.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_reciprocal.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_reciprocal.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_reflection_pad1d.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_reflection_pad1d.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_reflection_pad1d.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_reflection_pad1d.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_reflection_pad2d.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_reflection_pad2d.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_reflection_pad2d.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_reflection_pad2d.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_reflection_pad3d.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_reflection_pad3d.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_reflection_pad3d.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_reflection_pad3d.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_relu.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_relu.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_relu.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_relu.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_remainder.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_remainder.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_remainder.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_remainder.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_repeat.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_repeat.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_repeat.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_repeat.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_replication_pad1d.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_replication_pad1d.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_replication_pad1d.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_replication_pad1d.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_replication_pad2d.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_replication_pad2d.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_replication_pad2d.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_replication_pad2d.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_replication_pad3d.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_replication_pad3d.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_replication_pad3d.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_replication_pad3d.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_roll.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_roll.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_roll.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_roll.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_round.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_round.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_round.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_round.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_rsqrt.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_rsqrt.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_rsqrt.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_rsqrt.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_rsub.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_rsub.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_rsub.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_rsub.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_scalar_tensor.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_scalar_tensor.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_scalar_tensor.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_scalar_tensor.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_scatter_add.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_scatter_add.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_scatter_add.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_scatter_add.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_select_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_select_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_select_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_select_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_select_scatter.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_select_scatter.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_select_scatter.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_select_scatter.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_sigmoid.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_sigmoid.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_sigmoid.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_sigmoid.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_sign.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_sign.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_sign.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_sign.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_sin.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_sin.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_sin.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_sin.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_sinh.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_sinh.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_sinh.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_sinh.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_slice_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_slice_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_slice_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_slice_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_slice_scatter.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_slice_scatter.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_slice_scatter.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_slice_scatter.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_softmax.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_softmax.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_softmax.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_softmax.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_split_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_split_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_split_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_split_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_split_with_sizes_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_split_with_sizes_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_split_with_sizes_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_split_with_sizes_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_sqrt.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_sqrt.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_sqrt.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_sqrt.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_squeeze_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_squeeze_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_squeeze_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_squeeze_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_stack.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_stack.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_stack.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_stack.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_sub.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_sub.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_sub.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_sub.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_sum.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_sum.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_sum.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_sum.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_t_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_t_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_t_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_t_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_tan.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_tan.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_tan.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_tan.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_tanh.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_tanh.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_tanh.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_tanh.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_to_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_to_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_to_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_to_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_transpose_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_transpose_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_transpose_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_transpose_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_tril.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_tril.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_tril.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_tril.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_trunc.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_trunc.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_trunc.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_trunc.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_unbind_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_unbind_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_unbind_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_unbind_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_unsqueeze_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_unsqueeze_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_unsqueeze_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_unsqueeze_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_var.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_var.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_var.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_var.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_view_copy.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_view_copy.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_view_copy.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_view_copy.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_where.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_where.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_where.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_where.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/op_zeros.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/op_zeros.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/op_zeros.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_zeros.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/pattern/binary_ufunc_realb_realb_to_realb_logical.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/pattern/binary_ufunc_realb_realb_to_realb_logical.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/pattern/binary_ufunc_realb_realb_to_realb_logical.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/pattern/binary_ufunc_realb_realb_to_realb_logical.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/pattern/unary_ufunc_realh.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/pattern/unary_ufunc_realh.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/pattern/unary_ufunc_realh.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/pattern/unary_ufunc_realh.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/pattern/unary_ufunc_realhb_to_bool.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/pattern/unary_ufunc_realhb_to_bool.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/pattern/unary_ufunc_realhb_to_bool.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/pattern/unary_ufunc_realhb_to_bool.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/pattern/unary_ufunc_realhb_to_floath.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/pattern/unary_ufunc_realhb_to_floath.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/pattern/unary_ufunc_realhb_to_floath.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/pattern/unary_ufunc_realhb_to_floath.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/util/activation_ops_util.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/util/activation_ops_util.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/util/activation_ops_util.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/util/activation_ops_util.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/util/advanced_index_util.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/util/advanced_index_util.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/util/advanced_index_util.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/util/advanced_index_util.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/util/broadcast_util.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/util/broadcast_util.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/util/broadcast_util.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/util/broadcast_util.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/util/copy_ops_util.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/util/copy_ops_util.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/util/copy_ops_util.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/util/copy_ops_util.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/util/distance_util.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/util/distance_util.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/util/distance_util.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/util/distance_util.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/util/index_util.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/util/index_util.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/util/index_util.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/util/index_util.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/util/kernel_ops_util.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/util/kernel_ops_util.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/util/kernel_ops_util.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/util/kernel_ops_util.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/util/matmul_ops_util.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/util/matmul_ops_util.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/util/matmul_ops_util.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/util/matmul_ops_util.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/util/normalization_ops_util.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/util/normalization_ops_util.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/util/normalization_ops_util.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/util/normalization_ops_util.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/util/padding_util.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/util/padding_util.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/util/padding_util.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/util/padding_util.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/util/reduce_util.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/util/reduce_util.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/util/reduce_util.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/util/reduce_util.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_kernels.dir/cpu/util/repeat_util.cpp.obj -c /home/chris/et-tut-1/executorch/kernels/portable/cpu/util/repeat_util.cpp",
+  "file": "/home/chris/et-tut-1/executorch/kernels/portable/cpu/util/repeat_util.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_kernels.dir/cpu/util/repeat_util.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/portable_ops_lib.dir/RegisterCodegenUnboxedKernelsEverything.cpp.obj -c /home/chris/et-tut-1/executorch/cmake-out/kernels/portable/RegisterCodegenUnboxedKernelsEverything.cpp",
+  "file": "/home/chris/et-tut-1/executorch/cmake-out/kernels/portable/RegisterCodegenUnboxedKernelsEverything.cpp",
+  "output": "kernels/portable/CMakeFiles/portable_ops_lib.dir/RegisterCodegenUnboxedKernelsEverything.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/third-party/gflags",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DGFLAGS_IS_A_DLL=0 -DNDEBUG -DNO_THREADS -I/home/chris/et-tut-1/executorch/cmake-out/third-party/gflags/include -I/home/chris/et-tut-1/executorch/third-party/gflags/src -I/home/chris/et-tut-1/executorch/cmake-out/third-party/gflags/include/gflags -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -o CMakeFiles/gflags_nothreads_static.dir/src/gflags.cc.obj -c /home/chris/et-tut-1/executorch/third-party/gflags/src/gflags.cc",
+  "file": "/home/chris/et-tut-1/executorch/third-party/gflags/src/gflags.cc",
+  "output": "third-party/gflags/CMakeFiles/gflags_nothreads_static.dir/src/gflags.cc.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/third-party/gflags",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DGFLAGS_IS_A_DLL=0 -DNDEBUG -DNO_THREADS -I/home/chris/et-tut-1/executorch/cmake-out/third-party/gflags/include -I/home/chris/et-tut-1/executorch/third-party/gflags/src -I/home/chris/et-tut-1/executorch/cmake-out/third-party/gflags/include/gflags -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -o CMakeFiles/gflags_nothreads_static.dir/src/gflags_reporting.cc.obj -c /home/chris/et-tut-1/executorch/third-party/gflags/src/gflags_reporting.cc",
+  "file": "/home/chris/et-tut-1/executorch/third-party/gflags/src/gflags_reporting.cc",
+  "output": "third-party/gflags/CMakeFiles/gflags_nothreads_static.dir/src/gflags_reporting.cc.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/third-party/gflags",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DGFLAGS_IS_A_DLL=0 -DNDEBUG -DNO_THREADS -I/home/chris/et-tut-1/executorch/cmake-out/third-party/gflags/include -I/home/chris/et-tut-1/executorch/third-party/gflags/src -I/home/chris/et-tut-1/executorch/cmake-out/third-party/gflags/include/gflags -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -o CMakeFiles/gflags_nothreads_static.dir/src/gflags_completions.cc.obj -c /home/chris/et-tut-1/executorch/third-party/gflags/src/gflags_completions.cc",
+  "file": "/home/chris/et-tut-1/executorch/third-party/gflags/src/gflags_completions.cc",
+  "output": "third-party/gflags/CMakeFiles/gflags_nothreads_static.dir/src/gflags_completions.cc.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/extension/runner_util",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/extension/runner_util/../../.. -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/extension_runner_util.dir/inputs.cpp.obj -c /home/chris/et-tut-1/executorch/extension/runner_util/inputs.cpp",
+  "file": "/home/chris/et-tut-1/executorch/extension/runner_util/inputs.cpp",
+  "output": "extension/runner_util/CMakeFiles/extension_runner_util.dir/inputs.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/extension/runner_util",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/extension/runner_util/../../.. -I/home/chris/et-tut-1/executorch/.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -Wno-deprecated-declarations -fPIC -o CMakeFiles/extension_runner_util.dir/inputs_portable.cpp.obj -c /home/chris/et-tut-1/executorch/extension/runner_util/inputs_portable.cpp",
+  "file": "/home/chris/et-tut-1/executorch/extension/runner_util/inputs_portable.cpp",
+  "output": "extension/runner_util/CMakeFiles/extension_runner_util.dir/inputs_portable.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/backends/arm",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/backends/arm/third-party/ethos-u-core-driver/include -I/home/chris/et-tut-1/executorch/backends/arm/../../.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -o CMakeFiles/executorch_delegate_ethos_u.dir/runtime/ArmBackendEthosU.cpp.obj -c /home/chris/et-tut-1/executorch/backends/arm/runtime/ArmBackendEthosU.cpp",
+  "file": "/home/chris/et-tut-1/executorch/backends/arm/runtime/ArmBackendEthosU.cpp",
+  "output": "backends/arm/CMakeFiles/executorch_delegate_ethos_u.dir/runtime/ArmBackendEthosU.cpp.obj"
+},
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/backends/arm",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DET_ENABLE_PROGRAM_VERIFICATION=0 -DNDEBUG -I/home/chris/et-tut-1/executorch/backends/arm/third-party/ethos-u-core-driver/include -I/home/chris/et-tut-1/executorch/backends/arm/../../.. -O2 -O2 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -s -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -o CMakeFiles/executorch_delegate_ethos_u.dir/runtime/VelaBinStream.cpp.obj -c /home/chris/et-tut-1/executorch/backends/arm/runtime/VelaBinStream.cpp",
+  "file": "/home/chris/et-tut-1/executorch/backends/arm/runtime/VelaBinStream.cpp",
+  "output": "backends/arm/CMakeFiles/executorch_delegate_ethos_u.dir/runtime/VelaBinStream.cpp.obj"
+}
+]
