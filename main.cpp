@@ -44,119 +44,119 @@ int main()
 {
 	torch::executor::runtime_init();
 
-	// auto loader =
-	// 	torch::executor::util::BufferDataLoader(model_pte, sizeof(model_pte));
-	// ET_LOG(Info, "Model PTE file loaded. Size: %lu bytes.", sizeof(model_pte));
-	// Result<torch::executor::Program> program =
-	// 	torch::executor::Program::load(&loader);
-	// if (!program.ok()) {
-	// 	ET_LOG(
-	// 		Info,
-	// 		"Program loading failed @ 0x%p: 0x%" PRIx32,
-	// 		model_pte,
-	// 		program.error());
-	// }
+	auto loader =
+		torch::executor::util::BufferDataLoader(model_pte, sizeof(model_pte));
+	ET_LOG(Info, "Model PTE file loaded. Size: %lu bytes.", sizeof(model_pte));
+	Result<torch::executor::Program> program =
+		torch::executor::Program::load(&loader);
+	if (!program.ok()) {
+		ET_LOG(
+			Info,
+			"Program loading failed @ 0x%p: 0x%" PRIx32,
+			model_pte,
+			program.error());
+	}
 
-	// ET_LOG(Info, "Model buffer loaded, has %lu methods", program->num_methods());
+	ET_LOG(Info, "Model buffer loaded, has %lu methods", program->num_methods());
 
-	// const char* method_name = nullptr;
-	// {
-	// 	const auto method_name_result = program->get_method_name(0);
-	// 	ET_CHECK_MSG(method_name_result.ok(), "Program has no methods");
-	// 	method_name = *method_name_result;
-	// }
-	// ET_LOG(Info, "Running method %s", method_name);
+	const char* method_name = nullptr;
+	{
+		const auto method_name_result = program->get_method_name(0);
+		ET_CHECK_MSG(method_name_result.ok(), "Program has no methods");
+		method_name = *method_name_result;
+	}
+	ET_LOG(Info, "Running method %s", method_name);
 
-	// Result<torch::executor::MethodMeta> method_meta =
-	// 	program->method_meta(method_name);
-	// if (!method_meta.ok()) {
-	// 	ET_LOG(
-	// 		Info,
-	// 		"Failed to get method_meta for %s: 0x%x",
-	// 		method_name,
-	// 		(unsigned int)method_meta.error());
-	// }
+	Result<torch::executor::MethodMeta> method_meta =
+		program->method_meta(method_name);
+	if (!method_meta.ok()) {
+		ET_LOG(
+			Info,
+			"Failed to get method_meta for %s: 0x%x",
+			method_name,
+			(unsigned int)method_meta.error());
+	}
 
-	// torch::executor::MemoryAllocator method_allocator{
-	// 	torch::executor::MemoryAllocator(
-	// 		sizeof(method_allocator_pool), method_allocator_pool)};
+	torch::executor::MemoryAllocator method_allocator{
+		torch::executor::MemoryAllocator(
+			sizeof(method_allocator_pool), method_allocator_pool)};
 
-	// std::vector<std::unique_ptr<uint8_t[]>> planned_buffers; // Owns the memory
-	// std::vector<torch::executor::Span<uint8_t>>
-	// 	planned_spans; // Passed to the allocator
-	// size_t num_memory_planned_buffers = method_meta->num_memory_planned_buffers();
+	std::vector<std::unique_ptr<uint8_t[]>> planned_buffers; // Owns the memory
+	std::vector<torch::executor::Span<uint8_t>>
+		planned_spans; // Passed to the allocator
+	size_t num_memory_planned_buffers = method_meta->num_memory_planned_buffers();
 
-	// for (size_t id = 0; id < num_memory_planned_buffers; ++id) {
-	// 	size_t buffer_size =
-	// 		static_cast<size_t>(method_meta->memory_planned_buffer_size(id).get());
-	// 	ET_LOG(Info, "Setting up planned buffer %zu, size %zu.", id, buffer_size);
+	for (size_t id = 0; id < num_memory_planned_buffers; ++id) {
+		size_t buffer_size =
+			static_cast<size_t>(method_meta->memory_planned_buffer_size(id).get());
+		ET_LOG(Info, "Setting up planned buffer %zu, size %zu.", id, buffer_size);
 
-	// 	planned_buffers.push_back(std::make_unique<uint8_t[]>(buffer_size));
-	// 	planned_spans.push_back({planned_buffers.back().get(), buffer_size});
-	// }
+		planned_buffers.push_back(std::make_unique<uint8_t[]>(buffer_size));
+		planned_spans.push_back({planned_buffers.back().get(), buffer_size});
+	}
 
-	// torch::executor::HierarchicalAllocator planned_memory(
-	// 	{planned_spans.data(), planned_spans.size()});
+	torch::executor::HierarchicalAllocator planned_memory(
+		{planned_spans.data(), planned_spans.size()});
 
-	// torch::executor::MemoryManager memory_manager(
-	// 	&method_allocator, &planned_memory);
+	torch::executor::MemoryManager memory_manager(
+		&method_allocator, &planned_memory);
 
-	// Result<torch::executor::Method> method =
-	// 	program->load_method(method_name, &memory_manager);
-	// if (!method.ok()) {
-	// 	ET_LOG(
-	// 		Info,
-	// 		"Loading of method %s failed with status 0x%" PRIx32,
-	// 		method_name,
-	// 		method.error());
-	// }
-	// ET_LOG(Info, "Method loaded.");
+	Result<torch::executor::Method> method =
+		program->load_method(method_name, &memory_manager);
+	if (!method.ok()) {
+		ET_LOG(
+			Info,
+			"Loading of method %s failed with status 0x%" PRIx32,
+			method_name,
+			method.error());
+	}
+	ET_LOG(Info, "Method loaded.");
 
-	// ET_LOG(Info, "Preparing inputs...");
-	// auto inputs = torch::executor::util::prepare_input_tensors(*method);
-	// if (!inputs.ok()) {
-	// 	ET_LOG(
-	// 		Info,
-	// 		"Preparing inputs tensors for method %s failed with status 0x%" PRIx32,
-	// 		method_name,
-	// 		inputs.error());
-	// }
-	// ET_LOG(Info, "Input prepared.");
+	ET_LOG(Info, "Preparing inputs...");
+	auto inputs = torch::executor::util::prepare_input_tensors(*method);
+	if (!inputs.ok()) {
+		ET_LOG(
+			Info,
+			"Preparing inputs tensors for method %s failed with status 0x%" PRIx32,
+			method_name,
+			inputs.error());
+	}
+	ET_LOG(Info, "Input prepared.");
 
-	// ET_LOG(Info, "Starting the model execution...");
-	// Error status = method->execute();
-	// if (status != Error::Ok) {
-	// 	ET_LOG(
-	// 		Info,
-	// 		"Execution of method %s failed with status 0x%" PRIx32,
-	// 		method_name,
-	// 		status);
-	// } else {
-	// 	ET_LOG(Info, "Model executed successfully.");
-	// }
+	ET_LOG(Info, "Starting the model execution...");
+	Error status = method->execute();
+	if (status != Error::Ok) {
+		ET_LOG(
+			Info,
+			"Execution of method %s failed with status 0x%" PRIx32,
+			method_name,
+			status);
+	} else {
+		ET_LOG(Info, "Model executed successfully.");
+	}
 
-	// std::vector<torch::executor::EValue> outputs(method->outputs_size());
-	// ET_LOG(Info, "%zu outputs: ", outputs.size());
-	// status = method->get_outputs(outputs.data(), outputs.size());
-	// ET_CHECK(status == Error::Ok);
-	// for (int i = 0; i < outputs.size(); ++i) {
-	// 	Tensor t = outputs[i].toTensor();
-	// 	for (int j = 0; j < outputs[i].toTensor().numel(); ++j) {
-	// 	if (t.scalar_type() == ScalarType::Int) {
-	// 		printf(
-	// 			"Output[%d][%d]: %d\n",
-	// 			i,
-	// 			j,
-	// 			outputs[i].toTensor().const_data_ptr<int>()[j]);
-	// 	} else {
-	// 		printf(
-	// 			"Output[%d][%d]: %f\n",
-	// 			i,
-	// 			j,
-	// 			outputs[i].toTensor().const_data_ptr<float>()[j]);
-	// 	}
-	// 	}
-	// }
+	std::vector<torch::executor::EValue> outputs(method->outputs_size());
+	ET_LOG(Info, "%zu outputs: ", outputs.size());
+	status = method->get_outputs(outputs.data(), outputs.size());
+	ET_CHECK(status == Error::Ok);
+	for (int i = 0; i < outputs.size(); ++i) {
+		Tensor t = outputs[i].toTensor();
+		for (int j = 0; j < outputs[i].toTensor().numel(); ++j) {
+		if (t.scalar_type() == ScalarType::Int) {
+			printf(
+				"Output[%d][%d]: %d\n",
+				i,
+				j,
+				outputs[i].toTensor().const_data_ptr<int>()[j]);
+		} else {
+			printf(
+				"Output[%d][%d]: %f\n",
+				i,
+				j,
+				outputs[i].toTensor().const_data_ptr<float>()[j]);
+		}
+		}
+	}
 
 	while(true) 
 	{

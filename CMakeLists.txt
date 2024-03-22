@@ -215,7 +215,7 @@ set(LIBPORTABLE_KERNELS
 
 # Add sources of static library libarm_portable_ops_lib.a
 set(LIBARM_PORTABLE_OPS_LIB
-     ${CMAKE_CURRENT_SOURCE_DIR}/config/executorch/RegisterCodegenUnboxedKernelsEverything.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/config/executorch/cmake-out/examples/arm/RegisterCodegenUnboxedKernelsEverything.cpp
 )
 
 include_directories(
