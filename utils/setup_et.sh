@@ -77,6 +77,8 @@ cd $ET_SRC_DIR
 
 MBED_CONFIG_CMAKE=$SCRIPT_DIR../build/mbed_config.cmake #suits to Hardware
 
+#TARGETS PATCH NECESSARY
+
 set -x
 
 # build dir pf mbed os has to generated before because of MBED_CONFIG_CMAKE
