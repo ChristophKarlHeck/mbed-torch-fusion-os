@@ -42,18 +42,20 @@ project(MbedTorchFusionOS) # TODO: change this to your project name
 #      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/runtime/platform/target/Posix.cpp
 #      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/schema/extended_header.cpp
 # )
+
 add_library(executorch STATIC IMPORTED)
 set_property(TARGET executorch PROPERTY IMPORTED_LOCATION
-  "${ET_BUILD_DIR_PATH}/libexecutorch.a")
+  "/home/chris/et-tut-3/mbed-torch-fusion-os/executorch/cmake-out/libexecutorch.a")
 
 # Add sources of static library libextension_runner_util.a
 # set(LIBEXTENSION_RUNNER_UTIL_SRC
 #      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/extension/runner_util/inputs.cpp
 #      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/extension/runner_util/inputs_portable.cpp
 # )
+
 add_library(extension_runner_util STATIC IMPORTED)
 set_property(TARGET extension_runner_util PROPERTY IMPORTED_LOCATION
-  "${ET_BUILD_DIR_PATH}/extension/runner_util/libextension_runner_util.a")
+  "/home/chris/et-tut-3/mbed-torch-fusion-os/executorch/cmake-out/extension/runner_util/libextension_runner_util.a")
 
 # Add sources of static library libportable_kernels.a
 # set(LIBPORTABLE_KERNELS
@@ -221,7 +223,7 @@ set_property(TARGET extension_runner_util PROPERTY IMPORTED_LOCATION
 
 add_library(portable_kernels STATIC IMPORTED)
 set_property(TARGET portable_kernels PROPERTY IMPORTED_LOCATION
-  "${ET_BUILD_DIR_PATH}/kernels/portable/libportable_kernels.a")
+  "/home/chris/et-tut-3/mbed-torch-fusion-os/executorch/cmake-out/kernels/portable/libportable_kernels.a")
 
 # Add sources of static library libarm_portable_ops_lib.a
 # set(LIBARM_PORTABLE_OPS_LIB
@@ -230,8 +232,9 @@ set_property(TARGET portable_kernels PROPERTY IMPORTED_LOCATION
 
 add_library(portable_ops_lib STATIC IMPORTED)
 set_property(TARGET portable_ops_lib PROPERTY IMPORTED_LOCATION
-  "${ET_BUILD_DIR_PATH}/examples/arm/libportable_ops_lib.a")
+  "/home/chris/et-tut-3/mbed-torch-fusion-os/executorch/cmake-out/kernels/portable/libportable_ops_lib.a")
 
+### ALL SOURCES IN THIS FILE###
 # include_directories(
 #      ${CMAKE_CURRENT_SOURCE_DIR}/config/executorch/cmake-out/schema/include
 #      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/third-party/flatbuffers/include
@@ -242,29 +245,33 @@ set_property(TARGET portable_ops_lib PROPERTY IMPORTED_LOCATION
 #      ${LIBEXECUTORCH_SRC}
 #      ${LIBEXTENSION_RUNNER_UTIL_SRC}
 #      ${LIBPORTABLE_KERNELS}
-#      ${LIBARM_PORTABLE_OPS_LIB}
 # )
 
 add_executable(SoftMaxTorchRunner
     main.cpp
 )
 
-target_link_libraries(SoftMaxTorchRunner
-     mbed-os
+# target_link_libraries(SoftMaxTorchRunner mbed-os)
+
+target_link_libraries(SoftMaxTorchRunner PUBLIC
+     mbed-os # Can also link to mbed-baremetal here
      "-Wl,--whole-archive"
-     executorch
-     portable_kernels
-     portable_ops_lib
-     extension_runner_util
+     /home/chris/et-tut-1/executorch/cmake-out/extension/runner_util/libextension_runner_util.a #extension_runner_util
+     /home/chris/et-tut-1/executorch/cmake-out/libexecutorch.a #executorch
+     /home/chris/et-tut-1/executorch/cmake-out/kernels/portable/libportable_kernels.a #portable_kernels
+     /home/chris/et-tut-1/executorch/cmake-out/kernels/portable/libportable_ops_lib.a #portable_ops_lib
      "-Wl,--no-whole-archive"
+     ) 
 
-     ) # Can also link to mbed-baremetal here
-
+###GENRAL###
 target_include_directories(SoftMaxTorchRunner
      PUBLIC 
           ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
+###GENRAL####
 mbed_set_post_build(SoftMaxTorchRunner) # Must call this for each target to set up bin file creation, code upload, etc
 
+
+###GENRAL###
 mbed_finalize_build() # Make sure this is the last line of the top-level buildscript

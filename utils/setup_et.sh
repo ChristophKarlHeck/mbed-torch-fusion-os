@@ -79,6 +79,8 @@ MBED_CONFIG_CMAKE=$SCRIPT_DIR../build/mbed_config.cmake #suits to Hardware
 
 set -x
 
+# build dir pf mbed os has to generated before because of MBED_CONFIG_CMAKE
+
 cmake                                                 \
     -DBUCK2=/tmp/buck2                                \
     -DCMAKE_INSTALL_PREFIX=${ET_BUILD_DIR}            \
@@ -92,7 +94,7 @@ cmake                                                 \
     -B${ET_BUILD_DIR}                                 \
     "${ET_SRC_DIR}"
 
-
+###TEST###
 cmake                                                 \
     -DBUCK2=/tmp/buck2                                \
     -DCMAKE_INSTALL_PREFIX=/home/chris/et-tut-3/mbed-torch-fusion-os/executorch/cmake-out            \
@@ -108,6 +110,9 @@ cmake                                                 \
 
 cmake --build ${ET_BUILD_DIR} -j4 --target install --config Release
 
+###TEST###
+cmake --build /home/chris/et-tut-3/mbed-torch-fusion-os/executorch/cmake-out -j4 --target install --config Release
+
 cmake                                                  \
     -DCMAKE_INSTALL_PREFIX=${ET_BUILD_DIR}             \
     -DCMAKE_BUILD_TYPE=Release                         \
@@ -115,6 +120,20 @@ cmake                                                  \
     -DEXECUTORCH_SELECT_OPS_LIST="aten::_softmax.out"  \
     -B"${ET_BUILD_DIR}"/examples/arm                   \
     "${ET_SRC_DIR}"/examples/arm 
+
+###TEST###
+cmake                                                  \
+    -DCMAKE_INSTALL_PREFIX=/home/chris/et-tut-3/mbed-torch-fusion-os/executorch/cmake-out             \
+    -DCMAKE_BUILD_TYPE=Release                         \
+    -DCMAKE_TOOLCHAIN_FILE=/home/chris/et-tut-3/mbed-torch-fusion-os/build/mbed_config.cmake   \
+    -DEXECUTORCH_SELECT_OPS_LIST="aten::_softmax.out"  \
+    -B/home/chris/et-tut-3/mbed-torch-fusion-os/executorch/cmake-out/examples/arm                   \
+    /home/chris/et-tut-3/mbed-torch-fusion-os/executorch/examples/arm 
+
+cmake --build ${et_build_dir}/examples/arm --config Release
+
+###TEST###
+cmake --build /home/chris/et-tut-3/mbed-torch-fusion-os/executorch/cmake-out/examples/arm --config Release
 
 set +x
 
