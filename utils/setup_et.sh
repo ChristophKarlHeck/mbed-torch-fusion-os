@@ -106,7 +106,7 @@ cmake                                                 \
     -DEXECUTORCH_BUILD_ARM_BAREMETAL=ON               \
     -DEXECUTORCH_BUILD_EXTENSION_RUNNER_UTIL=ON       \
     -DFLATC_EXECUTABLE="$(which flatc)"               \
-    -DCMAKE_TOOLCHAIN_FILE=/home/chris/et-tut-3/mbed-torch-fusion-os/build/mbed_config.cmake \
+    -DCMAKE_TOOLCHAIN_FILE=/home/chris/et-tut-3/mbed-torch-fusion-os/utils/nucleo_wb55rg_toolchain.cmake \
     -B/home/chris/et-tut-3/mbed-torch-fusion-os/executorch/cmake-out                                \
     /home/chris/et-tut-3/mbed-torch-fusion-os/executorch
 
