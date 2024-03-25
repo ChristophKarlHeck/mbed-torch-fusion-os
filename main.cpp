@@ -20,7 +20,7 @@ using torch::executor::Result;
 __attribute__((section(".sram.data"), aligned(16)))
 uint8_t method_allocator_pool[4 * 1024U];
 
-void et_pal_init(void) {}
+//void et_pal_init(void) {}
 
 __ET_NORETURN void et_pal_abort(void) {
   __builtin_trap();

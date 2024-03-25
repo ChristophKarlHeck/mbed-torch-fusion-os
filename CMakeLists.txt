@@ -57,7 +57,7 @@ set(LIBEXTENSION_RUNNER_UTIL_SRC
 # set_property(TARGET extension_runner_util PROPERTY IMPORTED_LOCATION
 #   "/home/chris/et-tut-3/mbed-torch-fusion-os/executorch/cmake-out/extension/runner_util/libextension_runner_util.a")
 
-# Add sources of static library libportable_kernels.a
+#Add sources of static library libportable_kernels.a
 set(LIBPORTABLE_KERNELS
      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/kernels/portable/cpu/op_abs.cpp
      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/kernels/portable/cpu/op_acos.cpp
@@ -225,7 +225,7 @@ set(LIBPORTABLE_KERNELS
 # set_property(TARGET portable_kernels PROPERTY IMPORTED_LOCATION
 #   "/home/chris/et-tut-3/mbed-torch-fusion-os/executorch/cmake-out/kernels/portable/libportable_kernels.a")
 
-# Add sources of static library libarm_portable_ops_lib.a
+#Add sources of static library libarm_portable_ops_lib.a
 set(LIBARM_PORTABLE_OPS_LIB
      ${CMAKE_CURRENT_SOURCE_DIR}/config/executorch/cmake-out/examples/arm/RegisterCodegenUnboxedKernelsEverything.cpp
 )
@@ -257,10 +257,10 @@ target_link_libraries(SoftMaxTorchRunner mbed-os)
 # target_link_libraries(SoftMaxTorchRunner PUBLIC
 #      mbed-os # Can also link to mbed-baremetal here
 #      "-Wl,--whole-archive"
-#      extension_runner_util
-#      executorch
-#      portable_kernels
-#      portable_ops_lib
+#      /home/chris/et-tut-4/executorch/cmake-out/extension/runner_util/libextension_runner_util.a
+#      /home/chris/et-tut-4/executorch/cmake-out/libexecutorch.a
+#      /home/chris/et-tut-4/executorch/cmake-out/kernels/portable/libportable_kernels.a
+#      /home/chris/et-tut-4/executorch/cmake-out/examples/arm/libarm_portable_ops_lib.a
 #      "-Wl,--no-whole-archive"
 #      ) 
 
