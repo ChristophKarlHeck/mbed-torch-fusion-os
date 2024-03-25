@@ -240,6 +240,19 @@ include_directories(
      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/third-party/flatbuffers/include
 )
 
+# Convert pte to header
+add_custom_target(gen_model_header
+    DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/model_pte.h)
+
+add_custom_command(
+    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/model_pte.h
+    COMMAND python3 /home/chris/et-tut-3/mbed-torch-fusion-os/executorch/examples/arm/executor_runner/pte_to_header.py
+    --pte /home/chris/et-tut-3/mbed-torch-fusion-os/executorch/add.pte
+    --outdir ${CMAKE_CURRENT_BINARY_DIR}
+    DEPENDS /home/chris/et-tut-3/mbed-torch-fusion-os/executorch/add.pte
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
 add_executable(SoftMaxTorchRunner
      main.cpp
      ${LIBEXECUTORCH_SRC}
@@ -268,7 +281,10 @@ target_link_libraries(SoftMaxTorchRunner mbed-os)
 target_include_directories(SoftMaxTorchRunner
      PUBLIC 
           ${CMAKE_CURRENT_SOURCE_DIR}
+          ${CMAKE_CURRENT_BINARY_DIR}
 )
+
+add_dependencies(SoftMaxTorchRunner gen_model_header)
 
 ###GENRAL####
 mbed_set_post_build(SoftMaxTorchRunner) # Must call this for each target to set up bin file creation, code upload, etc
