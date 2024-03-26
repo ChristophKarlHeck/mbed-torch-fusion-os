@@ -282,7 +282,6 @@ target_include_directories(SoftMaxTorchRunner
      PUBLIC 
           ${CMAKE_CURRENT_SOURCE_DIR}
           ${CMAKE_CURRENT_BINARY_DIR}
-          /home/chris/et-tut-3/mbed-torch-fusion-os/executorch/third-party/flatbuffers/include
 )
 
 add_dependencies(SoftMaxTorchRunner gen_model_header)

@@ -46,7 +46,7 @@ int main()
 
 	auto loader =
 		torch::executor::util::BufferDataLoader(model_pte, sizeof(model_pte));
-	ET_LOG(Info, "Model PTE file loaded. Size: %lu bytes.", sizeof(model_pte));
+	//ET_LOG(Info, "Model PTE file loaded. Size: %lu bytes.", sizeof(model_pte));
 	Result<torch::executor::Program> program =
 		torch::executor::Program::load(&loader);
 	if (!program.ok()) {
