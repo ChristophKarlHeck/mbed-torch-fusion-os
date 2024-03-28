@@ -64,6 +64,9 @@ python3 -m examples.arm.aot_arm_compiler --model_name="softmax"
 patch examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake < ../utils/patches/cmake_file_m4.patch
 patch kernels/portable/targets.bzl ../utils/patches/targets.patch
 
+/tmp/buck2 clean
+/tmp/buck2 kill
+
 set -x
 
 cmake                                                                           \
