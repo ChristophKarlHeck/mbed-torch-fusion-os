@@ -64,11 +64,61 @@ MbedTorch Fusion OS: Seamlessly merges Mbed OS with Torch ML models for the P-Nu
 
 > pip3 install cmake==3.28.3
 
+> patch build/install_flatc.sh < ../utils/patches/install_flatc.patch
+
 > ./install_requirements.sh
 
 > export PATH="$(pwd)/third-party/flatbuffers/cmake-out:${PATH}"
 
 > "$(pwd)/build/install_flatc.sh"
+
+> wget https://github.com/facebook/buck2/releases/download/2024-03-01/buck2-x86_64-unknown-linux-gnu.zst
+
+> zstd -cdq buck2-x86_64-unknown-linux-gnu.zst > /tmp/buck2 && chmod +x /tmp/buck2
+
+> cd ..
+
+> wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2
+
+> tar -xvf gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2
+
+> export PATH="$(pwd)/gcc-arm-none-eabi-10.3-2021.10/bin:${PATH}"
+
+> hash arm-none-eabi-gcc
+
+> cd executorch
+
+> patch --verbose --ignore-whitespace --fuzz 3 examples/arm/aot_arm_compiler.py < ../utils/patches/aot_arm_compiler.patch
+
+> python3 -m examples.arm.aot_arm_compiler --model_name="softmax"
+
+> patch examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake < ../utils/patches/cmake_file_m4.patch
+
+> patch kernels/portable/targets.bzl ../utils/patches/targets.patch
+
+> cmake    \
+>    -DBUCK2=                                                          \
+    -DCMAKE_INSTALL_PREFIX=$(pwd)/cmake-out            \
+    -DEXECUTORCH_BUILD_EXECUTOR_RUNNER=OFF            \
+    -DCMAKE_BUILD_TYPE=Release                        \
+    -DEXECUTORCH_ENABLE_LOGGING=ON                    \
+    -DEXECUTORCH_BUILD_ARM_BAREMETAL=ON               \
+    -DEXECUTORCH_BUILD_EXTENSION_RUNNER_UTIL=ON       \
+    -DFLATC_EXECUTABLE="$(which flatc)"               \
+    -DCMAKE_TOOLCHAIN_FILE=$(pwd)/examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake  \
+    -B$(pwd)/cmake-out                                \
+    $(pwd)
+
+
+> cmake --build $(pwd)/cmake-out -j4 --target install --config Release
+
+>cmake                                                  \
+    -DCMAKE_INSTALL_PREFIX=$(pwd)/cmake-out             \
+    -DCMAKE_BUILD_TYPE=Release                         \
+    -DCMAKE_TOOLCHAIN_FILE=$(pwd)/examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake  \
+    -DEXECUTORCH_SELECT_OPS_LIST="aten::_softmax.out"  \
+    -B$(pwd)/cmake-out/examples/arm                   \
+    $(pwd)/examples/arm
 
 ## How to set up this project:
 ### OpenOCD
