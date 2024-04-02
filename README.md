@@ -53,6 +53,4 @@ Remember serial port. Use minicom to see console output.
 ctrl a & x to exit
 
 ### 5. Build and flash using VS Code
-https://pytorch.org/executorch/main/executorch-arm-delegate-tutorial.html
-Suitable script will be added soon but the following command is important:
-> python3 -m examples.arm.aot_arm_compiler --model_name="softmax"
+https://github.com/mbed-ce/mbed-os/wiki/Project-Setup:-VS-Code
