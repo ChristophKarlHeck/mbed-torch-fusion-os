@@ -9,19 +9,34 @@ MbedTorch Fusion OS: Seamlessly merges Mbed OS with Torch ML models for the P-Nu
 > ./build_et_libs.sh
 
 
-## How to set up this project:
-### OpenOCD
-> sudo apt-get install openocd
-
-### pyOCD
+## 2. Install pyOCD in mbed-os venv
 > source mbed-os/venv/bin/activate
+
 > python3 -m pip install -U pyocd
 
 > pyocd pack --update
 
 > pyocd pack --install stm32wb55rg
 
-### Connect with serial port
+> deactivate
+
+## 3. Convert softmax.pte file to model_pte.h
+
+> cd executorch
+
+> source .executorch/bin/activate
+
+> export PATH="$(pwd)/third-party/flatbuffers/cmake-out:${PATH}"
+
+> export PATH="$(pwd)/gcc-arm-none-eabi-10.3-2021.10/bin:${PATH}"
+
+> hash arm-none-eabi-gcc
+
+> cd ..
+
+> python3 executorch/examples/arm/executor_runner/pte_to_header.py --pte executorch/softmax.pte --outdir .
+
+## 4. Connect with serial port
 Open a new terminal. Plug in Nucleo-WB55RG. Install Mbed CLI 2 and use it to find serial port.
 > sudo apt-get install python3-dev
 
@@ -33,7 +48,7 @@ Remember serial port. Use minicom to see console output.
 > minicom -D /dev/ttyACM0
 ctrl a & x to exit
 
-### Create your model_pte.h file
+### 5. Build and flash using VS Code
 https://pytorch.org/executorch/main/executorch-arm-delegate-tutorial.html
 Suitable script will be added soon but the following command is important:
 > python3 -m examples.arm.aot_arm_compiler --model_name="softmax"
