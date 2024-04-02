@@ -106,4 +106,4 @@ cd $ROOT_DIR
 cp config/mbed-os/NUCLEO_WB55RG.cmake mbed-os/targets/upload_method_cfg/
 
 # Patch pte_to_header script
-patch executorch/examples/arm/executor_runner/pte_to_header.py < pte_to_header.patch
+patch executorch/examples/arm/executor_runner/pte_to_header.py < utils/patches/pte_to_header.patch
