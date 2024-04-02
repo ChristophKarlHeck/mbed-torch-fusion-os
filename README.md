@@ -8,6 +8,8 @@ MbedTorch Fusion OS: Seamlessly merges Mbed OS with Torch ML models for the P-Nu
 
 > ./build_et_libs.sh
 
+> cd ../../
+
 
 ## 2. Install pyOCD in mbed-os venv
 > source mbed-os/venv/bin/activate
@@ -28,7 +30,9 @@ MbedTorch Fusion OS: Seamlessly merges Mbed OS with Torch ML models for the P-Nu
 
 > export PATH="$(pwd)/third-party/flatbuffers/cmake-out:${PATH}"
 
-> export PATH="$(pwd)/gcc-arm-none-eabi-10.3-2021.10/bin:${PATH}"
+> "$(pwd)/build/install_flatc.sh"
+
+> export PATH="$(pwd)/../gcc-arm-none-eabi-10.3-2021.10/bin:${PATH}"
 
 > hash arm-none-eabi-gcc
 
