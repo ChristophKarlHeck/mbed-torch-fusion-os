@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_DIR=$(pwd)
-ROOT_DIR=$SCRIPT_DIR../../
+ROOT_DIR=$SCRIPT_DIR/../../
 ET_SRC_DIR=$SCRIPT_DIR/../../executorch
 MBED_DIR=$SCRIPT_DIR/../../mbed-os
 
