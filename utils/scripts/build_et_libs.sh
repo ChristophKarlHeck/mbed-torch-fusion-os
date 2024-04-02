@@ -100,3 +100,10 @@ cd $(pwd)/cmake-out
 echo "Generated static libraries for ExecuTorch:"
 echo "$(pwd)"
 find . -name "*.a" -exec ls -al {} \;
+
+# Copy config of Nucleo-wb55rg into Mbed OS
+cd $ROOT_DIR
+cp config/mbed-os/NUCLEO_WB55RG.cmake mbed-os/targets/upload_method_cfg/
+
+# Patch pte_to_header script
+patch executorch/examples/arm/executor_runner/pte_to_header.py < pte_to_header.patch

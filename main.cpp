@@ -160,7 +160,7 @@ int main()
 
 	while(true) 
 	{
-		printf("Christoph juhu\n");
+		printf("well done!\n");
 		ThisThread::sleep_for(1s);
 	}
 

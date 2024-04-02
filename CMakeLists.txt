@@ -240,18 +240,6 @@ project(MbedTorchFusionOS) # TODO: change this to your project name
 #      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/third-party/flatbuffers/include
 # )
 
-# Convert pte to header
-add_custom_target(gen_model_header
-    DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/model_pte.h)
-
-add_custom_command(
-    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/model_pte.h
-    COMMAND python3 /home/chris/et-tut-3/mbed-torch-fusion-os/executorch/examples/arm/executor_runner/pte_to_header.py
-    --pte /home/chris/et-tut-3/mbed-torch-fusion-os/executorch/softmax.pte
-    --outdir ${CMAKE_CURRENT_BINARY_DIR}
-    DEPENDS /home/chris/et-tut-3/mbed-torch-fusion-os/executorch/softmax.pte
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-)
 
 # add_executable(SoftMaxTorchRunner
 #      main.cpp
@@ -270,10 +258,10 @@ add_executable(SoftMaxTorchRunner
 target_link_libraries(SoftMaxTorchRunner PUBLIC
      mbed-os # Can also link to mbed-baremetal here
      "-Wl,--whole-archive"
-     /home/chris/et-tut-1/executorch/cmake-out/extension/runner_util/libextension_runner_util.a
-     /home/chris/et-tut-1/executorch/cmake-out/libexecutorch.a
-     /home/chris/et-tut-1/executorch/cmake-out/kernels/portable/libportable_kernels.a
-     /home/chris/et-tut-1/executorch/cmake-out/examples/arm/libarm_portable_ops_lib.a
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/extension/runner_util/libextension_runner_util.a
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/libexecutorch.a
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/kernels/portable/libportable_kernels.a
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/examples/arm/libarm_portable_ops_lib.a
      "-Wl,--no-whole-archive"
      ) 
 
