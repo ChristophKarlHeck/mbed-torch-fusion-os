@@ -48,8 +48,10 @@ Open a new terminal. Plug in Nucleo-WB55RG. Install Mbed CLI 2 and use it to fin
 
 > mbed-tools detect
 
-Remember serial port. Use minicom to see console output. 
+Remember serial port. Use minicom to see console output.
+
 > minicom -D /dev/ttyACM0
+
 ctrl a & x to exit
 
 ### 5. Build and flash using VS Code
