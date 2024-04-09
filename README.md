@@ -1,6 +1,8 @@
 # Mbed Torch Fusion OS
 MbedTorch Fusion OS: Seamlessly merges Mbed OS with Torch ML models for the P-Nucleo-WB55RG on Arm Cortex M4. Empowering edge computing with efficient ML deployment.
 
+Tutorial: https://youtu.be/jc_GCxAAO20
+
 ## 1. Build ExecuTorch libraries
 > git clone https://github.com/ChristophKarlHeck/mbed-torch-fusion-os.git
 
