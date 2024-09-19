@@ -121,7 +121,66 @@ int main()
 			method_name,
 			inputs.error());
 	}
-	ET_LOG(Info, "Input prepared.");
+
+	size_t num_inputs = method_meta->num_inputs();
+	ET_LOG(Info, "Get the number of inputs to this method %zu", num_inputs);
+
+	size_t num_outputs = method_meta->num_outputs();
+	ET_LOG(Info, "Get the number of outputs to this method %zu", num_outputs);
+
+	size_t input_size = method->inputs_size();
+	ET_LOG(Info, "The number of inputs the Method expects %zu", num_outputs);
+
+	torch::executor::Result<torch::executor::TensorInfo> tensor_info = method_meta->input_tensor_meta(0);
+	if (!tensor_info.ok()){
+		ET_LOG(
+			Info,
+			"Get Tensor info failed");
+	}
+
+	torch::executor::Span<const uint8_t> tensor_dim_order = tensor_info->dim_order();
+	torch::executor::Span<const int32_t> tensor_sizes = tensor_info->sizes();
+
+	std::vector<torch::executor::EValue> test_inputs(method->inputs_size());
+	ET_LOG(Info, "%zu inputs: ", test_inputs.size());
+	const torch::executor::EValue  input_status = method->get_input(method->inputs_size());
+
+	
+	for (int i = 0; i < test_inputs.size(); ++i) {
+		Tensor te = test_inputs[i].toTensor();
+		for (int j = 0; j < test_inputs[i].toTensor().numel(); ++j) { // numel returns the number of elements in the tensor
+			if (te.scalar_type() == ScalarType::Int) {
+				printf(
+				"Input[%d][%d]: %d\n",
+					i,
+					j,
+					test_inputs[i].toTensor().const_data_ptr<int>()[j]);
+			} else {
+				printf(
+					"Input[%d][%d]: %f\n",
+					i,
+					j,
+					test_inputs[i].toTensor().const_data_ptr<float>()[j]);
+			}
+		}
+	}
+
+	// Tensor test_tensor(&impl);
+
+	// OWN INPUT START
+	// TensorImpl impl(
+	// 	ScalarType::Float, // dtype
+	// 	4, // number of dimensions
+	// 	sizes,
+	// 	data,
+	// 	dim_order);
+	// Tensor t(&impl);
+
+	// Error set_input_error = method->set_input(t, 0);
+	// assert(set_input_error == Error::Ok);
+
+	// ET_LOG(Info, "Input prepared.");
+	// OWN INPUT END
 
 	ET_LOG(Info, "Starting the model execution...");
 	Error status = method->execute();
@@ -158,11 +217,11 @@ int main()
 		}
 	}
 
-	while(true) 
-	{
-		printf("well done!\n");
-		ThisThread::sleep_for(1s);
-	}
+	// while(true) 
+	// {
+	// 	printf("well done!\n");
+	// 	ThisThread::sleep_for(1s);
+	// }
 
 	// main() is expected to loop forever.
 	// If main() actually returns the processor will halt
