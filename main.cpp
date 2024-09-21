@@ -122,45 +122,37 @@ int main()
 			inputs.error());
 	}
 
+	// Meta API
+	const char* meta_name = method_meta->name();
 	size_t num_inputs = method_meta->num_inputs();
-	ET_LOG(Info, "Get the number of inputs to this method %zu", num_inputs);
-
+	auto input_tag = method_meta->input_tag(0);
+	auto input_tensor_meta = method_meta->input_tensor_meta(0);
 	size_t num_outputs = method_meta->num_outputs();
-	ET_LOG(Info, "Get the number of outputs to this method %zu", num_outputs);
+	auto output_tag = method_meta->output_tag(0);
+	auto output_tensor_meta = method_meta->output_tensor_meta(0);
+	// Meta API END
 
 	size_t input_size = method->inputs_size();
-	ET_LOG(Info, "The number of inputs the Method expects %zu", num_outputs);
-
-	torch::executor::Result<torch::executor::TensorInfo> tensor_info = method_meta->input_tensor_meta(0);
-	if (!tensor_info.ok()){
-		ET_LOG(
-			Info,
-			"Get Tensor info failed");
-	}
-
-	torch::executor::Span<const uint8_t> tensor_dim_order = tensor_info->dim_order();
-	torch::executor::Span<const int32_t> tensor_sizes = tensor_info->sizes();
-
-	std::vector<torch::executor::EValue> test_inputs(method->inputs_size());
-	ET_LOG(Info, "%zu inputs: ", test_inputs.size());
-	const torch::executor::EValue  input_status = method->get_input(method->inputs_size());
+	const torch::executor::EValue input_t = method->get_input(0);
+	//Tensor te = input_t.payload.as_tensor;
+	method->set_input(input_t,0);
 
 	
-	for (int i = 0; i < test_inputs.size(); ++i) {
-		Tensor te = test_inputs[i].toTensor();
-		for (int j = 0; j < test_inputs[i].toTensor().numel(); ++j) { // numel returns the number of elements in the tensor
+	for (int i = 0; i < input_size; ++i) {
+		Tensor te = input_t.payload.as_tensor;
+		for (int j = 0; j < te.numel(); ++j) { // numel returns the number of elements in the tensor
 			if (te.scalar_type() == ScalarType::Int) {
 				printf(
-				"Input[%d][%d]: %d\n",
+					"Input[%d][%d]: %d\n",
 					i,
 					j,
-					test_inputs[i].toTensor().const_data_ptr<int>()[j]);
+					te.const_data_ptr<int>()[j]);
 			} else {
 				printf(
 					"Input[%d][%d]: %f\n",
 					i,
 					j,
-					test_inputs[i].toTensor().const_data_ptr<float>()[j]);
+					te.const_data_ptr<float>()[j]);
 			}
 		}
 	}
