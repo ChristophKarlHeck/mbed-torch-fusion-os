@@ -133,13 +133,23 @@ int main()
 	// Meta API END
 
 	size_t input_size = method->inputs_size();
-	const torch::executor::EValue input_t = method->get_input(0);
-	//Tensor te = input_t.payload.as_tensor;
-	method->set_input(input_t,0);
+	const torch::executor::EValue input_original = method->get_input(0);
+	Tensor tensor = input_original.payload.as_tensor;
+	float* data = input_original.payload.as_tensor.mutable_data_ptr<float>();
 
+	// Change input
+	int j;
+	for(j = 0; j < tensor.numel(); ++j){
+		data[j] = 2.0; 
+	}
+
+	// Set input 
+	method->set_input(input_original,0);
+	const torch::executor::EValue input_new = method->get_input(0);
 	
+	// Check if input has changed
 	for (int i = 0; i < input_size; ++i) {
-		Tensor te = input_t.payload.as_tensor;
+		Tensor te = input_new.payload.as_tensor;
 		for (int j = 0; j < te.numel(); ++j) { // numel returns the number of elements in the tensor
 			if (te.scalar_type() == ScalarType::Int) {
 				printf(
