@@ -167,23 +167,6 @@ int main()
 		}
 	}
 
-	// Tensor test_tensor(&impl);
-
-	// OWN INPUT START
-	// TensorImpl impl(
-	// 	ScalarType::Float, // dtype
-	// 	4, // number of dimensions
-	// 	sizes,
-	// 	data,
-	// 	dim_order);
-	// Tensor t(&impl);
-
-	// Error set_input_error = method->set_input(t, 0);
-	// assert(set_input_error == Error::Ok);
-
-	// ET_LOG(Info, "Input prepared.");
-	// OWN INPUT END
-
 	ET_LOG(Info, "Starting the model execution...");
 	Error status = method->execute();
 	if (status != Error::Ok) {
