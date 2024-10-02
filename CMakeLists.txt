@@ -260,6 +260,7 @@ target_link_libraries(SoftMaxTorchRunner PUBLIC
      "-Wl,--whole-archive"
      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/extension/runner_util/libextension_runner_util.a
      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/libexecutorch.a
+     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/libexecutorch_no_prim_ops.a
      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/kernels/portable/libportable_kernels.a
      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/examples/arm/libarm_portable_ops_lib.a
      "-Wl,--no-whole-archive"
