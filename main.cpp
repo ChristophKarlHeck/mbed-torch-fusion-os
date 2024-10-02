@@ -140,7 +140,7 @@ int main()
 	// Change input
 	int j;
 	for(j = 0; j < tensor.numel(); ++j){
-		data[j] = 2.0; 
+		data[j] = 3.0; 
 	}
 
 	// Set input 

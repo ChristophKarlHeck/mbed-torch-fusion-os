@@ -1,5 +1,5 @@
---- pte_to_header.py	2024-04-02 09:47:49.410452634 +0200
-+++ executorch/examples/arm/executor_runner/pte_to_header.py	2024-04-02 09:50:05.573382064 +0200
+--- original.py	2024-10-02 16:17:30.285667189 +0200
++++ pte_to_header.py	2024-10-02 16:17:49.121595621 +0200
 @@ -59,7 +59,7 @@
  if __name__ == "__main__":
      args = parser.parse_args()
@@ -9,3 +9,10 @@
  
      with open(args.pte, "rb") as fr, open(outfile, "w") as fw:
          data = fr.read()
+@@ -75,4 +75,4 @@
+         fw.write(hexstring)
+         print(
+             f"Input: {args.pte} with {len(data)} bytes. Output: {outfile} with {len(hexstring)} bytes. Section: {args.section}."
+-        )
+\ No newline at end of file
++        )

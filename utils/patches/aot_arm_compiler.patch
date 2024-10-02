@@ -1,8 +1,15 @@
---- o.py	2024-03-11 16:29:32.980946858 +0100
-+++ m.py	2024-03-11 16:29:48.340574438 +0100
-@@ -146,4 +146,4 @@
-     model_name = f"{args.model_name}" + (
-         "_arm_delegate" if args.delegate is True else ""
-     )
--    save_pte_program(exec_prog.buffer, model_name)
-+    save_pte_program(exec_prog, model_name)
+--- original.py	2024-10-02 16:14:56.426171593 +0200
++++ aot_arm_compiler.py	2024-10-02 16:03:50.305328665 +0200
+@@ -79,9 +79,9 @@
+ 
+     def forward(self, x):
+         return x + x
+-
+-    example_input = (torch.ones(5, dtype=torch.int32),)
+-    can_delegate = True
++    
++    example_input = (torch.ones(2, 2),)
++    can_delegate = False
+ 
+ 
+ class AddModule2(torch.nn.Module):
