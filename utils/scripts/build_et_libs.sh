@@ -58,7 +58,7 @@ cmake                                                  \
 
 cmake --build $(pwd)/cmake-out/examples/arm --config Release
 
-ROOT_DIR=$SCRIPT_DIR/../../
+cd $ROOT_DIR
 patch executorch/examples/arm/executor_runner/pte_to_header.py < utils/patches/pte_to_header.patch
 python3 executorch/examples/arm/executor_runner/pte_to_header.py --pte executorch/add.pte --outdir .
 
