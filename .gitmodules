@@ -1,8 +1,0 @@
-[submodule "mbed-os"]
-	path = mbed-os
-	url = https://github.com/mbed-ce/mbed-os.git
-	branch = master
-[submodule "executorch"]
-	path = executorch
-	url = https://github.com/pytorch/executorch.git
-	branch = main

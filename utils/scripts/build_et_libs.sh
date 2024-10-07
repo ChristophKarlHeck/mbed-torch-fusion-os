@@ -6,12 +6,10 @@ ET_SRC_DIR=$SCRIPT_DIR/../../executorch
 MBED_DIR=$SCRIPT_DIR/../../mbed-os
 
 cd $ROOT_DIR
-git submodule sync
-git submodule update --init
+git clone --branch v0.3.0 https://github.com/pytorch/executorch.git
+git clone https://github.com/mbed-ce/mbed-os.git
 
 cd $ET_SRC_DIR
-git fetch
-git checkout v0.3.0 # ExecuTorch Release v0.3.0
 git submodule sync
 git submodule update --init
 python3 -m venv .executorch
@@ -65,7 +63,6 @@ python3 executorch/examples/arm/executor_runner/pte_to_header.py --pte executorc
 deactivate
 
 cd $MBED_DIR
-git checkout 862f46233c3d074048b8f4003aceea4b0d254694
 python3 -m venv venv
 source venv/bin/activate
 python3 -m pip install -U pyocd
