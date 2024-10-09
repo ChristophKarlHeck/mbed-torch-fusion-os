@@ -46,6 +46,8 @@ cmake                                                 \
 
 cmake --build $(pwd)/cmake-out -j4 --target install --config Release
 
+# Example for multiple not delegated operators: -DEXECUTORCH_SELECT_OPS_LIST="aten::_softmax.out,aten::add.out"
+
 cmake                                                  \
     -DCMAKE_INSTALL_PREFIX=$(pwd)/cmake-out             \
     -DCMAKE_BUILD_TYPE=Release                         \
