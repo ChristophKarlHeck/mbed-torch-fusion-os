@@ -235,10 +235,11 @@ project(MbedTorchFusionOS) # TODO: change this to your project name
 #   "/home/chris/et-tut-3/mbed-torch-fusion-os/executorch/cmake-out/kernels/portable/libportable_ops_lib.a")
 
 ### ALL SOURCES IN THIS FILE###
-# include_directories(
-#      ${CMAKE_CURRENT_SOURCE_DIR}/config/executorch/cmake-out/schema/include
-#      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/third-party/flatbuffers/include
-# )
+include_directories(
+     #${CMAKE_CURRENT_SOURCE_DIR}/config/executorch/cmake-out/schema/include
+     #${CMAKE_CURRENT_SOURCE_DIR}/executorch/third-party/flatbuffers/include
+     ${CMAKE_CURRENT_SOURCE_DIR}/ModelExecutor
+)
 
 
 # add_executable(SoftMaxTorchRunner
@@ -250,7 +251,7 @@ project(MbedTorchFusionOS) # TODO: change this to your project name
 # )
 
 add_executable(SoftMaxTorchRunner
-    main.cpp
+    main.cpp ${CMAKE_CURRENT_SOURCE_DIR}/ModelExecutor/ModelExecutor.cpp
 )
 
 #target_link_libraries(SoftMaxTorchRunner mbed-os)
