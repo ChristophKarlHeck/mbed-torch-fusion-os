@@ -1,3 +1,9 @@
+/*
+Change the values of following variables in file: mbed-os/connectivity/FEATUR_BLE/source/cordio/mbed_lib.json
+"desired-att-mtu": 250
+"rx-acl-buffer-size" 255
+*/
+
 #include "mbed.h"
 #include "ModelExecutor.h"
 
@@ -24,9 +30,9 @@ int main()
 
 	std::vector<float> outputs = executor.getModelOutput(method);
 
-  	for (size_t i = 0; i < outputs.size(); ++i) {
-        printf("Output[%zu]: %f\n", i, outputs[i]); // Use %zu for size_t and %f for float
-    }
+  	// for (size_t i = 0; i < outputs.size(); ++i) {
+    //     printf("Output[%zu]: %f\n", i, outputs[i]);
+    // }
 
 	// main() is expected to loop forever.
 	// If main() actually returns the processor will halt
