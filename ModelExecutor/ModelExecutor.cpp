@@ -250,3 +250,27 @@ void ModelExecutor::printModelOutput(Result<torch::executor::Method>& method)
         }
     }  
 }
+
+std::vector<float> ModelExecutor::getModelOutput(Result<torch::executor::Method>& method)
+{
+    std::vector<torch::executor::EValue> outputs(method->outputs_size());
+    Error status = method->get_outputs(outputs.data(), outputs.size());
+    ET_CHECK(status == Error::Ok); // Ensure we check for success
+
+    std::vector<float> result; // Vector to hold the output values
+
+    for (size_t i = 0; i < outputs.size(); ++i) {
+        Tensor t = outputs[i].toTensor();
+        for (size_t j = 0; j < t.numel(); ++j) {
+            if (t.scalar_type() == ScalarType::Int) {
+                // If the tensor is of type int, convert it to float and add to the results
+                result.push_back(static_cast<float>(outputs[i].toTensor().const_data_ptr<int>()[j]));
+            } else {
+                // If the tensor is of type float, add it directly to the results
+                result.push_back(outputs[i].toTensor().const_data_ptr<float>()[j]);
+            }
+        }
+    }
+
+    return result; // Return the vector containing all outputs
+}

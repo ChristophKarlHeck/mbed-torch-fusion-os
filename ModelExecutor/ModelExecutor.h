@@ -16,44 +16,47 @@ using torch::executor::Result;
 
 
 
-class ModelExecutor {
-public:
-    ModelExecutor(void);
+class ModelExecutor 
+{
+    public:
+        ModelExecutor(void);
 
-    void initRuntime(void);
+        void initRuntime(void);
 
-    Result<torch::executor::Program> loadModelBuffer(void);
+        Result<torch::executor::Program> loadModelBuffer(void);
 
-    const char* getMethodName(Result<torch::executor::Program>& program);
+        const char* getMethodName(Result<torch::executor::Program>& program);
 
-    Result<torch::executor::MethodMeta> getMethodMeta(
-        Result<torch::executor::Program> &program,
-        const char* method_name);
+        Result<torch::executor::MethodMeta> getMethodMeta(
+            Result<torch::executor::Program> &program,
+            const char* method_name);
 
-    torch::executor::MemoryAllocator getMemoryAllocator(void);
+        torch::executor::MemoryAllocator getMemoryAllocator(void);
 
-    std::vector<torch::executor::Span<uint8_t>> setUpPlannedBuffer(
-        Result<torch::executor::Program> &program,
-        Result<torch::executor::MethodMeta>& method_meta);
+        std::vector<torch::executor::Span<uint8_t>> setUpPlannedBuffer(
+            Result<torch::executor::Program> &program,
+            Result<torch::executor::MethodMeta>& method_meta);
 
-    Result<torch::executor::Method> loadMethod(
-        Result<torch::executor::Program>& program,
-        torch::executor::MemoryAllocator& method_allocator,
-        std::vector<torch::executor::Span<uint8_t>>& planned_spans,
-        const char* method_name);
+        Result<torch::executor::Method> loadMethod(
+            Result<torch::executor::Program>& program,
+            torch::executor::MemoryAllocator& method_allocator,
+            std::vector<torch::executor::Span<uint8_t>>& planned_spans,
+            const char* method_name);
 
-    void prepareInputs(Result<torch::executor::Method>& method, const char* method_name);
+        void prepareInputs(Result<torch::executor::Method>& method, const char* method_name);
 
-    void setModelInput(Result<torch::executor::Method>& method, std::vector<float>& inputs);
+        void setModelInput(Result<torch::executor::Method>& method, std::vector<float>& inputs);
 
-    void printModelInput(Result<torch::executor::Method>& method);
+        void printModelInput(Result<torch::executor::Method>& method);
 
-    void executeModel(Result<torch::executor::Method>& method, const char* method_name);
+        void executeModel(Result<torch::executor::Method>& method, const char* method_name);
 
-    void printModelOutput(Result<torch::executor::Method>& method);
+        void printModelOutput(Result<torch::executor::Method>& method);
 
-private:
+        std::vector<float> getModelOutput(Result<torch::executor::Method>& method);
 
-    // Needed, otherwise planned buffers will be deallocated and makes planned_spans invalid.
-    std::vector<std::unique_ptr<uint8_t[]>> planned_buffers; 
+    private:
+
+        // Needed, otherwise planned buffers will be deallocated and makes planned_spans invalid.
+        std::vector<std::unique_ptr<uint8_t[]>> planned_buffers; 
 };

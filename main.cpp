@@ -20,7 +20,13 @@ int main()
 	executor.setModelInput(method, inputs);
 	executor.printModelInput(method);
 	executor.executeModel(method, method_name);
-	executor.printModelOutput(method);
+	//executor.printModelOutput(method);
+
+	std::vector<float> outputs = executor.getModelOutput(method);
+
+  	for (size_t i = 0; i < outputs.size(); ++i) {
+        printf("Output[%zu]: %f\n", i, outputs[i]); // Use %zu for size_t and %f for float
+    }
 
 	// main() is expected to loop forever.
 	// If main() actually returns the processor will halt
