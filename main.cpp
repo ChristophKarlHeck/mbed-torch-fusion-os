@@ -1,7 +1,7 @@
 /*
-Change the values of following variables in file: mbed-os/connectivity/FEATUR_BLE/source/cordio/mbed_lib.json
-"desired-att-mtu": 250
-"rx-acl-buffer-size" 255
+Change the values of the following variables in the file: mbed-os/connectivity/FEATUR_BLE/source/cordio/mbed_lib.json
+- "desired-att-mtu": 250
+- "rx-acl-buffer-size": 255
 */
 
 #include "mbed.h"
