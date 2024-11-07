@@ -8,6 +8,7 @@ cmake_policy(VERSION 3.19)
 file(COPY ${CMAKE_SOURCE_DIR}/config/mbed-os/NUCLEO_WB55RG.cmake
      DESTINATION ${CMAKE_SOURCE_DIR}/mbed-os/targets/upload_method_cfg)
 
+
 # Initialize Mbed OS build system. 
 # Note: This block must be before the project() call.
 set(MBED_APP_JSON_PATH mbed_app.json5)
@@ -19,28 +20,21 @@ include(mbed-os/tools/cmake/app.cmake) # Load Mbed CE toolchain file and basic b
 
 add_subdirectory(mbed-os) # Load Mbed OS build targets.  Must be added before any other subdirectories
 
-project(MbedTorchFusionOS) # TODO: change this to your project name
+project(MbedTorchFusionOS CXX) # TODO: change this to your project name
 
-
-### ALL SOURCES IN THIS FILE###
-include_directories(
-     #${CMAKE_CURRENT_SOURCE_DIR}/ADC
-     #${CMAKE_CURRENT_SOURCE_DIR}/BLE_Service
-     ${CMAKE_CURRENT_SOURCE_DIR}/ModelExecutor
+set(SOURCES 
+     main.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/ModelExecutor/ModelExecutor.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/ADC/AD7124.cpp
 )
 
-
-
-add_executable(SoftMaxTorchRunner
-    main.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/ModelExecutor/ModelExecutor.cpp
-    #${CMAKE_CURRENT_SOURCE_DIR}/ADC/AD7124.cpp
-)
+add_executable(SoftMaxTorchRunner ${SOURCES})
 
 #target_link_libraries(SoftMaxTorchRunner mbed-os)
 
 target_link_libraries(SoftMaxTorchRunner PUBLIC
      mbed-os # Can also link to mbed-baremetal here
+     mbed-ble
      "-Wl,--whole-archive"
      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/extension/runner_util/libextension_runner_util.a
      ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/libexecutorch.a
@@ -53,8 +47,11 @@ target_link_libraries(SoftMaxTorchRunner PUBLIC
 ###GENRAL###
 target_include_directories(SoftMaxTorchRunner
      PUBLIC 
-          ${CMAKE_CURRENT_SOURCE_DIR}
-          ${CMAKE_CURRENT_BINARY_DIR}
+          ${CMAKE_CURRENT_SOURCE_DIR} #need it for executorch includes and logger.h
+          ${CMAKE_CURRENT_SOURCE_DIR}/ModelExecutor
+          ${CMAKE_CURRENT_SOURCE_DIR}/ADC
+          ${CMAKE_CURRENT_SOURCE_DIR}/BLE_Service
+         
 )
 
 #add_dependencies(SoftMaxTorchRunner gen_model_header)

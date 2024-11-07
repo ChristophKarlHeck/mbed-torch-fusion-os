@@ -16,7 +16,7 @@ buildType:
 board:
   default: NUCLEO_WB55RG
   choices:
-    YOUR_MBED_TARGET:
+    NUCLEO_WB55RG:
       short: NUCLEO_WB55RG
       settings:
         MBED_TARGET: NUCLEO_WB55RG

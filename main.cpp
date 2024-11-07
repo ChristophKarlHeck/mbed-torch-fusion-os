@@ -4,18 +4,16 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 - "rx-acl-buffer-size": 255
 */
 
-// #include "AD7124.h"
-// #include "BLEProcess.h"
-// #include "PinNames.h"
-// #include "mbed_trace.h"
-// #include "Service.h"
+#include "AD7124.h"
+#include "BLEProcess.h"
+#include "PinNames.h"
+#include "mbed_trace.h"
+#include "Service.h"
+
 #include "mbed.h"
 #include "ModelExecutor.h"
 
 //#include <cstdio>
-
-SPI spi(PA_7, PA_6, PA_5); // mosi, miso, sclk
-DigitalOut cs(PA_4); //(PA_4) - nucleo ;//(PB_2) - dongle;
 
 int main()
 {
@@ -31,12 +29,18 @@ int main()
 	executor.prepareInputs(method, method_name);
 
 	/* SPI communication: bits, mode, frequency */
-	cs = 1;
     spi.format(8, 3);
     spi.frequency(10000000); // STM32WB up to 32Mhz
 
-	// AD7124 adc;
-    // adc.init(true, true);
+	AD7124 adc;
+    adc.init(true, true);
+
+
+    /* initialize the BLE interface */
+    BLE &ble_interface = BLE::Instance();
+    events::EventQueue event_queue;
+    /* load the custom service */
+    WatchPlant_service  notification_only(adc);
 
 	/* EXECUTE MODEL WITH VARIABLE INPUT */
 	std::vector<float> inputs = {1.0f, 2.0f, 3.0f, 4.0f};
@@ -46,21 +50,13 @@ int main()
 	executor.printModelOutput(method);
 	std::vector<float> outputs = executor.getModelOutput(method);
 
-	// AD7124 adc;
-    // adc.init(true, true);
+	/* load and start the BLE process */
+    BLEProcess ble_process(event_queue, ble_interface, notification_only, adc);
+    ble_process.on_init(callback(&notification_only, &WatchPlant_service::start));
+    ble_process.start();
+    // Process the event queue.
+    event_queue.dispatch_forever();
 
-    /* initialize the BLE interface */
-    // BLE &ble_interface = BLE::Instance();
-    // events::EventQueue event_queue;
-    // /* load the custom service */
-    // WatchPlant_service  notification_only(adc);
-
-    // /* load and start the BLE process */
-    // BLEProcess ble_process(event_queue, ble_interface, notification_only, adc);
-    // ble_process.on_init(callback(&notification_only, &WatchPlant_service::start));
-    // ble_process.start();
-    // // Process the event queue.
-    // event_queue.dispatch_forever();
 
 
 	//ET_LOG(Info, "################### Starting Executorch application... ####################");

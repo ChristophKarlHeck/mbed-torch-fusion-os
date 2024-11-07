@@ -49,7 +49,7 @@ Result<torch::executor::Program> ModelExecutor::loadModelBuffer(void)
             program.error());
     }
 
-    ET_LOG(Info, "Model buffer loaded, has %lu methods.", program->num_methods());
+    ET_LOG(Info, "Model buffer loaded, has %zu methods.", program->num_methods());
 
     return program;
 }
@@ -185,7 +185,7 @@ void ModelExecutor::printModelInput(Result<torch::executor::Method>& method)
 {
     size_t input_size = method->inputs_size();
     const torch::executor::EValue input_new = method->get_input(0);
-    for (int i = 0; i < input_size; ++i) {
+    for (unsigned i = 0; i < input_size; ++i) {
         Tensor te = input_new.payload.as_tensor;
         for (int j = 0; j < te.numel(); ++j) { // numel returns the number of elements in the tensor
             if (te.scalar_type() == ScalarType::Int) {
@@ -231,7 +231,7 @@ void ModelExecutor::printModelOutput(Result<torch::executor::Method>& method)
     ET_LOG(Info, "%zu outputs: ", outputs.size());
     Error status = method->get_outputs(outputs.data(), outputs.size());
     ET_CHECK(status == Error::Ok);
-    for (int i = 0; i < outputs.size(); ++i) {
+    for (unsigned int i = 0; i < outputs.size(); ++i) {
         Tensor t = outputs[i].toTensor();
         for (int j = 0; j < outputs[i].toTensor().numel(); ++j) {
             if (t.scalar_type() == ScalarType::Int) {
@@ -261,7 +261,7 @@ std::vector<float> ModelExecutor::getModelOutput(Result<torch::executor::Method>
 
     for (size_t i = 0; i < outputs.size(); ++i) {
         Tensor t = outputs[i].toTensor();
-        for (size_t j = 0; j < t.numel(); ++j) {
+        for (int j = 0; j < t.numel(); ++j) {
             if (t.scalar_type() == ScalarType::Int) {
                 // If the tensor is of type int, convert it to float and add to the results
                 result.push_back(static_cast<float>(outputs[i].toTensor().const_data_ptr<int>()[j]));
