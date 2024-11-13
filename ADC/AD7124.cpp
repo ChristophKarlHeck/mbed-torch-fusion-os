@@ -441,7 +441,7 @@ void AD7124::read_thread_multiple_value(){
 void AD7124::read_thread_multiple_valuev2(){
     /* stopppeed here somewhere */
     //printf("thread");
-    const int data_length = 102;
+    const int data_length = 6; //bytes
     static uint8_t data_tosend [data_length] = {0};
     static uint8_t * data_point;
     int data_counter = 0;
@@ -451,7 +451,7 @@ void AD7124::read_thread_multiple_valuev2(){
         //printf("im in the loop");
         uint8_t *cur_data;
         static uint8_t data [4] = {0};
-        bool f0 = !flag0; //these flags are because want entries for both channel 0 and 1
+        bool f0 = !flag0; //these flags are because want entries for both channel 0 and 1 CH1:(A0, A1) CH2:(A2, A3) 
         bool f1 = !flag1; // so only fill the buffer once there is data for both
         long measurement1, measurement2 = 0;
         while(((f0 == false) || (f1 == false))){
@@ -525,7 +525,7 @@ void AD7124::read_thread_multiple_valuev2(){
             mail_box.put(mail); // must be freed after in ad7124.h set mailing box length
             data_counter=0;
             //printf("\nmail PUT\n");
-            raise(SIGUSR1);
+            raise(SIGUSR1); // Softwareinterrupt causes service.h to send data and delete afterwards.
         } else if (data_counter >= data_length/2){
             data_counter = 0;
         }

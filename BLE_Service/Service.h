@@ -203,7 +203,7 @@ GattServer* _server;
 events::EventQueue *_event_queue;
 
 //
-NotifyCharacteristic<uint8_t,102> _notification;
+NotifyCharacteristic<uint8_t,6> _notification;
 };
 
 #endif
