@@ -448,7 +448,7 @@ void AD7124::read_thread_multiple_valuev2(){
     int count1 = 0;
     int count2 = 0;
     while (1){
-        //printf("im in the loop");
+        printf("im in the loop");
         uint8_t *cur_data;
         static uint8_t data [4] = {0};
         bool f0 = !flag0; //these flags are because want entries for both channel 0 and 1 CH1:(A0, A1) CH2:(A2, A3) 

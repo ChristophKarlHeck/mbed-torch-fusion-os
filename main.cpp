@@ -29,19 +29,25 @@ int main()
 	executor.prepareInputs(method, method_name);
 
 	/* SPI communication: bits, mode, frequency */
-    spi.format(8, 3);
-    spi.frequency(10000000); // STM32WB up to 32Mhz
+    // spi.format(8, 3);
+    // spi.frequency(10000000); // STM32WB up to 32Mhz
 
 	AD7124 adc;
     adc.init(true, true);
-	//adc.read_thread_multiple_valuev2
+	adc.read_thread_multiple_valuev2();
 
 
     /* initialize the BLE interface */
-    BLE &ble_interface = BLE::Instance();
-    events::EventQueue event_queue;
-    /* load the custom service */
-    WatchPlant_service  notification_only(adc);
+    // BLE &ble_interface = BLE::Instance();
+    // events::EventQueue event_queue;
+    // /* load the custom service */
+    // WatchPlant_service  notification_only(adc);
+	/* load and start the BLE process */
+    // BLEProcess ble_process(event_queue, ble_interface, notification_only, adc);
+    // ble_process.on_init(callback(&notification_only, &WatchPlant_service::start));
+    // ble_process.start();
+    // // Process the event queue.
+    // event_queue.dispatch_forever();
 
 	/* EXECUTE MODEL WITH VARIABLE INPUT */
 	std::vector<float> inputs = {2.0f, 2.0f, 3.0f, 4.0f};
@@ -51,12 +57,7 @@ int main()
 	executor.printModelOutput(method);
 	std::vector<float> outputs = executor.getModelOutput(method);
 
-	/* load and start the BLE process */
-    // BLEProcess ble_process(event_queue, ble_interface, notification_only, adc);
-    // ble_process.on_init(callback(&notification_only, &WatchPlant_service::start));
-    // ble_process.start();
-    // // Process the event queue.
-    // event_queue.dispatch_forever();
+
 
 
 
