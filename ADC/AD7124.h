@@ -32,7 +32,7 @@ class AD7124: private mbed::NonCopyable<AD7124>{
         //char status1;
         int error = 0;
         void init(bool f0, bool f1);
-        double get_analog_value(long measurement);
+        float get_analog_value(long measurement);
         //void reset();
         char status();
         int error_reg();

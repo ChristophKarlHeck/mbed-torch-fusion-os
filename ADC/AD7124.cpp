@@ -50,12 +50,13 @@ void AD7124::init(bool f0, bool f1){
     //AD7124::calibrate(1,0,0,0);
 }
 
-double AD7124::get_analog_value(long measurement){
+float AD7124::get_analog_value(long measurement) {
     /* calculate the analog value from the measurement */
-    double voltage = (double)measurement/databits -1;
-    voltage = voltage * Vref/ Gain;
+    float voltage = (float)measurement / databits - 1;
+    voltage = voltage * Vref / Gain;
     voltage *= 1000;
-    printf("analog %.3F\n", voltage);
+
+    printf("analog %.3f\n", voltage); // Note: %.3f for float precision
     return voltage;
 }
 
@@ -447,14 +448,18 @@ void AD7124::read_thread_multiple_valuev2(){
     int data_counter = 0;
     int count1 = 0;
     int count2 = 0;
+    float voltage_from_measurement_1 = 0.0;
+    float voltage_from_measurement_2 = 0.0;
     while (1){
-        printf("im in the loop");
+        printf("im in the loop\n");
         uint8_t *cur_data;
         static uint8_t data [4] = {0};
         bool f0 = !flag0; //these flags are because want entries for both channel 0 and 1 CH1:(A0, A1) CH2:(A2, A3) 
         bool f1 = !flag1; // so only fill the buffer once there is data for both
-        long measurement1, measurement2 = 0;
+        // Cortex M4 is a 32-bit architecture. If we really want to use 64 bit we need to take long long.
+        int measurement1, measurement2 = 0;
         while(((f0 == false) || (f1 == false))){
+            printf("im in the second loop\n");
             INFO("%d %d", f0,f1)
             while (drdy == 0) {  // wait if chip still ready from last cycle
                 //wait_us(1); 
@@ -486,8 +491,9 @@ void AD7124::read_thread_multiple_valuev2(){
                 data_tosend[data_counter + 0] = data[0];//(measurement >> 16) & 0xFF; 
                 measurement1 =  (((long)data[0] << 16)|((long)data[1] << 8)|((long)data[2] << 0));
                 f0 = true;
-                //printf("1: %ld   ", measurement1);
-                //AD7124::get_analog_value(measurement1);
+                //printf("1: %ld  \n", measurement1);
+                //float voltage_from_measurement_1 = AD7124::get_analog_value(measurement1);
+                //printf("1: %f   \n", voltage_from_measurement_1);
                 //data_counter+=3; 
             }
             //add to channel 1 data
@@ -498,15 +504,16 @@ void AD7124::read_thread_multiple_valuev2(){
                 data_tosend[data_counter + data_length/2 + 0] = data[0];//(measurement1 >> 16) & 0xFF;
                 f1 = true;
                 measurement2 =  (((long)data[0] << 16)|((long)data[1] << 8)|((long)data[2] << 0));
-                //printf("2: %ld ", measurement2);
-                //AD7124::get_analog_value(measurement2);
+                //printf("2: %ld \n", measurement2);
+                //float voltage_from_measurement_2 = AD7124::get_analog_value(measurement2);
+                //printf("2: %f   \n", voltage_from_measurement_2);
                 //data_counter+=3;
             }
 
         }
         data_counter+=3;
-        //printf("\n%d\n", data_counter);
-        //uint8_t *ptr = data;
+        printf("\n%d\n", data_counter);
+        uint8_t *ptr = data;
         if (data_counter >= data_length/2 && mail_box.empty()){
             //printf("sended %d %d \n", count1, count2);
             count1 = 0;
@@ -525,12 +532,13 @@ void AD7124::read_thread_multiple_valuev2(){
             mail_box.put(mail); // must be freed after in ad7124.h set mailing box length
             data_counter=0;
             //printf("\nmail PUT\n");
-            raise(SIGUSR1); // Softwareinterrupt causes service.h to send data and delete afterwards.
+            //raise(SIGUSR1); // Softwareinterrupt causes service.h to send data and delete afterwards.
         } else if (data_counter >= data_length/2){
             data_counter = 0;
         }
 
     }
+
 }
 
 void AD7124::read_thread_multiple_valuev3(){
@@ -547,7 +555,7 @@ void AD7124::read_thread_multiple_valuev3(){
         static uint8_t data [4] = {0};
         bool f0 = !flag0; //these flags are because want entries for both channel 0 and 1
         bool f1 = !flag1; // so only fill the buffer once there is data for both
-        long measurement1, measurement2 = 0;
+        int measurement1, measurement2 = 0;
 
         while(((f0 == false) || (f1 == false)) && mail_box.empty()){
             while (drdy == 0) {  // wait if chip still ready from last cycle

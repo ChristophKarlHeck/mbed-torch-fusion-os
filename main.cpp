@@ -5,37 +5,55 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 */
 
 #include "AD7124.h"
-#include "BLEProcess.h"
-#include "PinNames.h"
-#include "mbed_trace.h"
-#include "Service.h"
+// #include "BLEProcess.h"
+// #include "PinNames.h"
+// #include "mbed_trace.h"
+// #include "Service.h"
 
 #include "mbed.h"
 #include "ModelExecutor.h"
 
 //#include <cstdio>
 
+void read_data(AD7124 *adc){
+
+	adc->read_thread_multiple_valuev2();
+
+}
+
+Thread thread; 
 int main()
 {
 	/* PREPARE MODEL */
-	ModelExecutor executor;
-	executor.initRuntime();
-	Result<torch::executor::Program> program = executor.loadModelBuffer();
-	const char* method_name = executor.getMethodName(program);
-	Result<torch::executor::MethodMeta> method_meta = executor.getMethodMeta(program, method_name);
-	torch::executor::MemoryAllocator method_allocator = executor.getMemoryAllocator();
-	std::vector<torch::executor::Span<uint8_t>> planned_spans = executor.setUpPlannedBuffer(program, method_meta);
-	Result<torch::executor::Method> method = executor.loadMethod(program, method_allocator, planned_spans, method_name);
-	executor.prepareInputs(method, method_name);
+	// ModelExecutor executor;
+	// executor.initRuntime();
+	// Result<torch::executor::Program> program = executor.loadModelBuffer();
+	// const char* method_name = executor.getMethodName(program);
+	// Result<torch::executor::MethodMeta> method_meta = executor.getMethodMeta(program, method_name);
+	// torch::executor::MemoryAllocator method_allocator = executor.getMemoryAllocator();
+	// std::vector<torch::executor::Span<uint8_t>> planned_spans = executor.setUpPlannedBuffer(program, method_meta);
+	// Result<torch::executor::Method> method = executor.loadMethod(program, method_allocator, planned_spans, method_name);
+	// executor.prepareInputs(method, method_name);
 
+	printf("\nhi \n");
 	/* SPI communication: bits, mode, frequency */
-    // spi.format(8, 3);
-    // spi.frequency(10000000); // STM32WB up to 32Mhz
+    spi.format(8, 3);
+    spi.frequency(10000000); // STM32WB up to 32Mhz
 
 	AD7124 adc;
     adc.init(true, true);
-	adc.read_thread_multiple_valuev2();
+	thread.start(callback(read_data, &adc));
+	while (true) {
+		osEvent evt = adc.mail_box.get();
+		if (evt.status == osEventMail) {
+		    // Retrieve the message from the mail box
+		    AD7124::mail_t *mail = (AD7124::mail_t *)evt.value.p;
+		    printf("Voltage: %.3f V, Measurement: %ld\n", mail->voltage, mail->raw_measurement);
 
+		    // Free the allocated mail to avoid memory leaks
+		    adc.mail_box.free(mail);
+		}
+	}
 
     /* initialize the BLE interface */
     // BLE &ble_interface = BLE::Instance();
@@ -50,12 +68,12 @@ int main()
     // event_queue.dispatch_forever();
 
 	/* EXECUTE MODEL WITH VARIABLE INPUT */
-	std::vector<float> inputs = {2.0f, 2.0f, 3.0f, 4.0f};
-	executor.setModelInput(method, inputs);
-	executor.printModelInput(method);
-	executor.executeModel(method, method_name);
-	executor.printModelOutput(method);
-	std::vector<float> outputs = executor.getModelOutput(method);
+	// std::vector<float> inputs = {2.0f, 2.0f, 3.0f, 4.0f};
+	// executor.setModelInput(method, inputs);
+	// executor.printModelInput(method);
+	// executor.executeModel(method, method_name);
+	// executor.printModelOutput(method);
+	// std::vector<float> outputs = executor.getModelOutput(method);
 
 
 
