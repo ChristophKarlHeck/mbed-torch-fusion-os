@@ -270,7 +270,7 @@ void AD7124::read_voltage_from_both_channels(void){
         // at the moment only channel 0.
         while(((f0 == false))){
             INFO("%d %d", f0,f1)
-            wait_us(1);
+            wait_us(1); // Sampling rate: 1 MHZ
             for (int i = 0; i < 4; i++){
                 // Sends 0x00 and simultaneously receives a byte from the SPI slave device.
                 data[i] = m_spi.write(0x00);
