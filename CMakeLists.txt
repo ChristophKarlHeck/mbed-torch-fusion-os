@@ -14,18 +14,18 @@ file(COPY ${CMAKE_SOURCE_DIR}/config/mbed-os/NUCLEO_WB55RG.cmake
 set(MBED_APP_JSON_PATH mbed_app.json5)
 # set(CUSTOM_TARGETS_JSON_PATH custom_targets.json) # If you need a custom target, use this line to specify the custom_targets.json
 
-include(mbed-os/tools/cmake/app.cmake) # Load Mbed CE toolchain file and basic build system
+include(libs/mbed-os/tools/cmake/app.cmake) # Load Mbed CE toolchain file and basic build system
 
 # If you need any custom upload method configuration for your target, do that here
 
-add_subdirectory(mbed-os) # Load Mbed OS build targets.  Must be added before any other subdirectories
+add_subdirectory(libs/mbed-os) # Load Mbed OS build targets.  Must be added before any other subdirectories
 
 project(MbedTorchFusionOS CXX) # TODO: change this to your project name
 
 set(SOURCES 
-     main.cpp
-     ${CMAKE_CURRENT_SOURCE_DIR}/ModelExecutor/ModelExecutor.cpp
-     ${CMAKE_CURRENT_SOURCE_DIR}/ADC/AD7124.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/model_executor/ModelExecutor.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/adc/AD7124.cpp
 )
 
 add_executable(SoftMaxTorchRunner ${SOURCES})
@@ -36,21 +36,22 @@ target_link_libraries(SoftMaxTorchRunner PUBLIC
      mbed-os # Can also link to mbed-baremetal here
      mbed-ble
      "-Wl,--whole-archive"
-     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/extension/runner_util/libextension_runner_util.a
-     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/libexecutorch.a
-     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/libexecutorch_no_prim_ops.a
-     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/kernels/portable/libportable_kernels.a
-     ${CMAKE_CURRENT_SOURCE_DIR}/executorch/cmake-out/examples/arm/libarm_portable_ops_lib.a
+     ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/extension/runner_util/libextension_runner_util.a
+     ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/libexecutorch.a
+     ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/libexecutorch_no_prim_ops.a
+     ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/kernels/portable/libportable_kernels.a
+     ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/examples/arm/libarm_portable_ops_lib.a
      "-Wl,--no-whole-archive"
      ) 
 
 ###GENRAL###
 target_include_directories(SoftMaxTorchRunner
      PUBLIC 
-          ${CMAKE_CURRENT_SOURCE_DIR} #need it for executorch includes and logger.h
-          ${CMAKE_CURRENT_SOURCE_DIR}/ModelExecutor
-          ${CMAKE_CURRENT_SOURCE_DIR}/ADC
-          ${CMAKE_CURRENT_SOURCE_DIR}/BLE_Service
+          ${CMAKE_CURRENT_SOURCE_DIR}/include #need it for executorch includes and logger.h
+          ${CMAKE_CURRENT_SOURCE_DIR}/include/model_executor
+          ${CMAKE_CURRENT_SOURCE_DIR}/libs
+          ${CMAKE_CURRENT_SOURCE_DIR}/include/adc
+          #${CMAKE_CURRENT_SOURCE_DIR}/BLE_Service // needs to be split in .h and .cpp file
          
 )
 

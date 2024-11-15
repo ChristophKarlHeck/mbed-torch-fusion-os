@@ -13,6 +13,11 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "mbed.h"
 #include "ModelExecutor.h"
 
+// Define global constants
+const float DATABITS = 8388608.0; // or constexpr if known at compile time
+const float VREF = 2.5;
+const float GAIN = 4.0;
+
 //#include <cstdio>
 
 // void read_data(AD7124 *adc){
@@ -37,7 +42,9 @@ int main()
 
 	printf("\nhi \n");
 
-	AD7124 adc;
+	// Instantiate the AD7124 object with databits, Vref, and Gain
+    AD7124 adc(DATABITS, VREF, GAIN);
+
     // adc.init(true, true);
 	// thread.start(callback(read_data, &adc));
 	// while (true) {

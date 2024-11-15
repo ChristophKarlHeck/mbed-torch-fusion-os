@@ -3,7 +3,8 @@
 ### 1.1 Variables
 - Local Variables and Parameters: Use snake_case.
     - Example: sensor_reading
-
+### 1.2 File names
+-  If the .cpp file defines a class, it’s common to name the file exactly as the class, especially for classes using CamelCase
 ## Datatypes
 ## int over long
 - On Cortex-M4, int and long are both 32-bit types with identical performance characteristics, so you can use either based on your style preferences or code readability.

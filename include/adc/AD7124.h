@@ -29,7 +29,7 @@
  * and must be correctly wired to the corresponding SPI pins on the AD7124 for proper operation.
  * Ensure that these connections match the microcontroller's SPI peripheral configuration.
  */
-SPI spi(PA_7, PA_6, PA_5); // mosi, miso, sclk
+//SPI spi(PA_7, PA_6, PA_5); // mosi, miso, sclk
 
 /* 
  * Mail: 
@@ -54,25 +54,24 @@ typedef struct {
 class AD7124: private mbed::NonCopyable<AD7124>{
     public:
 
-        // Constructor declaration: Takes a reference to an existing SPI object and other parameters
-        AD7124(SPI& spi_instance, int databits, float Vref, int Gain);
+        // Constructor with parameters for databits, Vref, and Gain
+        AD7124(float databits, float vref, float gain);
 
 
-        char read = 1;
-        char write = 0;
-        int readADC_ID; //used for callback
-        int error = 0;
         void init(bool f0, bool f1);
         void read_voltage_from_both_channels(void);
 
         Mail<mail_t, 2> mail_box;
 
     private:
-        SPI spi; // SPI object for communication with the AD7124
-        const double databits 				    = 8388608;  //2^23
-        const double Vref 						= 2.5;		//
-        const double Gain 						= 4;
-        bool flag0, flag1;
+        SPI m_spi;          // SPI object for communication with the AD7124
+        float m_databits;   // Data bits used in measurement calculations
+        float m_vref;	    // Reference voltage
+        float m_gain;       // Gain factor
+        bool m_flag_0;       // Flags for channel configuration
+        bool m_flag_1;
+        char m_read;        // Read operation indicator
+        char m_write;       // Write operation indicator
         
         /**
          * @brief Resets the AD7124 ADC to its default state.
