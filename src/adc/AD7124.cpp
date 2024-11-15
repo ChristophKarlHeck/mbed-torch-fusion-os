@@ -215,7 +215,7 @@ void AD7124::init(bool f0, bool f1){
     channel_reg(m_read); //activate 2 channels
 
 //flags for if you want to have channel 0, or 1, or both active
-    if(m_flag_0 == true){
+    if(m_flag_0){
         //config reg 0
         config_reg(AD7124_CFG0_REG, m_read);   // read  configuration register
         config_reg(AD7124_CFG0_REG, m_write);  // write configuration register
@@ -224,17 +224,19 @@ void AD7124::init(bool f0, bool f1){
         filter_reg(AD7124_FILT0_REG, m_read);  // same with filter register
         filter_reg(AD7124_FILT0_REG, m_write);
         filter_reg(AD7124_FILT0_REG, m_read);
+        printf("channelo 0 active\n");
     }
 
-    if(m_flag_1 == true){
+    if(m_flag_1){
         //config reg 1
-        //AD7124::config_reg(AD7124_CFG1_REG, read);
+        config_reg(AD7124_CFG1_REG, m_read);
         config_reg(AD7124_CFG1_REG, m_write);
         config_reg(AD7124_CFG1_REG, m_read);
         //filter reg 1
-        //AD7124::filter_reg(AD7124_FILT1_REG, read);
+        filter_reg(AD7124_FILT1_REG, m_read);
         filter_reg(AD7124_FILT1_REG, m_write);
         filter_reg(AD7124_FILT1_REG, m_read);
+        printf("channelo 1 active\n");
     }
     //xAD7124::calibrate(1,1,0,0);
 
@@ -250,13 +252,11 @@ float AD7124::get_analog_value(long measurement) {
     voltage = voltage * m_vref / m_gain;
     voltage *= 1000;
 
-    printf("analog %.3f\n", voltage); // Note: %.3f for float precision
+    //printf("analog %.3f\n", voltage); // Note: %.3f for float precision
     return voltage;
 }
 
 void AD7124::read_voltage_from_both_channels(void){
-    const int data_length = 6; //bytes
-    int data_counter = 0;
     while (true){
         uint8_t data[4] = {0, 0, 0, 0};
         // these flags are because want entries for both channel 0 and 1 CH1:(A0, A1) CH2:(A2, A3)
@@ -267,43 +267,37 @@ void AD7124::read_voltage_from_both_channels(void){
         float voltage_from_measurement_channel_0 = 0.0;
         float voltage_from_measurement_channel_1 = 0.0;
         
-        while(((f0 == false) || (f1 == false))){
+        // at the moment only channel 0.
+        while(((f0 == false))){
             INFO("%d %d", f0,f1)
             wait_us(1);
-            for (int i = 0; i<4; i++){
+            for (int i = 0; i < 4; i++){
                 // Sends 0x00 and simultaneously receives a byte from the SPI slave device.
                 data[i] = m_spi.write(0x00);
             }
-
+            //printf("%d, %d, %d\n", data[3], f0, f1);
             if((data[3] == 0) && (f0 == false)){
                 int measurement_channel_0 = (((long)data[0] << 16)|((long)data[1] << 8)|((long)data[2] << 0));
                 f0 = true;
                 voltage_from_measurement_channel_0 = get_analog_value(measurement_channel_0);
-                //data_counter+=3; 
             }
-            //add to channel 1 data
+
             if((data[3] == 1) && (f1 == false)){
                 f1 = true;
                 int measurement_channel_1 = (((long)data[0] << 16)|((long)data[1] << 8)|((long)data[2] << 0));
                 voltage_from_measurement_channel_1 = get_analog_value(measurement_channel_1);
-                //data_counter+=3;
+ 
             }
 
         }
-        data_counter+=3;
-        printf("\n%d\n", data_counter);
-        if (data_counter >= data_length/2 && mail_box.empty()){
+
+        if (mail_box.empty()){
+            //printf("MailboxIsEmpty\n");
             mail_t *mail = mail_box.try_alloc();
             mail->voltage_channel_0 = voltage_from_measurement_channel_0;
             mail->voltage_channel_1 = voltage_from_measurement_channel_1;
             mail_box.put(mail); // must be freed after in ad7124.h set mailing box length
-            data_counter=0;
-
             //raise(SIGUSR1); // Softwareinterrupt causes service.h to send data and delete afterwards.
-        } else if (data_counter >= data_length/2){
-            data_counter = 0;
         }
-
     }
-
 }

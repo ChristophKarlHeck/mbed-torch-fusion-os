@@ -54,24 +54,23 @@ typedef struct {
 class AD7124: private mbed::NonCopyable<AD7124>{
     public:
 
+        Mail<mail_t, 2> mail_box;
+
         // Constructor with parameters for databits, Vref, and Gain
         AD7124(float databits, float vref, float gain);
 
-
         void init(bool f0, bool f1);
         void read_voltage_from_both_channels(void);
-
-        Mail<mail_t, 2> mail_box;
-
+    
     private:
-        SPI m_spi;          // SPI object for communication with the AD7124
-        float m_databits;   // Data bits used in measurement calculations
-        float m_vref;	    // Reference voltage
-        float m_gain;       // Gain factor
-        bool m_flag_0;       // Flags for channel configuration
+        SPI m_spi;                  // SPI object for communication with the AD7124
+        float m_databits;           // Data bits used in measurement calculations
+        float m_vref;	            // Reference voltage
+        float m_gain;               // Gain factor
+        bool m_flag_0;              // Flags for channel configuration
         bool m_flag_1;
-        char m_read;        // Read operation indicator
-        char m_write;       // Write operation indicator
+        char m_read;                // Read operation indicator
+        char m_write;               // Write operation indicator
         
         /**
          * @brief Resets the AD7124 ADC to its default state.

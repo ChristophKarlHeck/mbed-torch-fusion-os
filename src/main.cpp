@@ -20,13 +20,13 @@ const float GAIN = 4.0;
 
 //#include <cstdio>
 
-// void read_data(AD7124 *adc){
+void read_data(AD7124 *adc){
 
-// 	adc->read_voltage_from_both_channels();
+	adc->read_voltage_from_both_channels();
 
-// }
+}
 
-// Thread thread; 
+Thread thread; 
 int main()
 {
 	/* PREPARE MODEL */
@@ -40,24 +40,22 @@ int main()
 	// Result<torch::executor::Method> method = executor.loadMethod(program, method_allocator, planned_spans, method_name);
 	// executor.prepareInputs(method, method_name);
 
-	printf("\nhi \n");
 
 	// Instantiate the AD7124 object with databits, Vref, and Gain
     AD7124 adc(DATABITS, VREF, GAIN);
+	adc.init(true, true);
+	thread.start(callback(read_data, &adc));
+	while (true) {
+		osEvent evt = adc.mail_box.get();
+		if (evt.status == osEventMail) {
+		    // Retrieve the message from the mail box
+		    mail_t *mail = (mail_t *)evt.value.p;
+		    printf("Voltage CH1: %.3f V, Voltage CH2: %.3f V\n", mail->voltage_channel_0, mail->voltage_channel_1);
 
-    // adc.init(true, true);
-	// thread.start(callback(read_data, &adc));
-	// while (true) {
-	// 	osEvent evt = adc.mail_box.get();
-	// 	if (evt.status == osEventMail) {
-	// 	    // Retrieve the message from the mail box
-	// 	    mail_t *mail = (mail_t *)evt.value.p;
-	// 	    printf("Voltage: %.3f V, Measurement: %ld\n", mail->voltage, mail->raw_measurement);
-
-	// 	    // Free the allocated mail to avoid memory leaks
-	// 	    adc.mail_box.free(mail);
-	// 	}
-	// }
+		    // Free the allocated mail to avoid memory leaks
+		    adc.mail_box.free(mail);
+		}
+	}
 
     /* initialize the BLE interface */
     // BLE &ble_interface = BLE::Instance();
