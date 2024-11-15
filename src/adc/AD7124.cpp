@@ -275,7 +275,7 @@ void AD7124::read_voltage_from_both_channels(void){
                 // Sends 0x00 and simultaneously receives a byte from the SPI slave device.
                 data[i] = m_spi.write(0x00);
             }
-            //printf("%d, %d, %d\n", data[3], f0, f1);
+            printf("%d, %d, %d\n", data[3], f0, f1);
             if((data[3] == 0) && (f0 == false)){
                 int measurement_channel_0 = (((long)data[0] << 16)|((long)data[1] << 8)|((long)data[2] << 0));
                 f0 = true;

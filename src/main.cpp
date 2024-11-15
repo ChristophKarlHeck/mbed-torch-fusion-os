@@ -43,7 +43,7 @@ int main()
 
 	// Instantiate the AD7124 object with databits, Vref, and Gain
     AD7124 adc(DATABITS, VREF, GAIN);
-	adc.init(true, true);
+	adc.init(true, false);
 	thread.start(callback(read_data, &adc));
 	while (true) {
 		osEvent evt = adc.mail_box.get();
