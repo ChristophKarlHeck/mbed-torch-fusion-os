@@ -39,8 +39,8 @@
  * data between threads in a safe and efficient manner.
  */
 typedef struct {
-    float voltage_channel_0; /* AD result of measured voltage channel 0*/
-    float voltage_channel_1; /* AD result of measured voltage channel 1*/
+    std::vector<float> inputs; /* Vector of downsampled analog values*/
+    //float input;
 } mail_t;
 
 /**
@@ -54,13 +54,13 @@ typedef struct {
 class AD7124: private mbed::NonCopyable<AD7124>{
     public:
 
-        Mail<mail_t, 2> mail_box;
+        Mail<mail_t, 4> mail_box;
 
         // Constructor with parameters for databits, Vref, and Gain
         AD7124(float databits, float vref, float gain);
 
         void init(bool f0, bool f1);
-        void read_voltage_from_both_channels(void);
+        void read_voltage_from_both_channels(int number_of_input_values);
     
     private:
         SPI m_spi;                  // SPI object for communication with the AD7124

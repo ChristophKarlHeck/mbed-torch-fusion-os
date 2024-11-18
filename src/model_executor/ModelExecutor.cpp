@@ -181,6 +181,13 @@ void ModelExecutor::setModelInput(Result<torch::executor::Method>& method, std::
     
 }
 
+int ModelExecutor::getNumberOfInputValues(Result<torch::executor::Method>& method){
+    const torch::executor::EValue input_new = method->get_input(0);
+    Tensor te = input_new.payload.as_tensor;
+
+    return te.numel();
+}
+
 void ModelExecutor::printModelInput(Result<torch::executor::Method>& method)
 {
     size_t input_size = method->inputs_size();

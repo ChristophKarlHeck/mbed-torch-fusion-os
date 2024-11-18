@@ -256,46 +256,32 @@ float AD7124::get_analog_value(long measurement) {
     return voltage;
 }
 
-void AD7124::read_voltage_from_both_channels(void){
+void AD7124::read_voltage_from_both_channels(int number_of_input_values){
     while (true){
-        uint8_t data[4] = {0, 0, 0, 0};
-        // these flags are because want entries for both channel 0 and 1 CH1:(A0, A1) CH2:(A2, A3)
-        // so only fill the buffer once there is data for both
-        bool f0 = !m_flag_0;  
-        bool f1 = !m_flag_1; 
 
-        float voltage_from_measurement_channel_0 = 0.0;
-        float voltage_from_measurement_channel_1 = 0.0;
-        
-        // at the moment only channel 0.
-        while(((f0 == false))){
-            INFO("%d %d", f0,f1)
-            wait_us(1); // Sampling rate: 1 MHZ
-            for (int i = 0; i < 4; i++){
+        std::vector<float> inputs(number_of_input_values);
+
+        for(int i = 0; i < number_of_input_values; i++){
+            uint8_t data[4] = {0, 0, 0, 0};
+            for(int j = 0; j < 4; j++){
                 // Sends 0x00 and simultaneously receives a byte from the SPI slave device.
-                data[i] = m_spi.write(0x00);
+                data[j] = m_spi.write(0x00);
             }
-            printf("%d, %d, %d\n", data[3], f0, f1);
-            if((data[3] == 0) && (f0 == false)){
-                int measurement_channel_0 = (((long)data[0] << 16)|((long)data[1] << 8)|((long)data[2] << 0));
-                f0 = true;
-                voltage_from_measurement_channel_0 = get_analog_value(measurement_channel_0);
-            }
+            
+            // Specify the data source channel for the incoming data.
+            // data[3] == 0 --> channel 0
+            // data[3] == 1 --> channel 1
 
-            if((data[3] == 1) && (f1 == false)){
-                f1 = true;
-                int measurement_channel_1 = (((long)data[0] << 16)|((long)data[1] << 8)|((long)data[2] << 0));
-                voltage_from_measurement_channel_1 = get_analog_value(measurement_channel_1);
- 
-            }
+            int measurement = (((long)data[0] << 16)|((long)data[1] << 8)|((long)data[2] << 0));
+            inputs[i] = get_analog_value(measurement);
 
+            //wait_us(1); // Sampling rate: 1 MHZ
+            thread_sleep_for(10); // ms
         }
 
         if (mail_box.empty()){
-            //printf("MailboxIsEmpty\n");
             mail_t *mail = mail_box.try_alloc();
-            mail->voltage_channel_0 = voltage_from_measurement_channel_0;
-            mail->voltage_channel_1 = voltage_from_measurement_channel_1;
+            mail->inputs = inputs; // pass by reference
             mail_box.put(mail); // must be freed after in ad7124.h set mailing box length
             //raise(SIGUSR1); // Softwareinterrupt causes service.h to send data and delete afterwards.
         }

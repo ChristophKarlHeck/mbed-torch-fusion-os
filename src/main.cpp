@@ -17,45 +17,72 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 const float DATABITS = 8388608.0; // or constexpr if known at compile time
 const float VREF = 2.5;
 const float GAIN = 4.0;
+const int DOWNSAMPLING_RATE = 1;
 
-//#include <cstdio>
+struct DataPassedToReadingThread {
+	AD7124* adc;					// Reference to the ADC object
+	int number_of_input_values;		// Size of inputs passed to main thread
+	const int* downsampling;				// Downsampling rate
 
-void read_data(AD7124 *adc){
+	// Constructor to initialize the struct with a reference and two integer values
+    DataPassedToReadingThread(
+		AD7124* adc_ref,
+		int num_values_ref,
+		const int* downsampling) : adc(adc_ref), number_of_input_values(num_values_ref), downsampling(downsampling) {}
+};
 
-	adc->read_voltage_from_both_channels();
+// Function called in thread to read data
+void read_data(DataPassedToReadingThread* data){
+
+	printf("hi\n");
+	data->adc->read_voltage_from_both_channels(data->number_of_input_values);
+	printf("hi2\n");
 
 }
 
-Thread thread; 
+// Thread for reading data from ADC
+Thread reading_data_thread;
+
 int main()
 {
-	/* PREPARE MODEL */
-	// ModelExecutor executor;
-	// executor.initRuntime();
-	// Result<torch::executor::Program> program = executor.loadModelBuffer();
-	// const char* method_name = executor.getMethodName(program);
-	// Result<torch::executor::MethodMeta> method_meta = executor.getMethodMeta(program, method_name);
-	// torch::executor::MemoryAllocator method_allocator = executor.getMemoryAllocator();
-	// std::vector<torch::executor::Span<uint8_t>> planned_spans = executor.setUpPlannedBuffer(program, method_meta);
-	// Result<torch::executor::Method> method = executor.loadMethod(program, method_allocator, planned_spans, method_name);
-	// executor.prepareInputs(method, method_name);
+	// Instantiate and initialize the model executor
+	ModelExecutor executor;
+	executor.initRuntime();
+    Result<torch::executor::Program> program = executor.loadModelBuffer();
+    const char* method_name = executor.getMethodName(program);
+    Result<torch::executor::MethodMeta> method_meta = executor.getMethodMeta(program, method_name);
+    torch::executor::MemoryAllocator method_allocator = executor.getMemoryAllocator();
+    std::vector<torch::executor::Span<uint8_t>> planned_spans = executor.setUpPlannedBuffer(program, method_meta);
+    Result<torch::executor::Method> method = executor.loadMethod(program, method_allocator, planned_spans, method_name);
+	int number_of_input_values = executor.getNumberOfInputValues(method);
+    executor.prepareInputs(method, method_name);
 
-
-	// Instantiate the AD7124 object with databits, Vref, and Gain
+	//Instantiate the AD7124 object with databits, Vref, and Gain
+	int n = 4;
     AD7124 adc(DATABITS, VREF, GAIN);
-	adc.init(true, false);
-	thread.start(callback(read_data, &adc));
+	adc.init(true, true); // activate both channels
+	DataPassedToReadingThread data_for_reading_thread(&adc, number_of_input_values, &DOWNSAMPLING_RATE);
+
+
+	reading_data_thread.start(callback(read_data, &data_for_reading_thread));
+
+
 	while (true) {
 		osEvent evt = adc.mail_box.get();
 		if (evt.status == osEventMail) {
 		    // Retrieve the message from the mail box
 		    mail_t *mail = (mail_t *)evt.value.p;
-		    printf("Voltage CH1: %.3f V, Voltage CH2: %.3f V\n", mail->voltage_channel_0, mail->voltage_channel_1);
-
+	        executor.setModelInput(method, mail->inputs);
+            executor.executeModel(method, method_name);
+			adc.mail_box.free(mail); // make mail box empty
 		    // Free the allocated mail to avoid memory leaks
-		    adc.mail_box.free(mail);
+		    
 		}
+
+		// Needed to avoid immediate resource exhaustion
+		thread_sleep_for(10); // ms
 	}
+
 
     /* initialize the BLE interface */
     // BLE &ble_interface = BLE::Instance();
@@ -69,13 +96,7 @@ int main()
     // // Process the event queue.
     // event_queue.dispatch_forever();
 
-	/* EXECUTE MODEL WITH VARIABLE INPUT */
-	// std::vector<float> inputs = {2.0f, 2.0f, 3.0f, 4.0f};
-	// executor.setModelInput(method, inputs);
-	// executor.printModelInput(method);
-	// executor.executeModel(method, method_name);
-	// executor.printModelOutput(method);
-	// std::vector<float> outputs = executor.getModelOutput(method);
+
 
 
 
