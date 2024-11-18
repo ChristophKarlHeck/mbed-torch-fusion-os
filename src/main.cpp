@@ -43,8 +43,12 @@ void read_data(DataPassedToReadingThread* data){
 // Thread for reading data from ADC
 Thread reading_data_thread;
 
+//Serial pc(UART1_TX, UART1_RX,); // tx, rx
+static BufferedSerial serial_port(USBTX, USBRX);
+
 int main()
 {
+	/*
 	// Instantiate and initialize the model executor
 	ModelExecutor executor;
 	executor.initRuntime();
@@ -83,6 +87,11 @@ int main()
 		thread_sleep_for(10); // ms
 	}
 
+	*/
+
+	AD7124 adc(DATABITS, VREF, GAIN);
+	adc.init(true, false);
+	adc.read_data_continous();
 
     /* initialize the BLE interface */
     // BLE &ble_interface = BLE::Instance();

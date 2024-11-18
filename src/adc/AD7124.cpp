@@ -4,6 +4,10 @@
 #include <cstdio>
 #include <cstring>
 
+
+static BufferedSerial pc(USBTX,USBRX);
+uint8_t bufbuf[9];
+
 // Constructor with initializer list
 AD7124::AD7124(float databits, float vref, float gain)
     : m_spi(PA_7, PA_6, PA_5), m_databits(databits), m_vref(vref), m_gain(gain),
@@ -281,9 +285,59 @@ void AD7124::read_voltage_from_both_channels(int number_of_input_values){
 
         if (mail_box.empty()){
             mail_t *mail = mail_box.try_alloc();
-            mail->inputs = inputs; // pass by reference
+            mail->inputs = inputs; // copy float vactor to avoid weird reference errors
             mail_box.put(mail); // must be freed after in ad7124.h set mailing box length
             //raise(SIGUSR1); // Softwareinterrupt causes service.h to send data and delete afterwards.
         }
     }
+}
+
+int AD7124::read_data_continous(void){
+    
+    while(1){
+        uint8_t data [4] = {0,0,0,0};
+        bool f0 = !m_flag_0; //these flags are because want entries for both channel 0 and 1
+        bool f1 = !m_flag_1; // so only fill the buffer once there is data for both
+        long measurement1, measurement2 = 0;
+
+        while((f0 == false) || (f1 == false)){
+
+            for (int i = 0; i<=3; i++){
+                data[i] = m_spi.write(0x00);
+                //printf(" "BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(data[i]));
+            }
+            //printf("\n");
+
+            measurement1, measurement2 =0;
+            if((data[3] == 0) && (f0 == false)){
+                bufbuf[4] = data[2];//measurement         & 0xFF;
+                bufbuf[3] = data[1];//(measurement >>  8) & 0xFF;
+                bufbuf[2] = data[0];//(measurement >> 16) & 0xFF; 
+                //measurement1 =  (((long)bufbuf[2] << 16)|((long)bufbuf[3] << 8)|((long)bufbuf[4] << 0));
+                f0 = true;
+                //printf("1:");
+                //AD7124::get_analog_value(measurement1);
+            }
+            //add to channel 1 data
+            if((data[3] == 1) && (f1 == false)){
+                bufbuf[7] = data[2];//measurement1         & 0xFF;
+                bufbuf[6] = data[1];//(measurement1 >>  8) & 0xFF;
+                bufbuf[5] = data[0];//(measurement1 >> 16) & 0xFF;
+                f1 = true;
+                //measurement2 =  (((long)bufbuf[5] << 16)|((long)bufbuf[6] << 8)|((long)bufbuf[7] << 0));
+                //printf("2: ");
+                //AD7124::get_analog_value(measurement2);
+            }
+
+        }
+        printf("send\n");
+        bufbuf[0] = 80;      // need start values
+        bufbuf[1] = 0x01;     //board number (#1)
+        bufbuf[8] = 0x0A;     //end character
+        pc.write(bufbuf, sizeof(bufbuf));
+
+        
+    }
+    return 1;
+ 
 }

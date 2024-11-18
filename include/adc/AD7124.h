@@ -61,6 +61,7 @@ class AD7124: private mbed::NonCopyable<AD7124>{
 
         void init(bool f0, bool f1);
         void read_voltage_from_both_channels(int number_of_input_values);
+        int read_data_continous(void);
     
     private:
         SPI m_spi;                  // SPI object for communication with the AD7124
