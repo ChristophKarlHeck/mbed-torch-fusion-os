@@ -14,11 +14,11 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "ModelExecutor.h"
 
 // Define global constants
-const float DATABITS = 8388608.0; // or constexpr if known at compile time
-const float VREF = 2.5;
-const float GAIN = 4.0;
-const int SPI_FREQUENCY = 1000000; // 1MHz
-const int DOWNSAMPLING_RATE = 10; // ms
+#define DATABITS 8388608.0  // or constexpr if known at compile time
+#define VREF 2.5
+#define GAIN 4.0
+#define SPI_FREQUENCY 1000000 // 1MHz
+#define DOWNSAMPLING_RATE 10 // ms
 
 struct DataPassedToReadingThread {
 	AD7124* adc;					// Reference to the ADC object

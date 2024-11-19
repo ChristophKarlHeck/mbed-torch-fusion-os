@@ -71,7 +71,7 @@ class AD7124: private mbed::NonCopyable<AD7124>{
         float m_vref;	            // Reference voltage
         float m_gain;               // Gain factor
         int m_spi_frequency;        // SPI Frequency
-        int m_model_input_size;     // Number of input parameters model
+        int m_model_input_size;     // Number of input parameters model               
         bool m_flag_0;              // Flags for channel configuration
         bool m_flag_1;
         char m_read;                // Read operation indicator
