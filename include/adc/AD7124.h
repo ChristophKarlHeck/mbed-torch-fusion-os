@@ -31,17 +31,6 @@
  */
 //SPI spi(PA_7, PA_6, PA_5); // mosi, miso, sclk
 
-/* 
- * Mail: 
- * 
- * This Mail structure is used for Inter-Thread Communication between the 
- * reading data thread and the main thread. It facilitates the exchange of 
- * data between threads in a safe and efficient manner.
- */
-typedef struct {
-    std::vector<float> inputs; /* Vector of downsampled analog values*/
-    //float input;
-} mail_t;
 
 /**
  * @class AD7124
@@ -53,6 +42,19 @@ typedef struct {
  */
 class AD7124: private mbed::NonCopyable<AD7124>{
     public:
+
+       /* 
+        * Mail: 
+        * 
+        * This Mail structure is used for Inter-Thread Communication between the 
+        * reading data thread and the main thread. It facilitates the exchange of 
+        * data between threads in a safe and efficient manner.
+        */
+        typedef struct {
+            std::vector<float> inputs; /* Vector of downsampled analog values*/
+            //float input;
+        } mail_t;
+
 
         Mail<mail_t, 4> mail_box;
 

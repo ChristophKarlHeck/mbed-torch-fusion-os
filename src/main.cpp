@@ -49,7 +49,7 @@ static BufferedSerial serial_port(USBTX, USBRX);
 
 int main()
 {
-	/*
+	
 	// Instantiate and initialize the model executor
 	ModelExecutor executor;
 	executor.initRuntime();
@@ -63,8 +63,7 @@ int main()
     executor.prepareInputs(method, method_name);
 
 	//Instantiate the AD7124 object with databits, Vref, and Gain
-	int n = 4;
-    AD7124 adc(DATABITS, VREF, GAIN);
+    AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY);
 	adc.init(true, true); // activate both channels
 	DataPassedToReadingThread data_for_reading_thread(&adc, number_of_input_values, &DOWNSAMPLING_RATE);
 
@@ -76,7 +75,7 @@ int main()
 		osEvent evt = adc.mail_box.get();
 		if (evt.status == osEventMail) {
 		    // Retrieve the message from the mail box
-		    mail_t *mail = (mail_t *)evt.value.p;
+		    AD7124::mail_t *mail = (AD7124::mail_t *)evt.value.p;
 	        executor.setModelInput(method, mail->inputs);
             executor.executeModel(method, method_name);
 			adc.mail_box.free(mail); // make mail box empty
@@ -88,11 +87,11 @@ int main()
 		thread_sleep_for(10); // ms
 	}
 
-	*/
+	
 
-	AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY);
-	adc.init(true, true);
-	adc.read_data_continous();
+	// AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY);
+	// adc.init(true, true);
+	// adc.read_data_continous();
 
     /* initialize the BLE interface */
     // BLE &ble_interface = BLE::Instance();
