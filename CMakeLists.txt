@@ -26,6 +26,7 @@ set(SOURCES
      ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
      ${CMAKE_CURRENT_SOURCE_DIR}/src/model_executor/ModelExecutor.cpp
      ${CMAKE_CURRENT_SOURCE_DIR}/src/adc/AD7124.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/serial_communication/SerialCommunication.cpp
 )
 
 add_executable(SoftMaxTorchRunner ${SOURCES})
@@ -51,6 +52,7 @@ target_include_directories(SoftMaxTorchRunner
           ${CMAKE_CURRENT_SOURCE_DIR}/include/model_executor
           ${CMAKE_CURRENT_SOURCE_DIR}/libs
           ${CMAKE_CURRENT_SOURCE_DIR}/include/adc
+          ${CMAKE_CURRENT_SOURCE_DIR}/include/serial_communication
           #${CMAKE_CURRENT_SOURCE_DIR}/BLE_Service // needs to be split in .h and .cpp file
          
 )
