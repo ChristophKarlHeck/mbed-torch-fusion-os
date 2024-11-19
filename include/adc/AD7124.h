@@ -62,7 +62,7 @@ class AD7124: private mbed::NonCopyable<AD7124>{
         AD7124(float databits, float vref, float gain, int spi_frequency);
 
         void init(bool f0, bool f1);
-        void read_voltage_from_both_channels(int number_of_input_values);
+        void read_voltage_from_both_channels(int model_input_size);
         int read_data_continous(void);
     
     private:

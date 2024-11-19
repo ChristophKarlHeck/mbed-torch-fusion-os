@@ -256,12 +256,12 @@ float AD7124::get_analog_value(long measurement) {
     return voltage;
 }
 
-void AD7124::read_voltage_from_both_channels(int number_of_input_values){
+void AD7124::read_voltage_from_both_channels(int model_input_size){
     while (true){
 
-        std::vector<float> inputs(number_of_input_values);
+        std::vector<float> inputs(model_input_size);
 
-        for(int i = 0; i < number_of_input_values; i++){
+        for(int i = 0; i < model_input_size; i++){
             uint8_t data[4] = {0, 0, 0, 0};
             for(int j = 0; j < 4; j++){
                 // Sends 0x00 and simultaneously receives a byte from the SPI slave device.

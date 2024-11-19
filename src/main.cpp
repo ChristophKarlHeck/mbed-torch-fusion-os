@@ -18,34 +18,29 @@ const float DATABITS = 8388608.0; // or constexpr if known at compile time
 const float VREF = 2.5;
 const float GAIN = 4.0;
 const int SPI_FREQUENCY = 1000000; // 1MHz
-const int DOWNSAMPLING_RATE = 1; // every value
+const int DOWNSAMPLING_RATE = 1; // ms
 
 struct DataPassedToReadingThread {
 	AD7124* adc;					// Reference to the ADC object
-	int number_of_input_values;		// Size of inputs passed to main thread
-	const int* downsampling;				// Downsampling rate
+	int model_input_size;		// Size of inputs passed to main thread
+	const int downsampling;				// Downsampling rate
 
 	// Constructor to initialize the struct with a reference and two integer values
     DataPassedToReadingThread(
 		AD7124* adc_ref,
 		int num_values_ref,
-		const int* downsampling) : adc(adc_ref), number_of_input_values(num_values_ref), downsampling(downsampling) {}
+		const int downsampling) : adc(adc_ref), model_input_size(num_values_ref), downsampling(downsampling) {}
 };
 
 // Function called in thread to read data
 void read_data(DataPassedToReadingThread* data){
 
-	printf("hi\n");
-	data->adc->read_voltage_from_both_channels(data->number_of_input_values);
-	printf("hi2\n");
+	data->adc->read_voltage_from_both_channels(data->model_input_size);
 
 }
 
 // Thread for reading data from ADC
 Thread reading_data_thread;
-
-//Serial pc(UART1_TX, UART1_RX,); // tx, rx
-static BufferedSerial serial_port(USBTX, USBRX);
 
 int main()
 {
@@ -59,13 +54,13 @@ int main()
     torch::executor::MemoryAllocator method_allocator = executor.getMemoryAllocator();
     std::vector<torch::executor::Span<uint8_t>> planned_spans = executor.setUpPlannedBuffer(program, method_meta);
     Result<torch::executor::Method> method = executor.loadMethod(program, method_allocator, planned_spans, method_name);
-	int number_of_input_values = executor.getNumberOfInputValues(method);
+	int model_input_size = executor.getNumberOfInputValues(method);
     executor.prepareInputs(method, method_name);
 
 	//Instantiate the AD7124 object with databits, Vref, and Gain
     AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY);
 	adc.init(true, true); // activate both channels
-	DataPassedToReadingThread data_for_reading_thread(&adc, number_of_input_values, &DOWNSAMPLING_RATE);
+	DataPassedToReadingThread data_for_reading_thread(&adc, model_input_size, DOWNSAMPLING_RATE);
 
 
 	reading_data_thread.start(callback(read_data, &data_for_reading_thread));
