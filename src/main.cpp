@@ -20,22 +20,10 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #define SPI_FREQUENCY 1000000 // 1MHz
 #define DOWNSAMPLING_RATE 10 // ms
 
-struct DataPassedToReadingThread {
-	AD7124* adc;					// Reference to the ADC object
-	int model_input_size;		// Size of inputs passed to main thread
-	const int downsampling;				// Downsampling rate
-
-	// Constructor to initialize the struct with a reference and two integer values
-    DataPassedToReadingThread(
-		AD7124* adc_ref,
-		int num_values_ref,
-		const int downsampling) : adc(adc_ref), model_input_size(num_values_ref), downsampling(downsampling) {}
-};
-
 // Function called in thread to read data
-void read_data(DataPassedToReadingThread* data){
+void read_data(AD7124 *adc){
 
-	data->adc->read_voltage_from_both_channels(data->model_input_size);
+	adc->read_voltage_from_both_channels();
 
 }
 
@@ -60,10 +48,9 @@ int main()
 	//Instantiate the AD7124 object with databits, Vref, and Gain
     AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY, model_input_size);
 	adc.init(true, true); // activate both channels
-	DataPassedToReadingThread data_for_reading_thread(&adc, model_input_size, DOWNSAMPLING_RATE);
 
 
-	reading_data_thread.start(callback(read_data, &data_for_reading_thread));
+	reading_data_thread.start(callback(read_data, &adc));
 
 
 	while (true) {

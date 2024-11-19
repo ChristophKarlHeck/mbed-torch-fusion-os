@@ -12,6 +12,7 @@ AD7124::AD7124(float databits, float vref, float gain, int spi_frequency, int mo
     // Set up SPI communication
     m_spi.format(8, 0);  // 8 bits per frame, SPI Mode 0 (CPOL=0, CPHA=0)
     m_spi.frequency(m_spi_frequency); // Set the SPI frequency to 1 MHz
+
 }
 
 void AD7124::reset(void){
@@ -256,7 +257,7 @@ float AD7124::get_analog_value(long measurement) {
     return voltage;
 }
 
-void AD7124::read_voltage_from_both_channels(int model_input_size){
+void AD7124::read_voltage_from_both_channels(){
     while (true){
 
         std::vector<float> inputs(m_model_input_size);
