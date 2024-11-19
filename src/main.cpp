@@ -46,7 +46,7 @@ int main()
     executor.prepareInputs(method, method_name);
 
 	// Instantiate the AD7124 object with databits, Vref, and Gain
-    AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY, model_input_size, DOWNSAMPLING_RATE);
+    AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY, DOWNSAMPLING_RATE, model_input_size);
 	adc.init(true, true); // activate both channels
 
 	// Start reading data from ADC Thread

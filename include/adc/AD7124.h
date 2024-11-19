@@ -59,7 +59,7 @@ class AD7124: private mbed::NonCopyable<AD7124>{
         Mail<mail_t, 4> mail_box; // size has to be the same as model_input_size
 
         // Constructor with parameters for databits, Vref, and Gain
-        AD7124(float databits, float vref, float gain, int spi_frequency, int model_input_size, int downsampling_rate);
+        AD7124(float databits, float vref, float gain, int spi_frequency, int downsampling_rate, int model_input_size);
 
         void init(bool f0, bool f1);
         void read_voltage_from_both_channels(void);

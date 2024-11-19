@@ -5,9 +5,9 @@
 #include <cstring>
 
 // Constructor with initializer list
-AD7124::AD7124(float databits, float vref, float gain, int spi_frequency, int model_input_size, int downsampling_rate)
+AD7124::AD7124(float databits, float vref, float gain, int spi_frequency, int downsampling_rate, int model_input_size)
     : m_spi(PA_7, PA_6, PA_5), m_databits(databits), m_vref(vref), m_gain(gain), m_spi_frequency(spi_frequency),
-      m_model_input_size(model_input_size), m_downsampling_rate(downsampling_rate), m_flag_0(false), m_flag_1(false), m_read(1), m_write(0) {
+      m_downsampling_rate(downsampling_rate), m_model_input_size(model_input_size), m_flag_0(false), m_flag_1(false), m_read(1), m_write(0) {
 
     // Set up SPI communication
     m_spi.format(8, 0);  // 8 bits per frame, SPI Mode 0 (CPOL=0, CPHA=0)
