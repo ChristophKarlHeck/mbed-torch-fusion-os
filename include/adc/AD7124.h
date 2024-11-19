@@ -57,7 +57,7 @@ class AD7124: private mbed::NonCopyable<AD7124>{
         Mail<mail_t, 4> mail_box;
 
         // Constructor with parameters for databits, Vref, and Gain
-        AD7124(float databits, float vref, float gain);
+        AD7124(float databits, float vref, float gain, int spi_frequency);
 
         void init(bool f0, bool f1);
         void read_voltage_from_both_channels(int number_of_input_values);
@@ -68,10 +68,12 @@ class AD7124: private mbed::NonCopyable<AD7124>{
         float m_databits;           // Data bits used in measurement calculations
         float m_vref;	            // Reference voltage
         float m_gain;               // Gain factor
+        int m_spi_frequency;        // SPI Frequency
         bool m_flag_0;              // Flags for channel configuration
         bool m_flag_1;
         char m_read;                // Read operation indicator
         char m_write;               // Write operation indicator
+        
         
         /**
          * @brief Resets the AD7124 ADC to its default state.

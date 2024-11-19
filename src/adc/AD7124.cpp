@@ -4,18 +4,14 @@
 #include <cstdio>
 #include <cstring>
 
-
-static BufferedSerial pc(USBTX,USBRX);
-uint8_t bufbuf[9];
-
 // Constructor with initializer list
-AD7124::AD7124(float databits, float vref, float gain)
-    : m_spi(PA_7, PA_6, PA_5), m_databits(databits), m_vref(vref), m_gain(gain),
+AD7124::AD7124(float databits, float vref, float gain, int spi_frequency)
+    : m_spi(PA_7, PA_6, PA_5), m_databits(databits), m_vref(vref), m_gain(gain), m_spi_frequency(spi_frequency),
       m_flag_0(false), m_flag_1(false), m_read(1), m_write(0) {
 
     // Set up SPI communication
     m_spi.format(8, 0);  // 8 bits per frame, SPI Mode 0 (CPOL=0, CPHA=0)
-    m_spi.frequency(1000000); // Set the SPI frequency to 1 MHz
+    m_spi.frequency(m_spi_frequency); // Set the SPI frequency to 1 MHz
 }
 
 void AD7124::reset(void){
@@ -293,23 +289,31 @@ void AD7124::read_voltage_from_both_channels(int number_of_input_values){
 }
 
 int AD7124::read_data_continous(void){
-    
+
+    printf("read_data_continous\n");
+    BufferedSerial pc(PB_6, PB_7);
+    uint8_t bufbuf[9];
+    pc.set_baud(19200);
+    pc.set_format(
+            /* bits */ 8,
+            /* parity */ BufferedSerial::Odd,
+            /* stop bit */ 1
+    );
+    thread_sleep_for(10); // ms
     while(1){
         uint8_t data [4] = {0,0,0,0};
         bool f0 = !m_flag_0; //these flags are because want entries for both channel 0 and 1
         bool f1 = !m_flag_1; // so only fill the buffer once there is data for both
-        long measurement1, measurement2 = 0;
 
+        printf("%d,%d\n", f0, f1);
         while((f0 == false) || (f1 == false)){
 
-            for (int i = 0; i<=3; i++){
+            for (int i = 0; i < 4; i++){
                 data[i] = m_spi.write(0x00);
-                //printf(" "BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(data[i]));
             }
-            //printf("\n");
 
-            measurement1, measurement2 =0;
-            if((data[3] == 0) && (f0 == false)){
+            printf("%d, %d, %d\n", data[3], f0, f1);
+            if((f0 == false)){
                 bufbuf[4] = data[2];//measurement         & 0xFF;
                 bufbuf[3] = data[1];//(measurement >>  8) & 0xFF;
                 bufbuf[2] = data[0];//(measurement >> 16) & 0xFF; 
@@ -319,7 +323,7 @@ int AD7124::read_data_continous(void){
                 //AD7124::get_analog_value(measurement1);
             }
             //add to channel 1 data
-            if((data[3] == 1) && (f1 == false)){
+            if((f1 == false)){
                 bufbuf[7] = data[2];//measurement1         & 0xFF;
                 bufbuf[6] = data[1];//(measurement1 >>  8) & 0xFF;
                 bufbuf[5] = data[0];//(measurement1 >> 16) & 0xFF;
@@ -330,13 +334,12 @@ int AD7124::read_data_continous(void){
             }
 
         }
-        printf("send\n");
         bufbuf[0] = 80;      // need start values
         bufbuf[1] = 0x01;     //board number (#1)
         bufbuf[8] = 0x0A;     //end character
         pc.write(bufbuf, sizeof(bufbuf));
 
-        
+        printf("send\n");
     }
     return 1;
  

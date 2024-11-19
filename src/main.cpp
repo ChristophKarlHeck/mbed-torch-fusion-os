@@ -17,7 +17,8 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 const float DATABITS = 8388608.0; // or constexpr if known at compile time
 const float VREF = 2.5;
 const float GAIN = 4.0;
-const int DOWNSAMPLING_RATE = 1;
+const int SPI_FREQUENCY = 1000000; // 1MHz
+const int DOWNSAMPLING_RATE = 1; // every value
 
 struct DataPassedToReadingThread {
 	AD7124* adc;					// Reference to the ADC object
@@ -89,8 +90,8 @@ int main()
 
 	*/
 
-	AD7124 adc(DATABITS, VREF, GAIN);
-	adc.init(true, false);
+	AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY);
+	adc.init(true, true);
 	adc.read_data_continous();
 
     /* initialize the BLE interface */
