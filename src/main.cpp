@@ -21,7 +21,7 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #define DOWNSAMPLING_RATE 10 // ms
 
 // Function called in thread to read data
-void read_data(AD7124 *adc){
+void get_input_model_values_from_adc(AD7124 *adc){
 
 	adc->read_voltage_from_both_channels();
 
@@ -45,12 +45,12 @@ int main()
 	int model_input_size = executor.getNumberOfInputValues(method);
     executor.prepareInputs(method, method_name);
 
-	//Instantiate the AD7124 object with databits, Vref, and Gain
-    AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY, model_input_size);
+	// Instantiate the AD7124 object with databits, Vref, and Gain
+    AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY, model_input_size, DOWNSAMPLING_RATE);
 	adc.init(true, true); // activate both channels
 
-
-	reading_data_thread.start(callback(read_data, &adc));
+	// Start reading data from ADC Thread
+	reading_data_thread.start(callback(get_input_model_values_from_adc, &adc));
 
 
 	while (true) {
@@ -66,7 +66,7 @@ int main()
 		}
 
 		// Needed to avoid immediate resource exhaustion
-		thread_sleep_for(10); // ms
+		thread_sleep_for(1); // ms
 	}
 
 	
