@@ -18,7 +18,7 @@ const float DATABITS = 8388608.0; // or constexpr if known at compile time
 const float VREF = 2.5;
 const float GAIN = 4.0;
 const int SPI_FREQUENCY = 1000000; // 1MHz
-const int DOWNSAMPLING_RATE = 1; // ms
+const int DOWNSAMPLING_RATE = 10; // ms
 
 struct DataPassedToReadingThread {
 	AD7124* adc;					// Reference to the ADC object
@@ -58,7 +58,7 @@ int main()
     executor.prepareInputs(method, method_name);
 
 	//Instantiate the AD7124 object with databits, Vref, and Gain
-    AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY);
+    AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY, model_input_size);
 	adc.init(true, true); // activate both channels
 	DataPassedToReadingThread data_for_reading_thread(&adc, model_input_size, DOWNSAMPLING_RATE);
 
