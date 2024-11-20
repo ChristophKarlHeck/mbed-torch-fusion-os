@@ -22,8 +22,13 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #define SPI_FREQUENCY 1000 // 1MHz
 #define DOWNSAMPLING_RATE 10 // ms
 
-// SERIAL COMMUNICATION
-#define BAUD_RATE 19200
+// I2C COMMUNICATION
+// Define I2C pins and address
+#define I2C_SCL_PIN PB_8   // Replace with your SCL pin (I2C1_SCL)
+#define I2C_SDA_PIN PB_9   // Replace with your SDA pin (I2C1_SDA)
+#define RASPBERRY_PI_I2C_ADDRESS 0x08 // Adjust based on your Raspberry Pi's I2C address
+
+I2C i2c(I2C_SDA_PIN, I2C_SCL_PIN);
 
 // Function called in thread to read data
 void get_input_model_values_from_adc(AD7124 *adc){
@@ -35,13 +40,10 @@ void get_input_model_values_from_adc(AD7124 *adc){
 // Thread for reading data from ADC
 Thread reading_data_thread;
 
-static BufferedSerial serial_port(PB_6, PB_7);
-
 int main()
 {
-	
 	// Instantiate and initialize the model executor
-/*	ModelExecutor executor;
+	ModelExecutor executor;
 	executor.initRuntime();
     Result<torch::executor::Program> program = executor.loadModelBuffer();
     const char* method_name = executor.getMethodName(program);
@@ -54,7 +56,7 @@ int main()
 
 	// Instantiate the AD7124 object with databits, Vref, and Gain
     AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY, DOWNSAMPLING_RATE, model_input_size);
-	adc.init(true, true); // activate both channels
+	adc.init(true, false); // activate both channels
 
 	// Start reading data from ADC Thread
 	reading_data_thread.start(callback(get_input_model_values_from_adc, &adc));
@@ -75,39 +77,24 @@ int main()
 		// Needed to avoid immediate resource exhaustion
 		thread_sleep_for(1); // ms
 	}
-*/
-	serial_port.set_baud(19200);
-    serial_port.set_format(
-            /* bits */ 8,
-            /* parity */ BufferedSerial::None,
-            /* stop bit */ 1
-    );
 
-	uint8_t bufbuf[9];
-    uint8_t data [4] = {3,4,2,0};
+    float dataToSend = 123.45f;  // Example float value
+    char buffer[4]; // since float has 4 byte
 
-	bufbuf[0] = 80;      // need start values
-    bufbuf[1] = 0x01;     //board number (#1)
-	bufbuf[2] = data[0];
-	bufbuf[3] = data[1];
-	bufbuf[4] = data[2];//measurement         & 0xFF;
-   	bufbuf[5] = data[0];
-	bufbuf[6] = data[1];
-	bufbuf[7] = data[2];//measurement1         & 0xFF;
-        //(measurement1 >>  8) & 0xFF;
-    bufbuf[8] = 0x0A;     //end character
+    // Convert float to byte array
+    memcpy(buffer, &dataToSend, sizeof(dataToSend));
 
-	printf("Starting loop\n");
-	int count = 0;
-	while (true) {
-		printf("new circle %d\n", count);
-		int bytes_sent = serial_port.write(bufbuf, sizeof(bufbuf));
-		if (bytes_sent != sizeof(bufbuf)) {
-			printf("Error in writing data\n");
-		}
-		thread_sleep_for(1000); // ms
-		count++;
-	}
+    printf("Sending data to Raspberry Pi via I2C...\n");
+
+    // Send the float as 4 bytes
+    int result = i2c.write(RASPBERRY_PI_I2C_ADDRESS << 1, buffer, sizeof(buffer));
+    if (result == 0) {
+        printf("Data sent successfully: %f\n", dataToSend);
+    } else {
+        printf("Error sending data: %d\n", result);
+    }
+
+
 
 	// printf("\nhi\n");
 	// std::vector<float> outputs = {1.0f, 2.0f, 3.0f, 4.0f};
