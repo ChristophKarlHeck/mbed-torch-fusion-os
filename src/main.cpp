@@ -7,6 +7,7 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "AD7124.h"
 #include "Conversion.h"
 #include "ReadingQueue.h"
+#include "SendingQueue.h"
 // #include "BLEProcess.h"
 // #include "PinNames.h"
 // #include "mbed_trace.h"
@@ -17,7 +18,7 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 
 // *** DEFINE GLOBAL CONSTANTS ***
 // ADC
-#define DATABITS 8388608.0  // or constexpr if known at compile time
+#define DATABITS 8388608
 #define VREF 2.5
 #define GAIN 4.0
 #define SPI_FREQUENCY 10000000 // 1MHz
@@ -63,8 +64,8 @@ int main()
 		    // Retrieve the message from the mail box
 		    ReadingQueue::mail_t *mail = (ReadingQueue::mail_t *)evt.value.p;
 			std::vector<float> inputs = get_analog_inputs(mail->inputs, DATABITS, VREF, GAIN);
-	        executor.setModelInput(method, inputs);
-            executor.executeModel(method, method_name);
+	        // executor.setModelInput(method, inputs);
+            // executor.executeModel(method, method_name);
 			reading_queue.mail_box.free(mail); // make mail box empty
 		    // Free the allocated mail to avoid memory leaks
 		    

@@ -7,6 +7,6 @@
 #include <cstdint>   // Include this header for uint8_t (optional, but useful)
 
 // Function declaration (prototype)
-std::vector<float> get_analog_inputs(std::vector<std::array<uint8_t,3>> byte_inputs, float databits, float vref, float gain);
+std::vector<float> get_analog_inputs(std::vector<std::array<uint8_t,3>> byte_inputs, int databits, float vref, float gain);
 
 #endif // CONVERSION_H
