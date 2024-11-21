@@ -43,7 +43,7 @@ class ModelExecutor
             std::vector<torch::executor::Span<uint8_t>>& planned_spans,
             const char* method_name);
 
-        int getNumberOfInputValues(Result<torch::executor::Method>& method);
+        unsigned int getNumberOfInputValues(Result<torch::executor::Method>& method);
 
         void prepareInputs(Result<torch::executor::Method>& method, const char* method_name);
 

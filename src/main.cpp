@@ -39,25 +39,22 @@ void get_input_model_values_from_adc(unsigned int* model_input_size){
 int main()
 {
 	// Instantiate and initialize the model executor
-	// ModelExecutor executor;
-	// executor.initRuntime();
-    // Result<torch::executor::Program> program = executor.loadModelBuffer();
-    // const char* method_name = executor.getMethodName(program);
-    // Result<torch::executor::MethodMeta> method_meta = executor.getMethodMeta(program, method_name);
-    // torch::executor::MemoryAllocator method_allocator = executor.getMemoryAllocator();
-    // std::vector<torch::executor::Span<uint8_t>> planned_spans = executor.setUpPlannedBuffer(program, method_meta);
-    // Result<torch::executor::Method> method = executor.loadMethod(program, method_allocator, planned_spans, method_name);
-	// int model_input_size = executor.getNumberOfInputValues(method);
-    // executor.prepareInputs(method, method_name);
+	ModelExecutor executor;
+	executor.initRuntime();
+    Result<torch::executor::Program> program = executor.loadModelBuffer();
+    const char* method_name = executor.getMethodName(program);
+    Result<torch::executor::MethodMeta> method_meta = executor.getMethodMeta(program, method_name);
+    torch::executor::MemoryAllocator method_allocator = executor.getMemoryAllocator();
+    std::vector<torch::executor::Span<uint8_t>> planned_spans = executor.setUpPlannedBuffer(program, method_meta);
+    Result<torch::executor::Method> method = executor.loadMethod(program, method_allocator, planned_spans, method_name);
+	unsigned int model_input_size = executor.getNumberOfInputValues(method);
+    executor.prepareInputs(method, method_name);
 
-	
     // Access the shared ReadingQueue instance
     ReadingQueue& reading_queue = ReadingQueue::getInstance();
     
-	
-	unsigned int n = 4;
 	//Start reading data from ADC Thread
-	reading_data_thread.start(callback(get_input_model_values_from_adc, &n));
+	reading_data_thread.start(callback(get_input_model_values_from_adc, &model_input_size));
 
 
 	while (true) {
@@ -65,16 +62,16 @@ int main()
 		if (evt.status == osEventMail) {
 		    // Retrieve the message from the mail box
 		    ReadingQueue::mail_t *mail = (ReadingQueue::mail_t *)evt.value.p;
-			get_analog_inputs(mail->inputs, DATABITS, VREF, GAIN);
-	        // executor.setModelInput(method, mail->inputs);
-            // executor.executeModel(method, method_name);
+			std::vector<float> inputs = get_analog_inputs(mail->inputs, DATABITS, VREF, GAIN);
+	        executor.setModelInput(method, inputs);
+            executor.executeModel(method, method_name);
 			reading_queue.mail_box.free(mail); // make mail box empty
 		    // Free the allocated mail to avoid memory leaks
 		    
 		}
 
 		// Needed to avoid immediate resource exhaustion
-		thread_sleep_for(10); // ms
+		thread_sleep_for(DOWNSAMPLING_RATE); // ms
 	}
 
 

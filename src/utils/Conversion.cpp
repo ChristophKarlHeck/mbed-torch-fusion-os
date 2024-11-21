@@ -14,9 +14,9 @@ std::vector<float> get_analog_inputs(std::vector<std::array<uint8_t,3>> byte_inp
         inputs.push_back(voltage);
     }
 
-    for (size_t i = 0; i < inputs.size(); ++i) {
-        printf("inputs[%zu] = %.3f\n", i, inputs[i]);  // %.3f prints 3 decimal places
-    }
+    // for (size_t i = 0; i < inputs.size(); ++i) {
+    //     printf("inputs[%zu] = %.3f\n", i, inputs[i]);  // %.3f prints 3 decimal places
+    // }
 
     return inputs;
 }
