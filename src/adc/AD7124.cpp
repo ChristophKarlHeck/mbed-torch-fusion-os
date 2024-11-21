@@ -6,9 +6,8 @@
 #include <cstring>
 
 // Constructor with initializer list
-AD7124::AD7124(int spi_frequency, int downsampling_rate, uint model_input_size, ReadingQueue& reading_queue)
+AD7124::AD7124(int spi_frequency)
     : m_spi(PA_7, PA_6, PA_5), m_spi_frequency(spi_frequency),
-      m_downsampling_rate(downsampling_rate), m_model_input_size(model_input_size), m_reading_queue(reading_queue),
       m_flag_0(false), m_flag_1(false), m_read(1), m_write(0) {
 
     // Set up SPI communication
@@ -227,7 +226,7 @@ void AD7124::init(bool f0, bool f1){
         filter_reg(AD7124_FILT0_REG, m_read);  // same with filter register
         filter_reg(AD7124_FILT0_REG, m_write);
         filter_reg(AD7124_FILT0_REG, m_read);
-        printf("channelo 0 active\n");
+        printf("Channel 0 active\n");
     }
 
     if(m_flag_1){
@@ -239,7 +238,7 @@ void AD7124::init(bool f0, bool f1){
         filter_reg(AD7124_FILT1_REG, m_read);
         filter_reg(AD7124_FILT1_REG, m_write);
         filter_reg(AD7124_FILT1_REG, m_read);
-        printf("channelo 1 active\n");
+        printf("Channel 1 active\n");
     }
     //xAD7124::calibrate(1,1,0,0);
 
@@ -249,20 +248,80 @@ void AD7124::init(bool f0, bool f1){
     //AD7124::calibrate(1,0,0,0);
 }
 
-void AD7124::read_voltage_from_both_channels(void){
-    while (true){
+void AD7124::send_data_to_main_thread(
+    std::vector<std::array<uint8_t,3>> byte_inputs_channel_0,
+    std::vector<std::array<uint8_t,3>> byte_inputs_channel_1,
+    unsigned int model_input_size)
+{
+    // Access the shared queue
+    ReadingQueue& reading_queue = ReadingQueue::getInstance();
 
+    while (!reading_queue.mail_box.empty()) {
+        // Wait until mail box is empty
+        thread_sleep_for(10);
+        //printf("Wait for the reading queue to become empty.\n");
+    }
+
+    // Now that we have data in the channels, let's handle mailing
+    if (reading_queue.mail_box.empty()) {
+        ReadingQueue::mail_t* mail = reading_queue.mail_box.try_alloc();
+        
+        // If both channels have reached the target size
+        if ((byte_inputs_channel_0.size() == model_input_size) && (byte_inputs_channel_1.size() == model_input_size)) {
+            // Prefer channel_0 first
+            mail->inputs = byte_inputs_channel_0;
+            byte_inputs_channel_0.clear();
+            mail->channel = 0;  // Indicate the channel
+            reading_queue.mail_box.put(mail); 
+            
+            while (!reading_queue.mail_box.empty()) {
+                // Wait until first mail processed
+                thread_sleep_for(1);  
+            }
+
+            // Then assign channel_1 for the next mail
+            ReadingQueue::mail_t* next_mail = reading_queue.mail_box.try_alloc();
+            next_mail->inputs = byte_inputs_channel_1;
+                byte_inputs_channel_1.clear();
+            next_mail->channel = 1;  // Indicate the channel
+            
+            reading_queue.mail_box.put(next_mail);  // Put the second mail (for channel_1)
+        }
+        // If only channel_0 has the required size, send it
+        else if (byte_inputs_channel_0.size() == model_input_size) {
+            mail->inputs = byte_inputs_channel_0;
+            byte_inputs_channel_0.clear();
+            mail->channel = 0;
+            reading_queue.mail_box.put(mail);
+        }
+        // If only channel_1 has the required size, send it
+        else if (byte_inputs_channel_1.size() == model_input_size) {
+            mail->inputs = byte_inputs_channel_1;
+            byte_inputs_channel_1.clear();
+            mail->channel = 1;
+            reading_queue.mail_box.put(mail);
+        }
+    }
+
+}
+
+void AD7124::read_voltage_from_both_channels(unsigned int downsampling_rate, unsigned int model_input_size){
+
+    while (true){
         std::vector<std::array<uint8_t,3>> byte_inputs_channel_0;
         std::vector<std::array<uint8_t,3>> byte_inputs_channel_1;
-
+        
         // While the vector's size is less than 4, append 3-byte arrays
-        while (byte_inputs_channel_0.size() < m_model_input_size && byte_inputs_channel_1.size() < m_model_input_size){
+        while ((byte_inputs_channel_0.size() < model_input_size) && (byte_inputs_channel_1.size() < model_input_size)){
+            
             uint8_t data[4] = {0, 0, 0, 255};
             for(int j = 0; j < 4; j++){
                 // Sends 0x00 and simultaneously receives a byte from the SPI slave device.
                 data[j] = m_spi.write(0x00);
             }
             
+            data[3] = 0; // to mock sensor 0 reading
+
             if(data[3] == 0){
                 // data from channel 0
                 std::array<uint8_t, 3> new_bytes = {data[0], data[1], data[2]};
@@ -275,54 +334,10 @@ void AD7124::read_voltage_from_both_channels(void){
                 byte_inputs_channel_1.push_back(new_bytes);
             }
 
-            //wait_us(1); // Sampling rate: 1 MHZ
-            thread_sleep_for(m_downsampling_rate); // ms
+            thread_sleep_for(downsampling_rate); // ms
         }
 
-        while (!m_reading_queue.mail_box.empty()) {
-            // Wait until mail box is empty
-            thread_sleep_for(10);  
-        }
+        send_data_to_main_thread(byte_inputs_channel_0, byte_inputs_channel_1, model_input_size);
 
-        // Now that we have data in the channels, let's handle mailing
-        if (m_reading_queue.mail_box.empty()) {
-            ReadingQueue::mail_t* mail = m_reading_queue.mail_box.try_alloc();
-            
-            // If both channels have reached the target size
-            if (byte_inputs_channel_0.size() == m_model_input_size && byte_inputs_channel_1.size() == m_model_input_size) {
-                // Prefer channel_0 first
-                mail->inputs = byte_inputs_channel_0;
-                byte_inputs_channel_0.clear();  // Clear channel_0 after sending
-                mail->channel = 0;  // Indicate the channel
-                m_reading_queue.mail_box.put(mail); 
-                
-                while (!m_reading_queue.mail_box.empty()) {
-                    // Wait until first mail processed
-                    thread_sleep_for(10);  
-                }
-
-                // Then assign channel_1 for the next mail
-                ReadingQueue::mail_t* next_mail = m_reading_queue.mail_box.try_alloc();
-                next_mail->inputs = byte_inputs_channel_1;
-                byte_inputs_channel_1.clear();  // Clear channel_1 after sending
-                next_mail->channel = 1;  // Indicate the channel
-                
-                m_reading_queue.mail_box.put(next_mail);  // Put the second mail (for channel_1)
-            }
-            // If only channel_0 has the required size, send it
-            else if (byte_inputs_channel_0.size() == m_model_input_size) {
-                mail->inputs = byte_inputs_channel_0;
-                byte_inputs_channel_0.clear();
-                mail->channel = 0;
-                m_reading_queue.mail_box.put(mail);
-            }
-            // If only channel_1 has the required size, send it
-            else if (byte_inputs_channel_1.size() == m_model_input_size) {
-                mail->inputs = byte_inputs_channel_1;
-                byte_inputs_channel_1.clear();
-                mail->channel = 1;
-                m_reading_queue.mail_box.put(mail);
-            }
-        }
     }
 }

@@ -5,6 +5,7 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 */
 
 #include "AD7124.h"
+#include "Conversion.h"
 #include "ReadingQueue.h"
 // #include "BLEProcess.h"
 // #include "PinNames.h"
@@ -19,26 +20,21 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #define DATABITS 8388608.0  // or constexpr if known at compile time
 #define VREF 2.5
 #define GAIN 4.0
-#define SPI_FREQUENCY 1000 // 1MHz
+#define SPI_FREQUENCY 10000000 // 1MHz
 #define DOWNSAMPLING_RATE 10 // ms
-
-// I2C COMMUNICATION
-// Define I2C pins and address
-#define I2C_SCL_PIN PB_8   // Replace with your SCL pin (I2C1_SCL)
-#define I2C_SDA_PIN PB_9   // Replace with your SDA pin (I2C1_SDA)
-#define RASPBERRY_PI_I2C_ADDRESS 0x08 // Adjust based on your Raspberry Pi's I2C address
-
-I2C i2c(I2C_SDA_PIN, I2C_SCL_PIN);
-
-// Function called in thread to read data
-void get_input_model_values_from_adc(AD7124 *adc){
-
-	adc->read_voltage_from_both_channels();
-
-}
 
 // Thread for reading data from ADC
 Thread reading_data_thread;
+
+// Function called in thread to read data
+void get_input_model_values_from_adc(unsigned int* model_input_size){
+
+	AD7124 adc(SPI_FREQUENCY);
+	adc.init(true, true); // activate both channels
+	adc.read_voltage_from_both_channels(DOWNSAMPLING_RATE,*model_input_size);
+}
+
+
 
 int main()
 {
@@ -54,15 +50,14 @@ int main()
 	// int model_input_size = executor.getNumberOfInputValues(method);
     // executor.prepareInputs(method, method_name);
 
-	// Instantiate singleton reading data queue
-	ReadingQueue& reading_queue = ReadingQueue::getInstance();
-
-	// Instantiate the AD7124 object with databits, Vref, and Gain
-    AD7124 adc(SPI_FREQUENCY, DOWNSAMPLING_RATE, 4, reading_queue);
-	adc.init(true, false); // activate both channels
-
+	
+    // Access the shared ReadingQueue instance
+    ReadingQueue& reading_queue = ReadingQueue::getInstance();
+    
+	
+	unsigned int n = 4;
 	//Start reading data from ADC Thread
-	reading_data_thread.start(callback(get_input_model_values_from_adc, &adc));
+	reading_data_thread.start(callback(get_input_model_values_from_adc, &n));
 
 
 	while (true) {
@@ -70,6 +65,7 @@ int main()
 		if (evt.status == osEventMail) {
 		    // Retrieve the message from the mail box
 		    ReadingQueue::mail_t *mail = (ReadingQueue::mail_t *)evt.value.p;
+			get_analog_inputs(mail->inputs, DATABITS, VREF, GAIN);
 	        // executor.setModelInput(method, mail->inputs);
             // executor.executeModel(method, method_name);
 			reading_queue.mail_box.free(mail); // make mail box empty
@@ -78,7 +74,7 @@ int main()
 		}
 
 		// Needed to avoid immediate resource exhaustion
-		thread_sleep_for(1); // ms
+		thread_sleep_for(10); // ms
 	}
 
 

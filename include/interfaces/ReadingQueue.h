@@ -7,9 +7,6 @@
 
 class ReadingQueue {
 public:
-    // Deleted copy constructor and assignment operator to prevent copies
-    ReadingQueue(const ReadingQueue&) = delete;
-    ReadingQueue& operator=(const ReadingQueue&) = delete;
 
     // Static method to access the single instance
     static ReadingQueue& getInstance();
@@ -29,6 +26,10 @@ private:
 
     // Private destructor (optional)
     ~ReadingQueue();
+
+    // Deleted copy constructor and assignment operator to prevent copies
+    ReadingQueue(const ReadingQueue&) = delete;
+    ReadingQueue& operator=(const ReadingQueue&) = delete;
 };
 
 #endif // READING_QUEUE_H

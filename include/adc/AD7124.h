@@ -7,7 +7,6 @@
 #include "mbed.h"
 #include "hal/include/hal/spi_api.h"
 #include "mstd_iterator"
-#include "ReadingQueue.h"
 #include <cstdint>
 #include <cstdio>
 #include <ad7124-defs.h>
@@ -45,18 +44,15 @@ class AD7124: private mbed::NonCopyable<AD7124>{
     public:
 
         // Constructor with parameters for databits, Vref, and Gain
-        AD7124(int spi_frequency, int downsampling_rate, uint model_input_size, ReadingQueue& reading_queue);
+        AD7124(int spi_frequency);
 
         void init(bool f0, bool f1);
-        void read_voltage_from_both_channels(void);
+        void read_voltage_from_both_channels(unsigned int downsampling_rate, unsigned int model_input_size);
         //int read_data_continous(void);
     
     private:
         SPI m_spi;                      // SPI object for communication with the AD7124
         int m_spi_frequency;            // SPI Frequency
-        int m_downsampling_rate;        // ms
-        uint m_model_input_size;        // Number of input parameters model
-        ReadingQueue& m_reading_queue;    
         bool m_flag_0;                  // Flags for channel configuration
         bool m_flag_1;
         char m_read;                    // Read operation indicator
@@ -185,21 +181,12 @@ class AD7124: private mbed::NonCopyable<AD7124>{
          */
         void ctrl_reg(char RW);
 
-        /**
-         * @brief Calculates the analog voltage corresponding to the given digital measurement.
-         * 
-         * This function converts a digital measurement value (from the ADC) into its corresponding 
-         * analog voltage using the reference voltage (Vref), the gain factor, and the ADC's data resolution.
-         * The result is returned in millivolts (mV) for easier interpretation of the signal.
-         * 
-         * @param measurement The digital measurement value from the ADC.
-         * 
-         * @return The corresponding analog voltage in millivolts (mV).
-         * 
-         * @note The calculation assumes the measurement is from an ADC with a known resolution (databits), 
-         *       reference voltage (Vref), and gain factor (Gain).
-         */
-        float get_analog_value(long measurement);
+
+        void send_data_to_main_thread(
+            std::vector<std::array<uint8_t,3>> byte_inputs_channel_0,
+            std::vector<std::array<uint8_t,3>> byte_inputs_channel_1,
+            unsigned int model_input_size);
+        
 
 
 };
