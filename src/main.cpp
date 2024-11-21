@@ -5,7 +5,7 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 */
 
 #include "AD7124.h"
-#include "SerialCommunication.h"
+#include "ReadingQueue.h"
 // #include "BLEProcess.h"
 // #include "PinNames.h"
 // #include "mbed_trace.h"
@@ -43,33 +43,36 @@ Thread reading_data_thread;
 int main()
 {
 	// Instantiate and initialize the model executor
-	ModelExecutor executor;
-	executor.initRuntime();
-    Result<torch::executor::Program> program = executor.loadModelBuffer();
-    const char* method_name = executor.getMethodName(program);
-    Result<torch::executor::MethodMeta> method_meta = executor.getMethodMeta(program, method_name);
-    torch::executor::MemoryAllocator method_allocator = executor.getMemoryAllocator();
-    std::vector<torch::executor::Span<uint8_t>> planned_spans = executor.setUpPlannedBuffer(program, method_meta);
-    Result<torch::executor::Method> method = executor.loadMethod(program, method_allocator, planned_spans, method_name);
-	int model_input_size = executor.getNumberOfInputValues(method);
-    executor.prepareInputs(method, method_name);
+	// ModelExecutor executor;
+	// executor.initRuntime();
+    // Result<torch::executor::Program> program = executor.loadModelBuffer();
+    // const char* method_name = executor.getMethodName(program);
+    // Result<torch::executor::MethodMeta> method_meta = executor.getMethodMeta(program, method_name);
+    // torch::executor::MemoryAllocator method_allocator = executor.getMemoryAllocator();
+    // std::vector<torch::executor::Span<uint8_t>> planned_spans = executor.setUpPlannedBuffer(program, method_meta);
+    // Result<torch::executor::Method> method = executor.loadMethod(program, method_allocator, planned_spans, method_name);
+	// int model_input_size = executor.getNumberOfInputValues(method);
+    // executor.prepareInputs(method, method_name);
+
+	// Instantiate singleton reading data queue
+	ReadingQueue& reading_queue = ReadingQueue::getInstance();
 
 	// Instantiate the AD7124 object with databits, Vref, and Gain
-    AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY, DOWNSAMPLING_RATE, model_input_size);
+    AD7124 adc(SPI_FREQUENCY, DOWNSAMPLING_RATE, 4, reading_queue);
 	adc.init(true, false); // activate both channels
 
-	// Start reading data from ADC Thread
+	//Start reading data from ADC Thread
 	reading_data_thread.start(callback(get_input_model_values_from_adc, &adc));
 
 
 	while (true) {
-		osEvent evt = adc.mail_box.get();
+		osEvent evt = reading_queue.mail_box.get();
 		if (evt.status == osEventMail) {
 		    // Retrieve the message from the mail box
-		    AD7124::mail_t *mail = (AD7124::mail_t *)evt.value.p;
-	        executor.setModelInput(method, mail->inputs);
-            executor.executeModel(method, method_name);
-			adc.mail_box.free(mail); // make mail box empty
+		    ReadingQueue::mail_t *mail = (ReadingQueue::mail_t *)evt.value.p;
+	        // executor.setModelInput(method, mail->inputs);
+            // executor.executeModel(method, method_name);
+			reading_queue.mail_box.free(mail); // make mail box empty
 		    // Free the allocated mail to avoid memory leaks
 		    
 		}
@@ -77,22 +80,6 @@ int main()
 		// Needed to avoid immediate resource exhaustion
 		thread_sleep_for(1); // ms
 	}
-
-    float dataToSend = 123.45f;  // Example float value
-    char buffer[4]; // since float has 4 byte
-
-    // Convert float to byte array
-    memcpy(buffer, &dataToSend, sizeof(dataToSend));
-
-    printf("Sending data to Raspberry Pi via I2C...\n");
-
-    // Send the float as 4 bytes
-    int result = i2c.write(RASPBERRY_PI_I2C_ADDRESS << 1, buffer, sizeof(buffer));
-    if (result == 0) {
-        printf("Data sent successfully: %f\n", dataToSend);
-    } else {
-        printf("Error sending data: %d\n", result);
-    }
 
 
 

@@ -7,6 +7,7 @@
 #include "mbed.h"
 #include "hal/include/hal/spi_api.h"
 #include "mstd_iterator"
+#include "ReadingQueue.h"
 #include <cstdint>
 #include <cstdio>
 #include <ad7124-defs.h>
@@ -43,40 +44,23 @@
 class AD7124: private mbed::NonCopyable<AD7124>{
     public:
 
-       /* 
-        * Mail: 
-        * 
-        * This Mail structure is used for Inter-Thread Communication between the 
-        * reading data thread and the main thread. It facilitates the exchange of 
-        * data between threads in a safe and efficient manner.
-        */
-        typedef struct {
-            std::vector<float> inputs; /* Vector of downsampled analog values*/
-            //float input;
-        } mail_t;
-
-
-        Mail<mail_t, 4> mail_box; // size has to be the same as model_input_size
-
         // Constructor with parameters for databits, Vref, and Gain
-        AD7124(float databits, float vref, float gain, int spi_frequency, int downsampling_rate, int model_input_size);
+        AD7124(int spi_frequency, int downsampling_rate, uint model_input_size, ReadingQueue& reading_queue);
 
         void init(bool f0, bool f1);
         void read_voltage_from_both_channels(void);
         //int read_data_continous(void);
     
     private:
-        SPI m_spi;                  // SPI object for communication with the AD7124
-        float m_databits;           // Data bits used in measurement calculations
-        float m_vref;	            // Reference voltage
-        float m_gain;               // Gain factor
-        int m_spi_frequency;        // SPI Frequency
-        int m_downsampling_rate;    // ms
-        int m_model_input_size;     // Number of input parameters model    
-        bool m_flag_0;              // Flags for channel configuration
+        SPI m_spi;                      // SPI object for communication with the AD7124
+        int m_spi_frequency;            // SPI Frequency
+        int m_downsampling_rate;        // ms
+        uint m_model_input_size;        // Number of input parameters model
+        ReadingQueue& m_reading_queue;    
+        bool m_flag_0;                  // Flags for channel configuration
         bool m_flag_1;
-        char m_read;                // Read operation indicator
-        char m_write;               // Write operation indicator
+        char m_read;                    // Read operation indicator
+        char m_write;                   // Write operation indicator
         
         
         

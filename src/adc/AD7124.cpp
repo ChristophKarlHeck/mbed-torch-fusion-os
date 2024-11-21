@@ -1,13 +1,15 @@
 
-#include <AD7124.h>
+#include "AD7124.h"
+#include "ReadingQueue.h"
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
 
 // Constructor with initializer list
-AD7124::AD7124(float databits, float vref, float gain, int spi_frequency, int downsampling_rate, int model_input_size)
-    : m_spi(PA_7, PA_6, PA_5), m_databits(databits), m_vref(vref), m_gain(gain), m_spi_frequency(spi_frequency),
-      m_downsampling_rate(downsampling_rate), m_model_input_size(model_input_size), m_flag_0(false), m_flag_1(false), m_read(1), m_write(0) {
+AD7124::AD7124(int spi_frequency, int downsampling_rate, uint model_input_size, ReadingQueue& reading_queue)
+    : m_spi(PA_7, PA_6, PA_5), m_spi_frequency(spi_frequency),
+      m_downsampling_rate(downsampling_rate), m_model_input_size(model_input_size), m_reading_queue(reading_queue),
+      m_flag_0(false), m_flag_1(false), m_read(1), m_write(0) {
 
     // Set up SPI communication
     m_spi.format(8, 0);  // 8 bits per frame, SPI Mode 0 (CPOL=0, CPHA=0)
@@ -247,44 +249,80 @@ void AD7124::init(bool f0, bool f1){
     //AD7124::calibrate(1,0,0,0);
 }
 
-float AD7124::get_analog_value(long measurement) {
-    /* calculate the analog value from the measurement */
-    float voltage = (float)measurement / m_databits - 1;
-    voltage = voltage * m_vref / m_gain;
-    voltage *= 1000;
-
-    //printf("analog %.3f\n", voltage); // Note: %.3f for float precision
-    return voltage;
-}
-
 void AD7124::read_voltage_from_both_channels(void){
     while (true){
 
-        std::vector<float> inputs(m_model_input_size);
+        std::vector<std::array<uint8_t,3>> byte_inputs_channel_0;
+        std::vector<std::array<uint8_t,3>> byte_inputs_channel_1;
 
-        for(int i = 0; i < m_model_input_size; i++){
-            uint8_t data[4] = {0, 0, 0, 0};
+        // While the vector's size is less than 4, append 3-byte arrays
+        while (byte_inputs_channel_0.size() < m_model_input_size && byte_inputs_channel_1.size() < m_model_input_size){
+            uint8_t data[4] = {0, 0, 0, 255};
             for(int j = 0; j < 4; j++){
                 // Sends 0x00 and simultaneously receives a byte from the SPI slave device.
                 data[j] = m_spi.write(0x00);
             }
             
-            // Specify the data source channel for the incoming data.
-            // data[3] == 0 --> channel 0
-            // data[3] == 1 --> channel 1
+            if(data[3] == 0){
+                // data from channel 0
+                std::array<uint8_t, 3> new_bytes = {data[0], data[1], data[2]};
+                byte_inputs_channel_0.push_back(new_bytes);
+            }
 
-            int measurement = (((long)data[0] << 16)|((long)data[1] << 8)|((long)data[2] << 0));
-            inputs[i] = get_analog_value(measurement);
+            if(data[3] == 1){
+                // data from channel 1
+                std::array<uint8_t, 3> new_bytes = {data[0], data[1], data[2]};
+                byte_inputs_channel_1.push_back(new_bytes);
+            }
 
             //wait_us(1); // Sampling rate: 1 MHZ
             thread_sleep_for(m_downsampling_rate); // ms
         }
 
-        if (mail_box.empty()){
-            mail_t *mail = mail_box.try_alloc();
-            mail->inputs = inputs; // copy float vactor to avoid weird reference errors
-            mail_box.put(mail); // must be freed after in ad7124.h set mailing box length
-            //raise(SIGUSR1); // Softwareinterrupt causes service.h to send data and delete afterwards.
+        while (!m_reading_queue.mail_box.empty()) {
+            // Wait until mail box is empty
+            thread_sleep_for(10);  
+        }
+
+        // Now that we have data in the channels, let's handle mailing
+        if (m_reading_queue.mail_box.empty()) {
+            ReadingQueue::mail_t* mail = m_reading_queue.mail_box.try_alloc();
+            
+            // If both channels have reached the target size
+            if (byte_inputs_channel_0.size() == m_model_input_size && byte_inputs_channel_1.size() == m_model_input_size) {
+                // Prefer channel_0 first
+                mail->inputs = byte_inputs_channel_0;
+                byte_inputs_channel_0.clear();  // Clear channel_0 after sending
+                mail->channel = 0;  // Indicate the channel
+                m_reading_queue.mail_box.put(mail); 
+                
+                while (!m_reading_queue.mail_box.empty()) {
+                    // Wait until first mail processed
+                    thread_sleep_for(10);  
+                }
+
+                // Then assign channel_1 for the next mail
+                ReadingQueue::mail_t* next_mail = m_reading_queue.mail_box.try_alloc();
+                next_mail->inputs = byte_inputs_channel_1;
+                byte_inputs_channel_1.clear();  // Clear channel_1 after sending
+                next_mail->channel = 1;  // Indicate the channel
+                
+                m_reading_queue.mail_box.put(next_mail);  // Put the second mail (for channel_1)
+            }
+            // If only channel_0 has the required size, send it
+            else if (byte_inputs_channel_0.size() == m_model_input_size) {
+                mail->inputs = byte_inputs_channel_0;
+                byte_inputs_channel_0.clear();
+                mail->channel = 0;
+                m_reading_queue.mail_box.put(mail);
+            }
+            // If only channel_1 has the required size, send it
+            else if (byte_inputs_channel_1.size() == m_model_input_size) {
+                mail->inputs = byte_inputs_channel_1;
+                byte_inputs_channel_1.clear();
+                mail->channel = 1;
+                m_reading_queue.mail_box.put(mail);
+            }
         }
     }
 }
