@@ -27,6 +27,7 @@ set(SOURCES
      ${CMAKE_CURRENT_SOURCE_DIR}/src/model_executor/ModelExecutor.cpp
      ${CMAKE_CURRENT_SOURCE_DIR}/src/adc/AD7124.cpp
      ${CMAKE_CURRENT_SOURCE_DIR}/src/interfaces/ReadingQueue.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/interfaces/SendingQueue.cpp
      ${CMAKE_CURRENT_SOURCE_DIR}/src/utils/Conversion.cpp
 )
 
