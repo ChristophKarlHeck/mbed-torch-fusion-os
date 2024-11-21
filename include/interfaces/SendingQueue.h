@@ -13,12 +13,14 @@ public:
 
     // The structure used for inter-thread communication
     typedef struct {
-        std::vector<std::array<uint8_t, 3>> inputs;  // Vector of downsampled analog values
-        bool channel;                                // Channel information
+        std::vector<std::array<uint8_t, 3>> inputs;  // Vector of downsampled analog values                             // Channel information
+        std::vector<float> classification;
+        bool classification_active;
+        bool channel;                              
     } mail_t;
 
     // Mail object for inter-thread communication
-    Mail<mail_t, 4> mail_box;  // Queue with size 4, can be adjusted as necessary
+    Mail<mail_t, 5> mail_box;  // Queue with size 4, can be adjusted as necessary
 
 private:
     // Private constructor to prevent direct instantiation

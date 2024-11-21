@@ -1,17 +1,13 @@
 
-#ifndef ADC_PROCESS_H_
-#define ADC_PROCESS_H_
+#ifndef AD7124_H_
+#define AD7124_H_
 
-#include "DigitalOut.h"
 #include "PinNames.h"
+#include "ad7124-defs.h"
 #include "mbed.h"
-#include "hal/include/hal/spi_api.h"
-#include "mstd_iterator"
+#include "logger.h"
 #include <cstdint>
 #include <cstdio>
-#include <ad7124-defs.h>
-#include <utils.h>
-#include <logger.h>
 
 /**
  * @brief SPI interface for communication with the AD7124 ADC.
