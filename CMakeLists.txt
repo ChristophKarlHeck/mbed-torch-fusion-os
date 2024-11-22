@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.19)
 cmake_policy(VERSION 3.19)
 
 # Enable OPENOCD upload method for NUCLEO_WB55RG
-file(COPY ${CMAKE_SOURCE_DIR}/config/mbed-os/NUCLEO_WB55RG.cmake
+file(COPY ${CMAKE_SOURCE_DIR}/libs/config/mbed-os/NUCLEO_WB55RG.cmake
      DESTINATION ${CMAKE_SOURCE_DIR}/libs/mbed-os/targets/upload_method_cfg)
 
 
@@ -50,7 +50,6 @@ target_link_libraries(SoftMaxTorchRunner PUBLIC
 ###GENRAL###
 target_include_directories(SoftMaxTorchRunner
      PUBLIC 
-          ${CMAKE_CURRENT_SOURCE_DIR}/include #need it for executorch includes and logger.h
           ${CMAKE_CURRENT_SOURCE_DIR}/include/model_executor
           ${CMAKE_CURRENT_SOURCE_DIR}/libs
           ${CMAKE_CURRENT_SOURCE_DIR}/include/adc
