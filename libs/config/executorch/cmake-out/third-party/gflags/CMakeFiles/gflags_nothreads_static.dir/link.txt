@@ -1,0 +1,2 @@
+/usr/local/gcc-arm/bin/arm-none-eabi-ar qc libgflags_nothreads.a CMakeFiles/gflags_nothreads_static.dir/src/gflags.cc.obj CMakeFiles/gflags_nothreads_static.dir/src/gflags_reporting.cc.obj CMakeFiles/gflags_nothreads_static.dir/src/gflags_completions.cc.obj
+/usr/local/gcc-arm/bin/arm-none-eabi-ranlib libgflags_nothreads.a

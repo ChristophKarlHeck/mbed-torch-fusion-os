@@ -1,0 +1,5 @@
+/home/chris/et-tut-1/executorch/cmake-out/lib/libportable_kernels.a
+/home/chris/et-tut-1/executorch/cmake-out/lib/libportable_ops_lib.a
+/home/chris/et-tut-1/executorch/cmake-out/lib/libexecutorch.a
+/home/chris/et-tut-1/executorch/cmake-out/lib/cmake/ExecuTorch/executorch-config.cmake
+/home/chris/et-tut-1/executorch/cmake-out/lib/libextension_runner_util.a

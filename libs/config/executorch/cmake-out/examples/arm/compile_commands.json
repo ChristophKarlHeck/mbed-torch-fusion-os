@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/chris/et-tut-1/executorch/cmake-out/examples/arm",
+  "command": "/usr/local/gcc-arm/bin/arm-none-eabi-g++ -DNDEBUG -isystem /home/chris/et-tut-1/executorch/cmake-out/lib/cmake/ExecuTorch/../.. -isystem /home/chris/et-tut-1/executorch/examples/arm/../../.. -O3 -DNDEBUG -std=gnu++14 -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wno-psabi./7 -o CMakeFiles/arm_portable_ops_lib.dir/RegisterCodegenUnboxedKernelsEverything.cpp.obj -c /home/chris/et-tut-1/executorch/cmake-out/examples/arm/RegisterCodegenUnboxedKernelsEverything.cpp",
+  "file": "/home/chris/et-tut-1/executorch/cmake-out/examples/arm/RegisterCodegenUnboxedKernelsEverything.cpp",
+  "output": "CMakeFiles/arm_portable_ops_lib.dir/RegisterCodegenUnboxedKernelsEverything.cpp.obj"
+}
+]
