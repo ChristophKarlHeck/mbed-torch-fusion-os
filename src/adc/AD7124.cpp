@@ -9,6 +9,8 @@
 AD7124::AD7124(int spi_frequency)
     : m_spi(PA_7, PA_6, PA_5), m_spi_frequency(spi_frequency),
       m_flag_0(false), m_flag_1(false), m_read(1), m_write(0) {
+    
+    INFO("AD7124::AD7124(int spi_frequency)");
 
     // Set up SPI communication
     m_spi.format(8, 0);  // 8 bits per frame, SPI Mode 0 (CPOL=0, CPHA=0)
@@ -17,7 +19,7 @@ AD7124::AD7124(int spi_frequency)
 }
 
 void AD7124::reset(void){
-    INFO("Reset ADC\n");
+    INFO("void AD7124::reset(void)");
     
     // Send 0xFF bytes to reset the ADC's registers to their default state
     for (int i = 0; i < 9; i++){
@@ -26,6 +28,8 @@ void AD7124::reset(void){
 }
 
 char AD7124::status(void){
+    INFO("char AD7124::status(void)");
+
     // Send read command to the status register of the AD7124
     m_spi.write(AD7124_R | AD7124_STATUS_REG);
 
@@ -226,7 +230,7 @@ void AD7124::init(bool f0, bool f1){
         filter_reg(AD7124_FILT0_REG, m_read);  // same with filter register
         filter_reg(AD7124_FILT0_REG, m_write);
         filter_reg(AD7124_FILT0_REG, m_read);
-        printf("Channel 0 active\n");
+        INFO("Channel 0 active\n");
     }
 
     if(m_flag_1){
@@ -238,7 +242,7 @@ void AD7124::init(bool f0, bool f1){
         filter_reg(AD7124_FILT1_REG, m_read);
         filter_reg(AD7124_FILT1_REG, m_write);
         filter_reg(AD7124_FILT1_REG, m_read);
-        printf("Channel 1 active\n");
+        INFO("Channel 1 active\n");
     }
     //xAD7124::calibrate(1,1,0,0);
 

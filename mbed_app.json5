@@ -1,10 +1,11 @@
 {
     "target_overrides": {
-        "*": {
-            // By default, use a serial baudrate of 115200 and enable buffering on the serial port.
+        "NUCLEO_WB55RG": {
             "platform.stdio-baud-rate": 115200,
             "platform.stdio-buffered-serial": 1,
-            "target.features_add": ["BLE"]
-        }
+            "target.features_add": ["BLE"],
+            "target.device_has_add": ["USBDEVICE"]
+        },
     }
 }
+

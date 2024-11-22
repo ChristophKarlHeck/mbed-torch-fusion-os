@@ -4,26 +4,31 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 - "rx-acl-buffer-size": 255
 */
 
+// Standard Library Headers
+#include <cstdio>
+#include <cstdlib>
+#include <string>
+#include <vector>
+
+// Third-Party Library Headers
+#include "mbed.h"
+//#include "USBSerial.h" // Uncomment if needed for debugging
+
+// Project-Specific Headers
 #include "AD7124.h"
-#include "Conversion.h"
 #include "ReadingQueue.h"
 #include "SendingQueue.h"
 #include "ModelExecutor.h"
-// #include "BLEProcess.h"
-// #include "PinNames.h"
-// #include "mbed_trace.h"
-// #include "Service.h"
 
-#include "mbed.h"
-#include "ModelExecutor.h"
-//#include "USBSerial.h"
+// Utility Headers
+#include "Conversion.h"
+#include "logger.h"
 
-// Virtual serial port over USB for debugging
-//USBSerial serial;
-
+// Virtual USB Port for logging on Raspberry PI
+//USBSerial rapi; // Define the instance
 
 // *** DEFINE GLOBAL CONSTANTS ***
-#define DOWNSAMPLING_RATE 10 // ms
+#define DOWNSAMPLING_RATE 100 // ms
 #define CLASSIFICATION 1
 
 // CONVERSION
@@ -33,7 +38,6 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 
 // ADC
 #define SPI_FREQUENCY 10000000 // 1MHz
-
 
 // Thread for reading data from ADC
 Thread reading_data_thread;
@@ -50,6 +54,7 @@ void get_input_model_values_from_adc(unsigned int* model_input_size){
 }
 
 /// Function called in thread "sending_data_thread"
+// Also mark in in CMakeLists since when we don't need BLE we don't neet to compile the software for it
 void send_output_to_data_sink(bool serial_or_ble){
 	if(serial_or_ble){
 		// Serielle Kommunikation
@@ -61,7 +66,13 @@ void send_output_to_data_sink(bool serial_or_ble){
 
 
 int main()
-{
+{	
+	// Just run that program and nothing else to fix weierd issues
+	// while(1){
+	// 	printf("hi\n");
+	// 	thread_sleep_for(1000);
+	// }
+
 	// Instantiate and initialize the model executor
 	ModelExecutor executor;
 	executor.initRuntime();
@@ -73,6 +84,13 @@ int main()
     Result<torch::executor::Method> method = executor.loadMethod(program, method_allocator, planned_spans, method_name);
 	unsigned int model_input_size = executor.getNumberOfInputValues(method);
     executor.prepareInputs(method, method_name);
+	// std::vector<float> my_vector = {3.0f, 4.23f, 2.3f, 1.2f};
+	// executor.setModelInput(method, my_vector);
+	// executor.printModelInput(method);
+	// executor.executeModel(method, method_name);
+	// executor.printModelOutput(method);
+
+
 
     // Access the shared ReadingQueue instance
     ReadingQueue& reading_queue = ReadingQueue::getInstance();
@@ -133,19 +151,11 @@ int main()
 
 		// Needed to avoid immediate resource exhaustion
 		thread_sleep_for(DOWNSAMPLING_RATE); // ms
+		// rapi.printf("no hard fault");
 	}
 
+	
 
-
-	// printf("\nhi\n");
-	// std::vector<float> outputs = {1.0f, 2.0f, 3.0f, 4.0f};
-	// SerialCommunication serial_communication(BAUD_RATE);
-	// printf("Calling send_model_output\n");
-	// int i = serial_communication.send_model_output(outputs);
-
-	// AD7124 adc(DATABITS, VREF, GAIN, SPI_FREQUENCY);
-	// adc.init(true, true);
-	// adc.read_data_continous();
 
     /* initialize the BLE interface */
     // BLE &ble_interface = BLE::Instance();
