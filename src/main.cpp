@@ -8,6 +8,7 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "Conversion.h"
 #include "ReadingQueue.h"
 #include "SendingQueue.h"
+#include "ModelExecutor.h"
 // #include "BLEProcess.h"
 // #include "PinNames.h"
 // #include "mbed_trace.h"
@@ -15,6 +16,11 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 
 #include "mbed.h"
 #include "ModelExecutor.h"
+#include "USBSerial.h"
+
+// Virtual serial port over USB for debugging
+USBSerial serial;
+
 
 // *** DEFINE GLOBAL CONSTANTS ***
 #define DOWNSAMPLING_RATE 10 // ms
