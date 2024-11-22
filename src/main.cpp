@@ -16,10 +16,10 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 
 #include "mbed.h"
 #include "ModelExecutor.h"
-#include "USBSerial.h"
+//#include "USBSerial.h"
 
 // Virtual serial port over USB for debugging
-USBSerial serial;
+//USBSerial serial;
 
 
 // *** DEFINE GLOBAL CONSTANTS ***

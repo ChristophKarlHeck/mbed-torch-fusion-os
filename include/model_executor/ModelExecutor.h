@@ -1,3 +1,6 @@
+#ifndef MODELEXECUTOR_H
+#define MODELEXECUTOR_H
+
 #include <stdio.h>
 #include <memory>
 #include <vector>
@@ -62,3 +65,5 @@ class ModelExecutor
         // Needed, otherwise planned buffers will be deallocated and makes planned_spans invalid.
         std::vector<std::unique_ptr<uint8_t[]>> planned_buffers; 
 };
+
+#endif // MODELEXECUTOR_H
