@@ -1,0 +1,20 @@
+namespace Mail;
+
+// Define a struct for the 3-byte array
+struct Value {
+  data_0: uint8;
+  data_1: uint8;
+  data_2: uint8;  
+}
+
+// Main table
+table Mail {
+  inputs: [Value];                 // Vector of raw data --> needs to be converted to voltage
+  classification: [float];         // List of classifications
+  classification_active: bool;
+  channel: bool;
+}
+
+root_type Mail;
+
+

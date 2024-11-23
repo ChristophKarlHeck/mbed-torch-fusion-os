@@ -15,62 +15,39 @@ static_assert(FLATBUFFERS_VERSION_MAJOR == 24 &&
 
 namespace Mail {
 
-struct Input;
-struct InputBuilder;
+struct Value;
 
 struct Mail;
 struct MailBuilder;
 
-struct Input FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
-  typedef InputBuilder Builder;
-  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
-    VT_DATA = 4
-  };
-  const ::flatbuffers::Vector<uint8_t> *data() const {
-    return GetPointer<const ::flatbuffers::Vector<uint8_t> *>(VT_DATA);
+FLATBUFFERS_MANUALLY_ALIGNED_STRUCT(1) Value FLATBUFFERS_FINAL_CLASS {
+ private:
+  uint8_t data_0_;
+  uint8_t data_1_;
+  uint8_t data_2_;
+
+ public:
+  Value()
+      : data_0_(0),
+        data_1_(0),
+        data_2_(0) {
   }
-  bool Verify(::flatbuffers::Verifier &verifier) const {
-    return VerifyTableStart(verifier) &&
-           VerifyOffset(verifier, VT_DATA) &&
-           verifier.VerifyVector(data()) &&
-           verifier.EndTable();
+  Value(uint8_t _data_0, uint8_t _data_1, uint8_t _data_2)
+      : data_0_(::flatbuffers::EndianScalar(_data_0)),
+        data_1_(::flatbuffers::EndianScalar(_data_1)),
+        data_2_(::flatbuffers::EndianScalar(_data_2)) {
+  }
+  uint8_t data_0() const {
+    return ::flatbuffers::EndianScalar(data_0_);
+  }
+  uint8_t data_1() const {
+    return ::flatbuffers::EndianScalar(data_1_);
+  }
+  uint8_t data_2() const {
+    return ::flatbuffers::EndianScalar(data_2_);
   }
 };
-
-struct InputBuilder {
-  typedef Input Table;
-  ::flatbuffers::FlatBufferBuilder &fbb_;
-  ::flatbuffers::uoffset_t start_;
-  void add_data(::flatbuffers::Offset<::flatbuffers::Vector<uint8_t>> data) {
-    fbb_.AddOffset(Input::VT_DATA, data);
-  }
-  explicit InputBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
-        : fbb_(_fbb) {
-    start_ = fbb_.StartTable();
-  }
-  ::flatbuffers::Offset<Input> Finish() {
-    const auto end = fbb_.EndTable(start_);
-    auto o = ::flatbuffers::Offset<Input>(end);
-    return o;
-  }
-};
-
-inline ::flatbuffers::Offset<Input> CreateInput(
-    ::flatbuffers::FlatBufferBuilder &_fbb,
-    ::flatbuffers::Offset<::flatbuffers::Vector<uint8_t>> data = 0) {
-  InputBuilder builder_(_fbb);
-  builder_.add_data(data);
-  return builder_.Finish();
-}
-
-inline ::flatbuffers::Offset<Input> CreateInputDirect(
-    ::flatbuffers::FlatBufferBuilder &_fbb,
-    const std::vector<uint8_t> *data = nullptr) {
-  auto data__ = data ? _fbb.CreateVector<uint8_t>(*data) : 0;
-  return Mail::CreateInput(
-      _fbb,
-      data__);
-}
+FLATBUFFERS_STRUCT_END(Value, 3);
 
 struct Mail FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef MailBuilder Builder;
@@ -80,8 +57,8 @@ struct Mail FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
     VT_CLASSIFICATION_ACTIVE = 8,
     VT_CHANNEL = 10
   };
-  const ::flatbuffers::Vector<::flatbuffers::Offset<Mail::Input>> *inputs() const {
-    return GetPointer<const ::flatbuffers::Vector<::flatbuffers::Offset<Mail::Input>> *>(VT_INPUTS);
+  const ::flatbuffers::Vector<const Mail::Value *> *inputs() const {
+    return GetPointer<const ::flatbuffers::Vector<const Mail::Value *> *>(VT_INPUTS);
   }
   const ::flatbuffers::Vector<float> *classification() const {
     return GetPointer<const ::flatbuffers::Vector<float> *>(VT_CLASSIFICATION);
@@ -96,7 +73,6 @@ struct Mail FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_INPUTS) &&
            verifier.VerifyVector(inputs()) &&
-           verifier.VerifyVectorOfTables(inputs()) &&
            VerifyOffset(verifier, VT_CLASSIFICATION) &&
            verifier.VerifyVector(classification()) &&
            VerifyField<uint8_t>(verifier, VT_CLASSIFICATION_ACTIVE, 1) &&
@@ -109,7 +85,7 @@ struct MailBuilder {
   typedef Mail Table;
   ::flatbuffers::FlatBufferBuilder &fbb_;
   ::flatbuffers::uoffset_t start_;
-  void add_inputs(::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<Mail::Input>>> inputs) {
+  void add_inputs(::flatbuffers::Offset<::flatbuffers::Vector<const Mail::Value *>> inputs) {
     fbb_.AddOffset(Mail::VT_INPUTS, inputs);
   }
   void add_classification(::flatbuffers::Offset<::flatbuffers::Vector<float>> classification) {
@@ -134,7 +110,7 @@ struct MailBuilder {
 
 inline ::flatbuffers::Offset<Mail> CreateMail(
     ::flatbuffers::FlatBufferBuilder &_fbb,
-    ::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<Mail::Input>>> inputs = 0,
+    ::flatbuffers::Offset<::flatbuffers::Vector<const Mail::Value *>> inputs = 0,
     ::flatbuffers::Offset<::flatbuffers::Vector<float>> classification = 0,
     bool classification_active = false,
     bool channel = false) {
@@ -148,11 +124,11 @@ inline ::flatbuffers::Offset<Mail> CreateMail(
 
 inline ::flatbuffers::Offset<Mail> CreateMailDirect(
     ::flatbuffers::FlatBufferBuilder &_fbb,
-    const std::vector<::flatbuffers::Offset<Mail::Input>> *inputs = nullptr,
+    const std::vector<Mail::Value> *inputs = nullptr,
     const std::vector<float> *classification = nullptr,
     bool classification_active = false,
     bool channel = false) {
-  auto inputs__ = inputs ? _fbb.CreateVector<::flatbuffers::Offset<Mail::Input>>(*inputs) : 0;
+  auto inputs__ = inputs ? _fbb.CreateVectorOfStructs<Mail::Value>(*inputs) : 0;
   auto classification__ = classification ? _fbb.CreateVector<float>(*classification) : 0;
   return Mail::CreateMail(
       _fbb,

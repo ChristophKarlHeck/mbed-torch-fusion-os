@@ -19,6 +19,7 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "ReadingQueue.h"
 #include "SendingQueue.h"
 #include "ModelExecutor.h"
+#include "SerialCommunication.h"
 
 // Utility Headers
 #include "Conversion.h"
@@ -39,6 +40,9 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 // ADC
 #define SPI_FREQUENCY 10000000 // 1MHz
 
+// UART
+#define BAUD_RATE 19200
+
 // Thread for reading data from ADC
 Thread reading_data_thread;
 
@@ -55,12 +59,11 @@ void get_input_model_values_from_adc(unsigned int* model_input_size){
 
 /// Function called in thread "sending_data_thread"
 // Also mark in in CMakeLists since when we don't need BLE we don't neet to compile the software for it
-void send_output_to_data_sink(bool serial_or_ble){
-	if(serial_or_ble){
-		// Serielle Kommunikation
-	}else{
-		// BLE
-	}
+void send_output_to_data_sink(void){
+
+	SerialCommunication serial_comm(BAUD_RATE);
+	// Start sending data via UART
+	serial_comm.send_struct_via_serial_port();  
 
 }
 
@@ -101,8 +104,11 @@ int main()
     SendingQueue& sending_queue = SendingQueue::getInstance();
     
 	//Start reading data from ADC Thread
-	reading_data_thread.start(callback(get_input_model_values_from_adc, &model_input_size));
+	unsigned int n = 4;
+	reading_data_thread.start(callback(get_input_model_values_from_adc, &n));
 
+	//Start sending Thread
+	sending_data_thread.start(callback(send_output_to_data_sink))
 
 	while (true) {
 		osEvent evt = reading_queue.mail_box.get();

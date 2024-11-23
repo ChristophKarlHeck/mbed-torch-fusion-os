@@ -1,15 +1,21 @@
+#ifndef SERIALCOMMUNICATION_H
+#define SERIALCOMMUNICATION_H
+
 #include <vector>
 #include "mbed.h"
+#include "SendingQueue.h"
+#include "mail_generated.h"
 
-class SerialCommunication{
-    public:
-        SerialCommunication(int baud_rate);
-        int send_model_output(std::vector<float> model_output);
+class SerialCommunication {
+public:
+    SerialCommunication(int baud_rate);  // Constructor declaration
+    void send_struct_via_serial_port(void);
 
-    private:
+private:
+    BufferedSerial m_serial_port;   // Using the correct member name
+    int m_baud_rate;
 
-        int m_baud_rate;
-        uint8_t m_bufbuf[9]; // Buffer for data to be sent
-         // CN10 pins on P Nucleo WB55RG
-
+    void send_mail(const SendingQueue::mail_t& mail_data);  // Function to send serialized mail
 };
+
+#endif // SERIALCOMMUNICATION_H

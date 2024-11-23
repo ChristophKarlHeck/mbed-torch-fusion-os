@@ -4,10 +4,16 @@
 cmake_minimum_required(VERSION 3.19)
 cmake_policy(VERSION 3.19)
 
+# Define project first
+project(MbedTorchFusionOS LANGUAGES CXX)
+
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 # Enable OPENOCD upload method for NUCLEO_WB55RG
 file(COPY ${CMAKE_SOURCE_DIR}/libs/config/mbed-os/NUCLEO_WB55RG.cmake
      DESTINATION ${CMAKE_SOURCE_DIR}/mbed-os/targets/upload_method_cfg)
-
 
 # Initialize Mbed OS build system. 
 # Note: This block must be before the project() call.
@@ -22,11 +28,6 @@ add_subdirectory(mbed-os) # Load Mbed OS build targets.  Must be added before an
 
 project(MbedTorchFusionOS CXX) # TODO: change this to your project name
 
-# Add Executorch source files
-file(GLOB_RECURSE EXECUTORCH_SOURCES
-     ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/src/*.cpp
-     ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/src/**/*.cpp
-)
 
 set(SOURCES 
      ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
@@ -35,11 +36,12 @@ set(SOURCES
      ${CMAKE_CURRENT_SOURCE_DIR}/src/interfaces/ReadingQueue.cpp
      ${CMAKE_CURRENT_SOURCE_DIR}/src/interfaces/SendingQueue.cpp
      ${CMAKE_CURRENT_SOURCE_DIR}/src/utils/Conversion.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/serial_communication/SerialCommunication.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/serializing_data/mail_generated.cpp
 )
 
 add_executable(SoftMaxTorchRunner ${SOURCES})
 
-#target_link_libraries(SoftMaxTorchRunner mbed-os)
 
 target_link_libraries(SoftMaxTorchRunner PUBLIC
      mbed-os # Core Mbed OS library
@@ -52,6 +54,7 @@ target_link_libraries(SoftMaxTorchRunner PUBLIC
      ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/kernels/portable/libportable_kernels.a
      ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/examples/arm/libarm_portable_ops_lib.a
      "-Wl,--no-whole-archive"
+     ${CMAKE_CURRENT_SOURCE_DIR}/libs/flatbuffers/libflatbuffers.a
      ) 
 
 ###GENRAL###
@@ -63,6 +66,8 @@ target_include_directories(SoftMaxTorchRunner
           ${CMAKE_CURRENT_SOURCE_DIR}/include/interfaces
           ${CMAKE_CURRENT_SOURCE_DIR}/include/utils
           ${CMAKE_CURRENT_SOURCE_DIR}/include/serial_communication
+          ${CMAKE_CURRENT_SOURCE_DIR}/flatbuffers/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/include/serializing_data
          
 )
 
