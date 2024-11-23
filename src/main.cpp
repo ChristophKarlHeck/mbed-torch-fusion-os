@@ -29,7 +29,7 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 
 // *** DEFINE GLOBAL CONSTANTS ***
 #define DOWNSAMPLING_RATE 100 // ms
-#define CLASSIFICATION 1
+#define CLASSIFICATION 0
 
 // CONVERSION
 #define DATABITS 8388608
@@ -74,6 +74,7 @@ int main()
 	// }
 
 	// Instantiate and initialize the model executor
+	/*
 	ModelExecutor executor;
 	executor.initRuntime();
     Result<torch::executor::Program> program = executor.loadModelBuffer();
@@ -84,6 +85,7 @@ int main()
     Result<torch::executor::Method> method = executor.loadMethod(program, method_allocator, planned_spans, method_name);
 	unsigned int model_input_size = executor.getNumberOfInputValues(method);
     executor.prepareInputs(method, method_name);
+	*/
 	// std::vector<float> my_vector = {3.0f, 4.23f, 2.3f, 1.2f};
 	// executor.setModelInput(method, my_vector);
 	// executor.printModelInput(method);
@@ -132,20 +134,20 @@ int main()
 				classification_result = executor.getModelOutput(method);
 			}
 
-			// while (!sending_queue.mail_box.empty()) {
-            //     // Wait until sending queue is empty
-            //     thread_sleep_for(1);
-			// 	//printf("Wait for the sending queue to become empty.\n");
-            // }
+			while (!sending_queue.mail_box.empty()) {
+                // Wait until sending queue is empty
+                thread_sleep_for(1);
+				//printf("Wait for the sending queue to become empty.\n");
+            }
 		    
-			// if (sending_queue.mail_box.empty()) {
-			// 	SendingQueue::mail_t* sending_mail = sending_queue.mail_box.try_alloc();
-			// 	sending_mail->inputs = inputs_as_bytes;
-			// 	sending_mail->classification = classification_result;
-			// 	sending_mail->classification_active = CLASSIFICATION;
-			// 	sending_mail->channel = channel;
-			// 	sending_queue.mail_box.put(sending_mail); 
-			// }
+			if (sending_queue.mail_box.empty()) {
+				SendingQueue::mail_t* sending_mail = sending_queue.mail_box.try_alloc();
+				sending_mail->inputs = inputs_as_bytes;
+				sending_mail->classification = classification_result;
+				sending_mail->classification_active = CLASSIFICATION;
+				sending_mail->channel = channel;
+				sending_queue.mail_box.put(sending_mail); 
+			}
 
 		}
 

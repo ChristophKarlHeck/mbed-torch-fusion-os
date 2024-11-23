@@ -1,0 +1,18 @@
+namespace Mail;
+
+// Define a table for the 3-byte array
+table Input {
+  data: [uint8];  // Dynamic-length array (can be fixed in logic, e.g., 3 bytes)
+}
+
+// Main table
+table Mail {
+  inputs: [Input];                 // Array of Input tables
+  classification: [float];         // List of classifications
+  classification_active: bool;
+  channel: bool;
+}
+
+root_type Mail;
+
+

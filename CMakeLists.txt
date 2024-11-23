@@ -62,6 +62,7 @@ target_include_directories(SoftMaxTorchRunner
           ${CMAKE_CURRENT_SOURCE_DIR}/libs
           ${CMAKE_CURRENT_SOURCE_DIR}/include/interfaces
           ${CMAKE_CURRENT_SOURCE_DIR}/include/utils
+          ${CMAKE_CURRENT_SOURCE_DIR}/include/serial_communication
          
 )
 
