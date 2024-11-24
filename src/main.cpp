@@ -12,7 +12,7 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 
 // Third-Party Library Headers
 #include "mbed.h"
-//#include "USBSerial.h" // Uncomment if needed for debugging
+#include "USBSerial.h" // Uncomment if needed for debugging
 
 // Project-Specific Headers
 #include "AD7124.h"
@@ -20,6 +20,7 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "SendingQueue.h"
 #include "ModelExecutor.h"
 #include "SerialCommunication.h"
+// #include "SerialMail_generated.h"
 
 // Utility Headers
 #include "Conversion.h"
@@ -70,6 +71,9 @@ void send_output_to_data_sink(void){
 
 int main()
 {	
+	// Create a FlatBufferBuilder with an initial size of 1024 bytes
+    //flatbuffers::FlatBufferBuilder builder(1024);
+
 	// Just run that program and nothing else to fix weierd issues
 	// while(1){
 	// 	printf("hi\n");
@@ -108,7 +112,7 @@ int main()
 	reading_data_thread.start(callback(get_input_model_values_from_adc, &n));
 
 	//Start sending Thread
-	sending_data_thread.start(callback(send_output_to_data_sink))
+	sending_data_thread.start(callback(send_output_to_data_sink));
 
 	while (true) {
 		osEvent evt = reading_queue.mail_box.get();
