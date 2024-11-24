@@ -19,7 +19,6 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "ReadingQueue.h"
 #include "SendingQueue.h"
 #include "ModelExecutor.h"
-#include "SerialCommunication.h"
 // #include "SerialMail_generated.h"
 
 // Utility Headers
@@ -27,11 +26,16 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "logger.h"
 
 // Virtual USB Port for logging on Raspberry PI
-//USBSerial rapi; // Define the instance
+ USBSerial serial; // Define the instance
+
+// // Redirect printf explicitly to USBSerial
+FileHandle *mbed::mbed_override_console(int) {
+    return &serial;
+}
 
 // *** DEFINE GLOBAL CONSTANTS ***
 #define DOWNSAMPLING_RATE 100 // ms
-#define CLASSIFICATION 0
+#define CLASSIFICATION 1
 
 // CONVERSION
 #define DATABITS 8388608
@@ -60,13 +64,13 @@ void get_input_model_values_from_adc(unsigned int* model_input_size){
 
 /// Function called in thread "sending_data_thread"
 // Also mark in in CMakeLists since when we don't need BLE we don't neet to compile the software for it
-void send_output_to_data_sink(void){
+// void send_output_to_data_sink(void){
 
-	SerialCommunication serial_comm(BAUD_RATE);
-	// Start sending data via UART
-	serial_comm.send_struct_via_serial_port();  
+// 	SerialCommunication serial_comm(BAUD_RATE);
+// 	// Start sending data via UART
+// 	serial_comm.send_struct_via_serial_port();  
 
-}
+// }
 
 
 int main()
@@ -80,8 +84,8 @@ int main()
 	// 	thread_sleep_for(1000);
 	// }
 
+
 	// Instantiate and initialize the model executor
-	/*
 	ModelExecutor executor;
 	executor.initRuntime();
     Result<torch::executor::Program> program = executor.loadModelBuffer();
@@ -92,7 +96,7 @@ int main()
     Result<torch::executor::Method> method = executor.loadMethod(program, method_allocator, planned_spans, method_name);
 	unsigned int model_input_size = executor.getNumberOfInputValues(method);
     executor.prepareInputs(method, method_name);
-	*/
+	
 	// std::vector<float> my_vector = {3.0f, 4.23f, 2.3f, 1.2f};
 	// executor.setModelInput(method, my_vector);
 	// executor.printModelInput(method);
@@ -112,8 +116,9 @@ int main()
 	reading_data_thread.start(callback(get_input_model_values_from_adc, &n));
 
 	//Start sending Thread
-	sending_data_thread.start(callback(send_output_to_data_sink));
+	//sending_data_thread.start(callback(send_output_to_data_sink));
 
+	unsigned int counter = 0;
 	while (true) {
 		osEvent evt = reading_queue.mail_box.get();
 		if (evt.status == osEventMail) {
@@ -131,43 +136,47 @@ int main()
 
 			thread_sleep_for(DOWNSAMPLING_RATE); // needed here too otherwise CPU exhaustion
 
-			// Convert received bytes to floats
-			std::vector<float> inputs = get_analog_inputs(inputs_as_bytes, DATABITS, VREF, GAIN);
+		
 
 			// Prepare result vector
 			std::vector<float> classification_result;
 
 			if(CLASSIFICATION){
+				
+				// Convert received bytes to floats
+				std::vector<float> inputs = get_analog_inputs(inputs_as_bytes, DATABITS, VREF, GAIN);
 				// Execute Model with received inputs
 				executor.setModelInput(method, inputs);
 				executor.executeModel(method, method_name);
 				classification_result = executor.getModelOutput(method);
 			}
 
-			while (!sending_queue.mail_box.empty()) {
-                // Wait until sending queue is empty
-                thread_sleep_for(1);
-				//printf("Wait for the sending queue to become empty.\n");
-            }
+			// while (!sending_queue.mail_box.empty()) {
+            //     // Wait until sending queue is empty
+            //     thread_sleep_for(1);
+			// 	//printf("Wait for the sending queue to become empty.\n");
+            // }
 		    
-			if (sending_queue.mail_box.empty()) {
-				SendingQueue::mail_t* sending_mail = sending_queue.mail_box.try_alloc();
-				sending_mail->inputs = inputs_as_bytes;
-				sending_mail->classification = classification_result;
-				sending_mail->classification_active = CLASSIFICATION;
-				sending_mail->channel = channel;
-				sending_queue.mail_box.put(sending_mail); 
-			}
+			// if (sending_queue.mail_box.empty()) {
+			// 	SendingQueue::mail_t* sending_mail = sending_queue.mail_box.try_alloc();
+			// 	sending_mail->inputs = inputs_as_bytes;
+			// 	sending_mail->classification = classification_result;
+			// 	sending_mail->classification_active = CLASSIFICATION;
+			// 	sending_mail->channel = channel;
+			// 	sending_queue.mail_box.put(sending_mail); 
+			// }
 
 		}
 
 		// Needed to avoid immediate resource exhaustion
+		printf("Counter:%u\n", counter);
 		thread_sleep_for(DOWNSAMPLING_RATE); // ms
+		
+		counter++;
 		// rapi.printf("no hard fault");
 	}
 
 	
-
 
     /* initialize the BLE interface */
     // BLE &ble_interface = BLE::Instance();
