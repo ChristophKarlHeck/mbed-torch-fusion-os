@@ -12,26 +12,16 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 
 // Third-Party Library Headers
 #include "mbed.h"
-#include "USBSerial.h" // Uncomment if needed for debugging
 
 // Project-Specific Headers
 #include "AD7124.h"
 #include "ReadingQueue.h"
 #include "SendingQueue.h"
 #include "ModelExecutor.h"
-// #include "SerialMail_generated.h"
 
 // Utility Headers
 #include "Conversion.h"
 #include "logger.h"
-
-// Virtual USB Port for logging on Raspberry PI
-//USBSerial serial; // Define the instance
-
-// // Redirect printf explicitly to USBSerial
-// FileHandle *mbed::mbed_override_console(int) {
-//     return &serial;
-// }
 
 // *** DEFINE GLOBAL CONSTANTS ***
 #define DOWNSAMPLING_RATE 100 // ms
@@ -44,9 +34,6 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 
 // ADC
 #define SPI_FREQUENCY 10000000 // 1MHz
-
-// UART
-#define BAUD_RATE 19200
 
 // Thread for reading data from ADC
 Thread reading_data_thread;
@@ -119,7 +106,7 @@ int main()
 	//Start sending Thread
 	//sending_data_thread.start(callback(send_output_to_data_sink));
 
-	unsigned int counter = 0;
+    int counter = 0;
 	while (true) {
 		osEvent evt = reading_queue.mail_box.get();
 		if (evt.status == osEventMail) {
@@ -167,7 +154,7 @@ int main()
 			// 	sending_queue.mail_box.put(sending_mail); 
 			// }
 
-			//printf("Counter:%u\n", counter);
+			//printf("Counter, %d\n", counter);
 		
 			counter = counter + 1;
 
@@ -176,7 +163,6 @@ int main()
 		// Needed to avoid immediate resource exhaustion
 		thread_sleep_for(DOWNSAMPLING_RATE); // ms
 
-		// rapi.printf("no hard fault");
 	}
 
 
