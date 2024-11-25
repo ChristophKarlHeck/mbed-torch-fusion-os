@@ -2,6 +2,7 @@
 Change the values of the following variables in the file: mbed-os/connectivity/FEATUR_BLE/source/cordio/mbed_lib.json
 - "desired-att-mtu": 250
 - "rx-acl-buffer-size": 255
+- PB_6 and PB_7 are reserevd for CONSOLE_TX and CNSOLE_RX
 */
 
 // Standard Library Headers
@@ -24,7 +25,7 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "logger.h"
 
 // *** DEFINE GLOBAL CONSTANTS ***
-#define DOWNSAMPLING_RATE 100 // ms
+#define DOWNSAMPLING_RATE 10 // ms
 #define CLASSIFICATION 1
 
 // CONVERSION
@@ -62,16 +63,11 @@ void get_input_model_values_from_adc(unsigned int* model_input_size){
 
 int main()
 {	
+	printf("start\n");
 	// Create a FlatBufferBuilder with an initial size of 1024 bytes
     //flatbuffers::FlatBufferBuilder builder(1024);
 
-	// Just run that program and nothing else to fix weierd issues
-	// int counter = 0;
-	// while(1){
-	// 	printf("hi,%d\n", counter);
-	// 	thread_sleep_for(1000);
-	// 	counter++;
-	// }
+	// Just run that program and nothing else to fix weierd issues	
 
 	// Instantiate and initialize the model executor
 	ModelExecutor executor;
@@ -106,8 +102,15 @@ int main()
 	//Start sending Thread
 	//sending_data_thread.start(callback(send_output_to_data_sink));
 
-    int counter = 0;
-	while (true) {
+	int counter = 0;
+	// while(1){
+	// 	printf("hi,%d\n", counter);
+	// 	thread_sleep_for(1000);
+	// 	counter++;
+	// }
+
+
+    while (true) {
 		osEvent evt = reading_queue.mail_box.get();
 		if (evt.status == osEventMail) {
 
@@ -122,10 +125,6 @@ int main()
 			// make mail box empty
 			reading_queue.mail_box.free(reading_mail); 
 
-			thread_sleep_for(DOWNSAMPLING_RATE); // needed here too otherwise CPU exhaustion
-
-		
-
 			// Prepare result vector
 			std::vector<float> classification_result;
 
@@ -135,7 +134,7 @@ int main()
 				std::vector<float> inputs = get_analog_inputs(inputs_as_bytes, DATABITS, VREF, GAIN);
 				// Execute Model with received inputs
 				executor.setModelInput(method, inputs);
-				executor.executeModel(method, method_name);
+				executor.executeModel(method, method_name, DOWNSAMPLING_RATE);
 				classification_result = executor.getModelOutput(method);
 			}
 
@@ -153,16 +152,11 @@ int main()
 			// 	sending_mail->channel = channel;
 			// 	sending_queue.mail_box.put(sending_mail); 
 			// }
-
-			//printf("Counter, %d\n", counter);
-		
+			
+			printf("Counter: %d\n", counter);
 			counter = counter + 1;
 
 		}
-
-		// Needed to avoid immediate resource exhaustion
-		thread_sleep_for(DOWNSAMPLING_RATE); // ms
-
 	}
 
 
@@ -177,17 +171,6 @@ int main()
     // ble_process.start();
     // // Process the event queue.
     // event_queue.dispatch_forever();
-
-
-
-
-
-
-
-	//ET_LOG(Info, "################### Starting Executorch application... ####################");
-
-
-
 
 	// main() is expected to loop forever.
 	// If main() actually returns the processor will halt

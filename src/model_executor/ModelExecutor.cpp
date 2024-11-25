@@ -215,9 +215,11 @@ void ModelExecutor::printModelInput(Result<torch::executor::Method>& method)
 
 void ModelExecutor::executeModel(
     Result<torch::executor::Method>& method,
-    const char* method_name)
+    const char* method_name,
+    int downsampling_rate)
 {
     ET_LOG(Info, "Starting the model execution...");
+    thread_sleep_for(downsampling_rate); // // Needed to avoid immediate resource exhaustion
     Error status = method->execute();
     if (status != Error::Ok) {
         ET_LOG(

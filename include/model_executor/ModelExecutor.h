@@ -12,6 +12,8 @@
 #include <executorch/runtime/platform/platform.h>
 #include <executorch/runtime/platform/runtime.h>
 
+#include "mbed.h" // needed for thread_sleep_for(10);
+
 using namespace exec_aten;
 using namespace std;
 using torch::executor::Error;
@@ -54,7 +56,7 @@ class ModelExecutor
 
         void printModelInput(Result<torch::executor::Method>& method);
 
-        void executeModel(Result<torch::executor::Method>& method, const char* method_name);
+        void executeModel(Result<torch::executor::Method>& method, const char* method_name, int downsampling_rate);
 
         void printModelOutput(Result<torch::executor::Method>& method);
 
