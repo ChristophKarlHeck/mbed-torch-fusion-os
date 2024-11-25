@@ -1,15 +1,14 @@
 {
     "target_overrides": {
         "*": {
-            "platform.stdio-driver": "USBSerial",
-            "platform.stdio-baud-rate": 115200,            // Set baud rate for standard I/O
-            "platform.stdio-buffered-serial": false,       // Use BufferedSerial for stdio
-            "platform.stdio-convert-newlines": true       // Convert newlines for stdio
+            "platform.stdio-convert-newlines": true,     
+            "platform.stdio-convert-tty-newlines": true,
+            "platform.stdio-baud-rate": 115200,
+            "target.console-uart": true                 // use of default pints PB_&, PB_7
             
         },
         "NUCLEO_WB55RG": {
             "target.features_add": ["BLE"],              // Enable BLE features
-            "target.device_has_add": ["USBDEVICE"],      // Enable USB device support
         }
     }
 }

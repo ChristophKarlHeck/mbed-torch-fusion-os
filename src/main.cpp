@@ -26,12 +26,12 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "logger.h"
 
 // Virtual USB Port for logging on Raspberry PI
- USBSerial serial; // Define the instance
+//USBSerial serial; // Define the instance
 
 // // Redirect printf explicitly to USBSerial
-FileHandle *mbed::mbed_override_console(int) {
-    return &serial;
-}
+// FileHandle *mbed::mbed_override_console(int) {
+//     return &serial;
+// }
 
 // *** DEFINE GLOBAL CONSTANTS ***
 #define DOWNSAMPLING_RATE 100 // ms
@@ -79,11 +79,12 @@ int main()
     //flatbuffers::FlatBufferBuilder builder(1024);
 
 	// Just run that program and nothing else to fix weierd issues
+	// int counter = 0;
 	// while(1){
-	// 	printf("hi\n");
+	// 	printf("hi,%d\n", counter);
 	// 	thread_sleep_for(1000);
+	// 	counter++;
 	// }
-
 
 	// Instantiate and initialize the model executor
 	ModelExecutor executor;
@@ -166,17 +167,18 @@ int main()
 			// 	sending_queue.mail_box.put(sending_mail); 
 			// }
 
+			//printf("Counter:%u\n", counter);
+		
+			counter = counter + 1;
+
 		}
 
 		// Needed to avoid immediate resource exhaustion
-		printf("Counter:%u\n", counter);
 		thread_sleep_for(DOWNSAMPLING_RATE); // ms
-		
-		counter++;
+
 		// rapi.printf("no hard fault");
 	}
 
-	
 
     /* initialize the BLE interface */
     // BLE &ble_interface = BLE::Instance();
