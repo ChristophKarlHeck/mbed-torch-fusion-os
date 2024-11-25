@@ -4,7 +4,6 @@
             "platform.stdio-convert-newlines": true,     
             "platform.stdio-convert-tty-newlines": true,
             "platform.stdio-baud-rate": 115200,
-            "target.console-uart": true                 // use of default pints PB_&, PB_7
             
         },
         "NUCLEO_WB55RG": {
