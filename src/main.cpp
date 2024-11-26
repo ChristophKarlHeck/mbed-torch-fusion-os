@@ -19,8 +19,7 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "ReadingQueue.h"
 #include "SendingQueue.h"
 #include "ModelExecutor.h"
-#include "flatbuffers/flatbuffers.h"
-#include "serial_mail_generated.h"
+#include "SerialMailSender.h"
 
 // Utility Headers
 #include "Conversion.h"
@@ -52,48 +51,17 @@ void get_input_model_values_from_adc(unsigned int* model_input_size){
 	adc.read_voltage_from_both_channels(DOWNSAMPLING_RATE,*model_input_size);
 }
 
-/// Function called in thread "sending_data_thread"
-// Also mark in in CMakeLists since when we don't need BLE we don't neet to compile the software for it
-// void send_output_to_data_sink(void){
+void send_output_to_data_sink(void){
 
-// 	SerialCommunication serial_comm(BAUD_RATE);
-// 	// Start sending data via UART
-// 	serial_comm.send_struct_via_serial_port();  
+	// Access shared serial mail sender
+    SerialMailSender& serial_mail_sender = SerialMailSender::getInstance();
+	serial_mail_sender.sendMail();
 
-// }
-
-static BufferedSerial serial_port(PC_1, PC_0); // PC_1(TX), PC_0(RX) 
+}
 
 int main()
 {	
 	printf("start\n");
-
-	serial_port.set_baud(115200);
-    serial_port.set_format(
-            /* bits */ 8,
-            /* parity */ BufferedSerial::None,
-            /* stop bit */ 1
-    );
-
-
-	/*SEND SERIAL FLATBUFFERS OBJECT*/
-	flatbuffers::FlatBufferBuilder builder(1024);
-	SerialMail::Value voltages[] = { SerialMail::Value(100, 50, 30), SerialMail::Value(20, 10, 30) };
- 	auto inputs = builder.CreateVectorOfStructs(voltages, 2);
-	float classification_values[]={1.4f,1.8f,13.4f};
-	auto classification = builder.CreateVector(classification_values,4);
-	auto orc = CreateSerialMail(builder, inputs, classification, 1, 1);
-	builder.Finish(orc);
-	uint8_t *buf = builder.GetBufferPointer();
-
-	// Send size (4 bytes)
-	uint32_t size = builder.GetSize();
-	printf("size, %d\n", size);
-	serial_port.write(reinterpret_cast<const uint8_t*>(&size), 4);
-
-	// Send FlatBuffers buffer
-	serial_port.write(buf, size);
-
 
 	// Instantiate and initialize the model executor
 	ModelExecutor executor;
@@ -107,14 +75,6 @@ int main()
 	unsigned int model_input_size = executor.getNumberOfInputValues(method);
     executor.prepareInputs(method, method_name);
 	
-	// std::vector<float> my_vector = {3.0f, 4.23f, 2.3f, 1.2f};
-	// executor.setModelInput(method, my_vector);
-	// executor.printModelInput(method);
-	// executor.executeModel(method, method_name);
-	// executor.printModelOutput(method);
-
-
-
     // Access the shared ReadingQueue instance
     ReadingQueue& reading_queue = ReadingQueue::getInstance();
 
@@ -122,11 +82,11 @@ int main()
     SendingQueue& sending_queue = SendingQueue::getInstance();
     
 	//Start reading data from ADC Thread
-	unsigned int n = 4;
-	reading_data_thread.start(callback(get_input_model_values_from_adc, &n));
+	//unsigned int n = 4;
+	reading_data_thread.start(callback(get_input_model_values_from_adc, &model_input_size));
 
 	//Start sending Thread
-	//sending_data_thread.start(callback(send_output_to_data_sink));
+	sending_data_thread.start(callback(send_output_to_data_sink));
 
 	int counter = 0;
 
@@ -158,37 +118,24 @@ int main()
 				classification_result = executor.getModelOutput(method);
 			}
 
-			// while (!sending_queue.mail_box.empty()) {
-            //     // Wait until sending queue is empty
-            //     thread_sleep_for(1);
-			// 	//printf("Wait for the sending queue to become empty.\n");
-            // }
+			while (!sending_queue.mail_box.empty()) {
+                // Wait until sending queue is empty
+                thread_sleep_for(1000);
+				printf("Wait for the sending queue to become empty.\n");
+            }
 		    
-			// if (sending_queue.mail_box.empty()) {
-			// 	SendingQueue::mail_t* sending_mail = sending_queue.mail_box.try_alloc();
-			// 	sending_mail->inputs = inputs_as_bytes;
-			// 	sending_mail->classification = classification_result;
-			// 	sending_mail->classification_active = CLASSIFICATION;
-			// 	sending_mail->channel = channel;
-			// 	sending_queue.mail_box.put(sending_mail); 
-			// }
+			if (sending_queue.mail_box.empty()) {
+				SendingQueue::mail_t* sending_mail = sending_queue.mail_box.try_alloc();
+				sending_mail->inputs = inputs_as_bytes;
+				sending_mail->classification = classification_result;
+				sending_mail->classification_active = CLASSIFICATION;
+				sending_mail->channel = channel;
+				sending_queue.mail_box.put(sending_mail); 
+			}
 			counter = counter + 1;
 			printf("Counter: %d\n", counter);
 		}
 	}
-
-
-    /* initialize the BLE interface */
-    // BLE &ble_interface = BLE::Instance();
-    // events::EventQueue event_queue;
-    // /* load the custom service */
-    // WatchPlant_service  notification_only(adc);
-	/* load and start the BLE process */
-    // BLEProcess ble_process(event_queue, ble_interface, notification_only, adc);
-    // ble_process.on_init(callback(&notification_only, &WatchPlant_service::start));
-    // ble_process.start();
-    // // Process the event queue.
-    // event_queue.dispatch_forever();
 
 	// main() is expected to loop forever.
 	// If main() actually returns the processor will halt

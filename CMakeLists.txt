@@ -33,6 +33,7 @@ set(SOURCES
      ${CMAKE_CURRENT_SOURCE_DIR}/src/interfaces/ReadingQueue.cpp
      ${CMAKE_CURRENT_SOURCE_DIR}/src/interfaces/SendingQueue.cpp
      ${CMAKE_CURRENT_SOURCE_DIR}/src/utils/Conversion.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/serial_mail_sender/SerialMailSender.cpp
 )
 
 add_executable(SoftMaxTorchRunner ${SOURCES})
@@ -59,9 +60,9 @@ target_include_directories(SoftMaxTorchRunner
           ${CMAKE_CURRENT_SOURCE_DIR}/include/adc
           ${CMAKE_CURRENT_SOURCE_DIR}/include/interfaces
           ${CMAKE_CURRENT_SOURCE_DIR}/include/utils
-          ${CMAKE_CURRENT_SOURCE_DIR}/include/serializing_data
+          ${CMAKE_CURRENT_SOURCE_DIR}/include/serial_mail_sender
           ${CMAKE_CURRENT_SOURCE_DIR}/libs/flatbuffers/include
-         
+          ${CMAKE_CURRENT_SOURCE_DIR}/models/add      
 )
 
 #add_dependencies(SoftMaxTorchRunner gen_model_header)
