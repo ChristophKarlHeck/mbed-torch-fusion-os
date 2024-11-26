@@ -20,6 +20,10 @@ include(mbed-os/tools/cmake/app.cmake) # Load Mbed CE toolchain file and basic b
 
 add_subdirectory(mbed-os) # Load Mbed OS build targets.  Must be added before any other subdirectories
 
+add_subdirectory(libs/flatbuffers
+${CMAKE_CURRENT_BINARY_DIR}/flatbuffers-build
+EXCLUDE_FROM_ALL)
+
 project(MbedTorchFusionOS CXX) # TODO: change this to your project name
 
 set(SOURCES 
@@ -33,11 +37,10 @@ set(SOURCES
 
 add_executable(SoftMaxTorchRunner ${SOURCES})
 
-#target_link_libraries(SoftMaxTorchRunner mbed-os)
-
 target_link_libraries(SoftMaxTorchRunner PUBLIC
      mbed-os # Can also link to mbed-baremetal here
      #mbed-ble
+     flatbuffers
      "-Wl,--whole-archive"
      ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/extension/runner_util/libextension_runner_util.a
      ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/libexecutorch.a
@@ -56,7 +59,8 @@ target_include_directories(SoftMaxTorchRunner
           ${CMAKE_CURRENT_SOURCE_DIR}/include/adc
           ${CMAKE_CURRENT_SOURCE_DIR}/include/interfaces
           ${CMAKE_CURRENT_SOURCE_DIR}/include/utils
-          #${CMAKE_CURRENT_SOURCE_DIR}/BLE_Service // needs to be split in .h and .cpp file
+          ${CMAKE_CURRENT_SOURCE_DIR}/include/serializing_data
+          ${CMAKE_CURRENT_SOURCE_DIR}/libs/flatbuffers/include
          
 )
 

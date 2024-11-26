@@ -19,6 +19,8 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "ReadingQueue.h"
 #include "SendingQueue.h"
 #include "ModelExecutor.h"
+#include "flatbuffers/flatbuffers.h"
+#include "serial_mail_generated.h"
 
 // Utility Headers
 #include "Conversion.h"
@@ -65,7 +67,7 @@ int main()
 {	
 	printf("start\n");
 	// Create a FlatBufferBuilder with an initial size of 1024 bytes
-    //flatbuffers::FlatBufferBuilder builder(1024);
+    flatbuffers::FlatBufferBuilder builder;
 
 	// Just run that program and nothing else to fix weierd issues	
 
