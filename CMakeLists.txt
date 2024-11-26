@@ -38,7 +38,6 @@ add_executable(SoftMaxTorchRunner ${SOURCES})
 target_link_libraries(SoftMaxTorchRunner PUBLIC
      mbed-os # Can also link to mbed-baremetal here
      #mbed-ble
-     mbed-usb
      "-Wl,--whole-archive"
      ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/extension/runner_util/libextension_runner_util.a
      ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/libexecutorch.a
