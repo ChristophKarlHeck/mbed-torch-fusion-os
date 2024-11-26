@@ -27,7 +27,7 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "logger.h"
 
 // *** DEFINE GLOBAL CONSTANTS ***
-#define DOWNSAMPLING_RATE 10 // ms
+#define DOWNSAMPLING_RATE 1000 // ms
 #define CLASSIFICATION 1
 
 // CONVERSION
@@ -62,14 +62,38 @@ void get_input_model_values_from_adc(unsigned int* model_input_size){
 
 // }
 
+static BufferedSerial serial_port(PC_1, PC_0); // PC_1(TX), PC_0(RX) 
 
 int main()
 {	
 	printf("start\n");
-	// Create a FlatBufferBuilder with an initial size of 1024 bytes
-    flatbuffers::FlatBufferBuilder builder;
 
-	// Just run that program and nothing else to fix weierd issues	
+	serial_port.set_baud(115200);
+    serial_port.set_format(
+            /* bits */ 8,
+            /* parity */ BufferedSerial::None,
+            /* stop bit */ 1
+    );
+
+
+	/*SEND SERIAL FLATBUFFERS OBJECT*/
+	flatbuffers::FlatBufferBuilder builder(1024);
+	SerialMail::Value voltages[] = { SerialMail::Value(100, 50, 30), SerialMail::Value(20, 10, 30) };
+ 	auto inputs = builder.CreateVectorOfStructs(voltages, 2);
+	float classification_values[]={1.4f,1.8f,13.4f};
+	auto classification = builder.CreateVector(classification_values,4);
+	auto orc = CreateSerialMail(builder, inputs, classification, 1, 1);
+	builder.Finish(orc);
+	uint8_t *buf = builder.GetBufferPointer();
+
+	// Send size (4 bytes)
+	uint32_t size = builder.GetSize();
+	printf("size, %d\n", size);
+	serial_port.write(reinterpret_cast<const uint8_t*>(&size), 4);
+
+	// Send FlatBuffers buffer
+	serial_port.write(buf, size);
+
 
 	// Instantiate and initialize the model executor
 	ModelExecutor executor;
@@ -105,12 +129,6 @@ int main()
 	//sending_data_thread.start(callback(send_output_to_data_sink));
 
 	int counter = 0;
-	// while(1){
-	// 	printf("hi,%d\n", counter);
-	// 	thread_sleep_for(1000);
-	// 	counter++;
-	// }
-
 
     while (true) {
 		osEvent evt = reading_queue.mail_box.get();
@@ -154,10 +172,8 @@ int main()
 			// 	sending_mail->channel = channel;
 			// 	sending_queue.mail_box.put(sending_mail); 
 			// }
-			
-			printf("Counter: %d\n", counter);
 			counter = counter + 1;
-
+			printf("Counter: %d\n", counter);
 		}
 	}
 
