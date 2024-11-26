@@ -3,9 +3,9 @@
 #define AD7124_H_
 
 #include "PinNames.h"
-#include "ad7124-defs.h"
+#include "adc/ad7124-defs.h"
 #include "mbed.h"
-#include "logger.h"
+#include "utils/logger.h"
 #include <cstdint>
 #include <cstdio>
 

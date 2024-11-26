@@ -1,4 +1,4 @@
-#include "Conversion.h" // Include the header for the function declaration
+#include "utils/Conversion.h" // Include the header for the function declaration
 
 // Function definition
 std::vector<float> get_analog_inputs(std::vector<std::array<uint8_t,3>> byte_inputs, int databits, float vref, float gain) {

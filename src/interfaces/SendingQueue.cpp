@@ -1,4 +1,4 @@
-#include "SendingQueue.h"
+#include "interfaces/SendingQueue.h"
 
 // Static method to access the single instance
 SendingQueue& SendingQueue::getInstance() {

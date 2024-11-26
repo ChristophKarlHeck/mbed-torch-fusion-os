@@ -55,14 +55,9 @@ target_link_libraries(SoftMaxTorchRunner PUBLIC
 target_include_directories(SoftMaxTorchRunner
      PUBLIC 
           ${CMAKE_CURRENT_SOURCE_DIR}/include #need it for executorch includes and logger.h
-          ${CMAKE_CURRENT_SOURCE_DIR}/include/model_executor
-          ${CMAKE_CURRENT_SOURCE_DIR}/libs
-          ${CMAKE_CURRENT_SOURCE_DIR}/include/adc
-          ${CMAKE_CURRENT_SOURCE_DIR}/include/interfaces
-          ${CMAKE_CURRENT_SOURCE_DIR}/include/utils
-          ${CMAKE_CURRENT_SOURCE_DIR}/include/serial_mail_sender
+          ${CMAKE_CURRENT_SOURCE_DIR}/libs #for executorch headers
           ${CMAKE_CURRENT_SOURCE_DIR}/libs/flatbuffers/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/models/add      
+          ${CMAKE_CURRENT_SOURCE_DIR}/models     
 )
 
 #add_dependencies(SoftMaxTorchRunner gen_model_header)

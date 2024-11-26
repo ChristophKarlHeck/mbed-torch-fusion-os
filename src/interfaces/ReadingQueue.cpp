@@ -1,4 +1,4 @@
-#include "ReadingQueue.h"
+#include "interfaces/ReadingQueue.h"
 
 // Static method to access the single instance
 ReadingQueue& ReadingQueue::getInstance() {

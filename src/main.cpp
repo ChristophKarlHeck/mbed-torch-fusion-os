@@ -15,19 +15,19 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "mbed.h"
 
 // Project-Specific Headers
-#include "AD7124.h"
-#include "ReadingQueue.h"
-#include "SendingQueue.h"
-#include "ModelExecutor.h"
-#include "SerialMailSender.h"
+#include "adc/AD7124.h"
+#include "interfaces/ReadingQueue.h"
+#include "interfaces/SendingQueue.h"
+#include "model_executor/ModelExecutor.h"
+#include "serial_mail_sender/SerialMailSender.h"
 
 // Utility Headers
-#include "Conversion.h"
-#include "logger.h"
+#include "utils/Conversion.h"
+#include "utils/logger.h"
 
 // *** DEFINE GLOBAL CONSTANTS ***
 #define DOWNSAMPLING_RATE 1000 // ms
-#define CLASSIFICATION 1
+#define CLASSIFICATION 0
 
 // CONVERSION
 #define DATABITS 8388608

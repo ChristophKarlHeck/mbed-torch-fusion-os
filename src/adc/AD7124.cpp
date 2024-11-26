@@ -1,6 +1,6 @@
 
-#include "AD7124.h"
-#include "ReadingQueue.h"
+#include "adc/AD7124.h"
+#include "interfaces/ReadingQueue.h"
 #include <cstdint>
 #include <cstdio>
 #include <cstring>

@@ -7,9 +7,9 @@
 #include <algorithm>
 
 #include "mbed.h"
-#include "SerialMailGenerated.h" 
+#include "serial_mail_sender/SerialMailGenerated.h" 
 #include "flatbuffers/flatbuffers.h"
-#include "SendingQueue.h"
+#include "interfaces/SendingQueue.h"
 
 struct ArrayResult {
     float* array;   // Pointer to the dynamically allocated array
