@@ -3,6 +3,8 @@
 #define BAUDRATE 115200
 
 // Initialize the static BufferedSerial instance (PC_1 = TX, PC_0 = RX)
+// Raspberry Pi: (GPIO 14 = TX, GPIO 15 = RX)
+// Connection TX-RX, RX-TX, GND-GND
 BufferedSerial SerialMailSender::m_serial_port(PC_1, PC_0, BAUDRATE);
 
 // Get the single instance of SerialMailSender
