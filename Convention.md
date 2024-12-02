@@ -16,3 +16,9 @@
 
 ## Assignments explicit instead of implicit
 - Example: uint8_t data[4] = {0, 0, 0, 0}; over uint8_t data[4] = {0};
+
+# Doxygen (Best Practices)
+1. Public API in .h: Always document public classes, methods, and variables in header files.
+2. Private/Protected Methods in .cpp: For private or protected methods, document them in the .cpp file unless they are significant to the user of the class.
+3. Avoid Duplication: Don’t repeat the same documentation in both .h and .cpp files unless there is a specific reason.
+4. Keep It Clear: Header documentation should focus on what it does, while implementation documentation should focus on how it works.
