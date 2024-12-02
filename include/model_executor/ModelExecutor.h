@@ -20,11 +20,18 @@ using torch::executor::Error;
 using torch::executor::Result;
 
 
-
 class ModelExecutor 
 {
     public:
-        ModelExecutor(void);
+        // Static method to access the singleton instance
+        static ModelExecutor& getInstance() {
+            static ModelExecutor instance; // Thread-safe in C++11 and later
+            return instance;
+        }
+
+        // Delete copy constructor and assignment operator to enforce singleton
+        ModelExecutor(const ModelExecutor&) = delete;
+        ModelExecutor& operator=(const ModelExecutor&) = delete;
 
         void initRuntime(void);
 
@@ -63,6 +70,8 @@ class ModelExecutor
         std::vector<float> getModelOutput(Result<torch::executor::Method>& method);
 
     private:
+        // Private constructor
+        ModelExecutor();
 
         // Needed, otherwise planned buffers will be deallocated and makes planned_spans invalid.
         std::vector<std::unique_ptr<uint8_t[]>> planned_buffers; 

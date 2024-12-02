@@ -27,7 +27,6 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 
 // *** DEFINE GLOBAL CONSTANTS ***
 #define DOWNSAMPLING_RATE 10 // ms
-#define CLASSIFICATION 0
 
 // CONVERSION
 #define DATABITS 8388608
@@ -73,16 +72,16 @@ int main()
 	printf("start\n");
 
 	// Instantiate and initialize the model executor
-	ModelExecutor executor;
-	executor.initRuntime();
-    Result<torch::executor::Program> program = executor.loadModelBuffer();
-    const char* method_name = executor.getMethodName(program);
-    Result<torch::executor::MethodMeta> method_meta = executor.getMethodMeta(program, method_name);
-    torch::executor::MemoryAllocator method_allocator = executor.getMemoryAllocator();
-    std::vector<torch::executor::Span<uint8_t>> planned_spans = executor.setUpPlannedBuffer(program, method_meta);
-    Result<torch::executor::Method> method = executor.loadMethod(program, method_allocator, planned_spans, method_name);
-	unsigned int model_input_size = executor.getNumberOfInputValues(method);
-    executor.prepareInputs(method, method_name);
+    ModelExecutor& model_executor = ModelExecutor::getInstance();
+	model_executor.initRuntime();
+    Result<torch::executor::Program> program = model_executor.loadModelBuffer();
+    const char* method_name = model_executor.getMethodName(program);
+    Result<torch::executor::MethodMeta> method_meta = model_executor.getMethodMeta(program, method_name);
+    torch::executor::MemoryAllocator method_allocator = model_executor.getMemoryAllocator();
+    std::vector<torch::executor::Span<uint8_t>> planned_spans = model_executor.setUpPlannedBuffer(program, method_meta);
+    Result<torch::executor::Method> method = model_executor.loadMethod(program, method_allocator, planned_spans, method_name);
+	unsigned int model_input_size = model_executor.getNumberOfInputValues(method);
+    model_executor.prepareInputs(method, method_name);
 	
     // Access the shared ReadingQueue instance
     ReadingQueue& reading_queue = ReadingQueue::getInstance();
@@ -116,16 +115,13 @@ int main()
 
 			// Prepare result vector
 			std::vector<float> classification_result;
-
-			if(CLASSIFICATION){
 				
-				// Convert received bytes to floats
-				std::vector<float> inputs = get_analog_inputs(inputs_as_bytes, DATABITS, VREF, GAIN);
-				// Execute Model with received inputs
-				executor.setModelInput(method, inputs);
-				executor.executeModel(method, method_name, DOWNSAMPLING_RATE);
-				classification_result = executor.getModelOutput(method);
-			}
+			// Convert received bytes to floats
+			std::vector<float> inputs = get_analog_inputs(inputs_as_bytes, DATABITS, VREF, GAIN);
+			// Execute Model with received inputs
+			model_executor.setModelInput(method, inputs);
+			model_executor.executeModel(method, method_name, DOWNSAMPLING_RATE);
+			classification_result = model_executor.getModelOutput(method);
 
 			while (!sending_queue.mail_box.empty()) {
                 // Wait until sending queue is empty
@@ -137,7 +133,7 @@ int main()
 				SendingQueue::mail_t* sending_mail = sending_queue.mail_box.try_alloc();
 				sending_mail->inputs = inputs_as_bytes;
 				sending_mail->classification = classification_result;
-				sending_mail->classification_active = CLASSIFICATION;
+				sending_mail->classification_active = true;
 				sending_mail->channel = channel;
 				sending_queue.mail_box.put(sending_mail); 
 			}
