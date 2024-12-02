@@ -219,7 +219,7 @@ void ModelExecutor::executeModel(
     int waiting_time)
 {
     ET_LOG(Info, "Starting the model execution...");
-    thread_sleep_for(waiting_time);
+    //thread_sleep_for(waiting_time);
     Error status = method->execute();
     if (status != Error::Ok) {
         ET_LOG(
