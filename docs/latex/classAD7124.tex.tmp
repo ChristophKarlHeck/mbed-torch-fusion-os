@@ -1,0 +1,37 @@
+\hypertarget{classAD7124}{}\doxysection{AD7124 Class Reference}
+\label{classAD7124}\index{AD7124@{AD7124}}
+
+
+Inheritance diagram for AD7124\+:
+% FIG 0
+
+
+Collaboration diagram for AD7124\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classAD7124_a00196f3f9954157c1f8e3b9693797dae}\label{classAD7124_a00196f3f9954157c1f8e3b9693797dae}} 
+{\bfseries AD7124} (const \mbox{\hyperlink{classAD7124}{AD7124}} \&)=delete
+\item 
+\mbox{\Hypertarget{classAD7124_ac94edbc384ec1e235362da7587e67693}\label{classAD7124_ac94edbc384ec1e235362da7587e67693}} 
+\mbox{\hyperlink{classAD7124}{AD7124}} \& {\bfseries operator=} (const \mbox{\hyperlink{classAD7124}{AD7124}} \&)=delete
+\item 
+\mbox{\Hypertarget{classAD7124_a8706124bded08f7cce6527eba031c5fd}\label{classAD7124_a8706124bded08f7cce6527eba031c5fd}} 
+void {\bfseries init} (bool f0, bool f1)
+\item 
+\mbox{\Hypertarget{classAD7124_a7c68a73aaf4668d6d16dc0666fb12a97}\label{classAD7124_a7c68a73aaf4668d6d16dc0666fb12a97}} 
+void {\bfseries read\+\_\+voltage\+\_\+from\+\_\+both\+\_\+channels} (unsigned int downsampling\+\_\+rate, unsigned int model\+\_\+input\+\_\+size)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classAD7124_ae8a580df50d9321e52b0d262b1d36006}\label{classAD7124_ae8a580df50d9321e52b0d262b1d36006}} 
+static \mbox{\hyperlink{classAD7124}{AD7124}} \& {\bfseries get\+Instance} (int spi\+\_\+frequency)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/adc/AD7124.\+h\item 
+src/adc/AD7124.\+cpp\end{DoxyCompactItemize}
