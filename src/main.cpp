@@ -46,7 +46,7 @@ Thread sending_data_thread;
 // Function called in thread "reading_data_thread"
 void get_input_model_values_from_adc(unsigned int* model_input_size){
 
-	AD7124 adc(SPI_FREQUENCY);
+	AD7124& adc = AD7124::getInstance(SPI_FREQUENCY);
 	adc.init(true, true); // activate both channels
 	adc.read_voltage_from_both_channels(DOWNSAMPLING_RATE,*model_input_size);
 }
