@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['get_3',['get',['../classNotifyCharacteristic.html#ad1ea1bed0aee3fcdd90010bf51802feb',1,'NotifyCharacteristic']]]
+  ['flatbuffers_5ffinal_5fclass_3',['FLATBUFFERS_FINAL_CLASS',['../structSerialMail_1_1FLATBUFFERS__FINAL__CLASS.html',1,'SerialMail']]]
 ];
