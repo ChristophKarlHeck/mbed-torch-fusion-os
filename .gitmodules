@@ -1,0 +1,11 @@
+[submodule "mbed-os"]
+    path = mbed-os
+    url = https://github.com/mbed-ce/mbed-os.git
+
+[submodule "lib/flatbuffers"]
+    path = lib/flatbuffers
+    url = https://github.com/google/flatbuffers.git
+
+[submodule "lib/executorch"]
+    path = lib/executorch
+    url = https://github.com/pytorch/executorch.git
