@@ -1,6 +1,5 @@
 .vscode
 build
-model_pte.h
 flatbuffers
 libs
 mbed-os

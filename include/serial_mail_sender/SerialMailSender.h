@@ -11,11 +11,6 @@
 #include "flatbuffers/flatbuffers.h"
 #include "interfaces/SendingQueue.h"
 
-struct ArrayResult {
-    float* array;   // Pointer to the dynamically allocated array
-    size_t size;    // Size of the array
-};
-
 class SerialMailSender {
 public:
     // Get the single instance of SerialMailSender
@@ -41,7 +36,6 @@ private:
     // Function to convert inputs to SerialMail::Value array
     std::vector<SerialMail::Value> convertToSerialMailValues(const std::vector<std::array<uint8_t, 3>>& inputs);
 
-    ArrayResult convertVectorToArray(const std::vector<float>& vec);
 };
 
 #endif // SERIAL_MAIL_SENDER_H

@@ -31,16 +31,6 @@ std::vector<SerialMail::Value> SerialMailSender::convertToSerialMailValues(const
     return raw_input_bytes;
 }
 
-ArrayResult SerialMailSender::convertVectorToArray(const std::vector<float>& vec) {
-    // Allocate a new array dynamically
-    float* array = new float[vec.size()];
-
-    // Copy vector elements into the array
-    std::copy(vec.begin(), vec.end(), array);
-
-    // Return the result as a structure
-    return {array, vec.size()};
-}
 
 // Serialize and send the SerialMail data
 void SerialMailSender::sendMail(void) {
@@ -67,8 +57,8 @@ void SerialMailSender::sendMail(void) {
             auto inputs = builder.CreateVectorOfStructs(raw_input_bytes.data(), raw_input_bytes.size());
 
             // Create Flatbuffers float array
-            ArrayResult classification_values = convertVectorToArray(sending_mail->classification);
-            auto classification = builder.CreateVector(classification_values.array, classification_values.size);
+            std::vector<float> classification_values = sending_mail->classification;
+            auto classification = builder.CreateVector(classification_values.data(), classification_values.size());
 
             // Channel and Classification active
             bool classification_active = sending_mail->classification_active;
@@ -87,7 +77,8 @@ void SerialMailSender::sendMail(void) {
 
             // Send the FlatBuffers buffer
             m_serial_port.write(reinterpret_cast<const char*>(buf), size);
-
+            
+            printf("sent\n");
             // Free the allocated mail to avoid memory leaks
 			// make mail box empty
 			sending_queue.mail_box.free(sending_mail); 

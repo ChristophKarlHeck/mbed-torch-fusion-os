@@ -26,7 +26,7 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 #include "utils/logger.h"
 
 // *** DEFINE GLOBAL CONSTANTS ***
-#define DOWNSAMPLING_RATE 1000 // ms
+#define DOWNSAMPLING_RATE 10 // ms
 #define CLASSIFICATION 0
 
 // CONVERSION
@@ -57,6 +57,15 @@ void send_output_to_data_sink(void){
     SerialMailSender& serial_mail_sender = SerialMailSender::getInstance();
 	serial_mail_sender.sendMail();
 
+}
+
+void print_heap_stats() {
+    mbed_stats_heap_t heap_stats;
+    mbed_stats_heap_get(&heap_stats);
+    printf("Current heap size: %lu / %lu bytes\n", heap_stats.current_size, heap_stats.reserved_size);
+    printf("Max heap size: %lu bytes\n", heap_stats.max_size);
+    printf("Allocations: %lu\n", heap_stats.alloc_cnt);
+    printf("Failures: %lu\n", heap_stats.alloc_fail_cnt);
 }
 
 int main()
@@ -134,6 +143,7 @@ int main()
 			}
 			counter = counter + 1;
 			printf("Counter: %d\n", counter);
+			print_heap_stats();
 		}
 	}
 

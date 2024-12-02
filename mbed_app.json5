@@ -4,6 +4,8 @@
             "platform.stdio-convert-newlines": true,     
             "platform.stdio-convert-tty-newlines": true,
             "platform.stdio-baud-rate": 115200,
+            "platform.heap-stats-enabled": true,
+            "platform.stack-stats-enabled": true,
             
         },
         "NUCLEO_WB55RG": {
