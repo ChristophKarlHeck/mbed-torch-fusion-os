@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['on_5finit_62',['on_init',['../classBLEProcess.html#ab86920c6f3e851febc9d4cbf5c12dc81',1,'BLEProcess']]],
-  ['operator_3d_63',['operator=',['../classModelExecutor.html#a8d9e0692ae649702a22979c51c2282d2',1,'ModelExecutor']]]
+  ['setmodelinput_33',['setModelInput',['../classModelExecutor.html#a8aac03f8901c5db9e7e8d0f5d19b62b0',1,'ModelExecutor']]],
+  ['setupplannedbuffer_34',['setUpPlannedBuffer',['../classModelExecutor.html#aeb6023421d8af27107cb76f844c2c186',1,'ModelExecutor']]]
 ];

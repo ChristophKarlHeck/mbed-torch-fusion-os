@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['initruntime_56',['initRuntime',['../classModelExecutor.html#a121eafb227aa9babf5e9d58914b7b3dc',1,'ModelExecutor']]]
+  ['loadmethod_26',['loadMethod',['../classModelExecutor.html#acb244d1d7f7046d8bfcdbb184510d262',1,'ModelExecutor']]],
+  ['loadmodelbuffer_27',['loadModelBuffer',['../classModelExecutor.html#ac91c3fc7a980af76f894e2a01c67fba4',1,'ModelExecutor']]]
 ];
