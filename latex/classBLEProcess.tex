@@ -1,0 +1,86 @@
+\hypertarget{classBLEProcess}{}\doxysection{BLEProcess Class Reference}
+\label{classBLEProcess}\index{BLEProcess@{BLEProcess}}
+
+
+{\ttfamily \#include $<$BLEProcess.\+h$>$}
+
+
+
+Inheritance diagram for BLEProcess\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classBLEProcess__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for BLEProcess\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classBLEProcess__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBLEProcess_af340b0958c6696584d2f3288d6d7e31a}{BLEProcess}} (events\+::\+Event\+Queue \&event\+\_\+queue, BLE \&ble\+\_\+interface, \mbox{\hyperlink{classWatchPlant__service}{Watch\+Plant\+\_\+service}} \&SRNS, \mbox{\hyperlink{classAD7124}{AD7124}} \&adc)
+\item 
+void \mbox{\hyperlink{classBLEProcess_ab86920c6f3e851febc9d4cbf5c12dc81}{on\+\_\+init}} (mbed\+::\+Callback$<$ void(BLE \&, events\+::\+Event\+Queue \&)$>$ cb)
+\item 
+bool \mbox{\hyperlink{classBLEProcess_abc79c1d12fa30027ebb8cd7cb2ed57d8}{start}} ()
+\item 
+void \mbox{\hyperlink{classBLEProcess_a36d39e419f3629cfa4d27e604e2e09a0}{stop}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handle initialization adn shutdown of the BLE Instance.
+
+Setup advertising payload and manage advertising state. Delegate to Gatt\+Client\+Process once the connection is established. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBLEProcess_af340b0958c6696584d2f3288d6d7e31a}\label{classBLEProcess_af340b0958c6696584d2f3288d6d7e31a}} 
+\index{BLEProcess@{BLEProcess}!BLEProcess@{BLEProcess}}
+\index{BLEProcess@{BLEProcess}!BLEProcess@{BLEProcess}}
+\doxysubsubsection{\texorpdfstring{BLEProcess()}{BLEProcess()}}
+{\footnotesize\ttfamily BLEProcess\+::\+BLEProcess (\begin{DoxyParamCaption}\item[{events\+::\+Event\+Queue \&}]{event\+\_\+queue,  }\item[{BLE \&}]{ble\+\_\+interface,  }\item[{\mbox{\hyperlink{classWatchPlant__service}{Watch\+Plant\+\_\+service}} \&}]{SRNS,  }\item[{\mbox{\hyperlink{classAD7124}{AD7124}} \&}]{adc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a \mbox{\hyperlink{classBLEProcess}{BLEProcess}} from an event queue and a ble interface.
+
+Call \mbox{\hyperlink{classBLEProcess_abc79c1d12fa30027ebb8cd7cb2ed57d8}{start()}} to initiate ble processing. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBLEProcess_ab86920c6f3e851febc9d4cbf5c12dc81}\label{classBLEProcess_ab86920c6f3e851febc9d4cbf5c12dc81}} 
+\index{BLEProcess@{BLEProcess}!on\_init@{on\_init}}
+\index{on\_init@{on\_init}!BLEProcess@{BLEProcess}}
+\doxysubsubsection{\texorpdfstring{on\_init()}{on\_init()}}
+{\footnotesize\ttfamily void BLEProcess\+::on\+\_\+init (\begin{DoxyParamCaption}\item[{mbed\+::\+Callback$<$ void(BLE \&, events\+::\+Event\+Queue \&)$>$}]{cb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Subscription to the ble interface initialization event.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cb} & The callback object that will be called when the ble interface is initialized. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBLEProcess_abc79c1d12fa30027ebb8cd7cb2ed57d8}\label{classBLEProcess_abc79c1d12fa30027ebb8cd7cb2ed57d8}} 
+\index{BLEProcess@{BLEProcess}!start@{start}}
+\index{start@{start}!BLEProcess@{BLEProcess}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily bool BLEProcess\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initialize the ble interface, configure it and start advertising. \mbox{\Hypertarget{classBLEProcess_a36d39e419f3629cfa4d27e604e2e09a0}\label{classBLEProcess_a36d39e419f3629cfa4d27e604e2e09a0}} 
+\index{BLEProcess@{BLEProcess}!stop@{stop}}
+\index{stop@{stop}!BLEProcess@{BLEProcess}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void BLEProcess\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Close existing connections and stop the process. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/ble\+\_\+service/BLEProcess.\+h\end{DoxyCompactItemize}

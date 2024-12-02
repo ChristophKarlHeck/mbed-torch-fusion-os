@@ -1,0 +1,65 @@
+\hypertarget{classModelExecutor}{}\doxysection{Model\+Executor Class Reference}
+\label{classModelExecutor}\index{ModelExecutor@{ModelExecutor}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classModelExecutor_afadb3efddb8597f7f91d84199543d02a}\label{classModelExecutor_afadb3efddb8597f7f91d84199543d02a}} 
+{\bfseries Model\+Executor} (const \mbox{\hyperlink{classModelExecutor}{Model\+Executor}} \&)=delete
+\item 
+\mbox{\Hypertarget{classModelExecutor_a8d9e0692ae649702a22979c51c2282d2}\label{classModelExecutor_a8d9e0692ae649702a22979c51c2282d2}} 
+\mbox{\hyperlink{classModelExecutor}{Model\+Executor}} \& {\bfseries operator=} (const \mbox{\hyperlink{classModelExecutor}{Model\+Executor}} \&)=delete
+\item 
+\mbox{\Hypertarget{classModelExecutor_a121eafb227aa9babf5e9d58914b7b3dc}\label{classModelExecutor_a121eafb227aa9babf5e9d58914b7b3dc}} 
+void {\bfseries init\+Runtime} (void)
+\item 
+\mbox{\Hypertarget{classModelExecutor_ac91c3fc7a980af76f894e2a01c67fba4}\label{classModelExecutor_ac91c3fc7a980af76f894e2a01c67fba4}} 
+Result$<$ torch\+::executor\+::\+Program $>$ {\bfseries load\+Model\+Buffer} (void)
+\item 
+\mbox{\Hypertarget{classModelExecutor_a0fd4c31c9ad77f60a6f661b0f6068a66}\label{classModelExecutor_a0fd4c31c9ad77f60a6f661b0f6068a66}} 
+const char $\ast$ {\bfseries get\+Method\+Name} (Result$<$ torch\+::executor\+::\+Program $>$ \&program)
+\item 
+\mbox{\Hypertarget{classModelExecutor_aa93aa2f7c5e3ffadb5ef4e3e65d03ea6}\label{classModelExecutor_aa93aa2f7c5e3ffadb5ef4e3e65d03ea6}} 
+Result$<$ torch\+::executor\+::\+Method\+Meta $>$ {\bfseries get\+Method\+Meta} (Result$<$ torch\+::executor\+::\+Program $>$ \&program, const char $\ast$method\+\_\+name)
+\item 
+\mbox{\Hypertarget{classModelExecutor_aa7c17e559215d45c118979f9aaee9cc1}\label{classModelExecutor_aa7c17e559215d45c118979f9aaee9cc1}} 
+torch\+::executor\+::\+Memory\+Allocator {\bfseries get\+Memory\+Allocator} (void)
+\item 
+\mbox{\Hypertarget{classModelExecutor_aeb6023421d8af27107cb76f844c2c186}\label{classModelExecutor_aeb6023421d8af27107cb76f844c2c186}} 
+std\+::vector$<$ torch\+::executor\+::\+Span$<$ uint8\+\_\+t $>$ $>$ {\bfseries set\+Up\+Planned\+Buffer} (Result$<$ torch\+::executor\+::\+Program $>$ \&program, Result$<$ torch\+::executor\+::\+Method\+Meta $>$ \&method\+\_\+meta)
+\item 
+\mbox{\Hypertarget{classModelExecutor_acb244d1d7f7046d8bfcdbb184510d262}\label{classModelExecutor_acb244d1d7f7046d8bfcdbb184510d262}} 
+Result$<$ torch\+::executor\+::\+Method $>$ {\bfseries load\+Method} (Result$<$ torch\+::executor\+::\+Program $>$ \&program, torch\+::executor\+::\+Memory\+Allocator \&method\+\_\+allocator, std\+::vector$<$ torch\+::executor\+::\+Span$<$ uint8\+\_\+t $>$$>$ \&planned\+\_\+spans, const char $\ast$method\+\_\+name)
+\item 
+\mbox{\Hypertarget{classModelExecutor_a0c3a700bb00ef55b13579712c5c1d577}\label{classModelExecutor_a0c3a700bb00ef55b13579712c5c1d577}} 
+unsigned int {\bfseries get\+Number\+Of\+Input\+Values} (Result$<$ torch\+::executor\+::\+Method $>$ \&method)
+\item 
+\mbox{\Hypertarget{classModelExecutor_a8ac97845e3edda814bd661981d10c905}\label{classModelExecutor_a8ac97845e3edda814bd661981d10c905}} 
+void {\bfseries prepare\+Inputs} (Result$<$ torch\+::executor\+::\+Method $>$ \&method, const char $\ast$method\+\_\+name)
+\item 
+\mbox{\Hypertarget{classModelExecutor_a8aac03f8901c5db9e7e8d0f5d19b62b0}\label{classModelExecutor_a8aac03f8901c5db9e7e8d0f5d19b62b0}} 
+void {\bfseries set\+Model\+Input} (Result$<$ torch\+::executor\+::\+Method $>$ \&method, std\+::vector$<$ float $>$ \&inputs)
+\item 
+\mbox{\Hypertarget{classModelExecutor_a021946ac7244b5a184f4f598923cdd4c}\label{classModelExecutor_a021946ac7244b5a184f4f598923cdd4c}} 
+void {\bfseries print\+Model\+Input} (Result$<$ torch\+::executor\+::\+Method $>$ \&method)
+\item 
+\mbox{\Hypertarget{classModelExecutor_aaa0f6cf6a930ec3731000cebd66a8d53}\label{classModelExecutor_aaa0f6cf6a930ec3731000cebd66a8d53}} 
+void {\bfseries execute\+Model} (Result$<$ torch\+::executor\+::\+Method $>$ \&method, const char $\ast$method\+\_\+name, int downsampling\+\_\+rate)
+\item 
+\mbox{\Hypertarget{classModelExecutor_aca77c527e607c9d6a6c245cb6d3c4d39}\label{classModelExecutor_aca77c527e607c9d6a6c245cb6d3c4d39}} 
+void {\bfseries print\+Model\+Output} (Result$<$ torch\+::executor\+::\+Method $>$ \&method)
+\item 
+\mbox{\Hypertarget{classModelExecutor_ad45595aedf72c2fb1695e90fafcce15b}\label{classModelExecutor_ad45595aedf72c2fb1695e90fafcce15b}} 
+std\+::vector$<$ float $>$ {\bfseries get\+Model\+Output} (Result$<$ torch\+::executor\+::\+Method $>$ \&method)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classModelExecutor_a1e180cc2952f6f6a116c13d052aba768}\label{classModelExecutor_a1e180cc2952f6f6a116c13d052aba768}} 
+static \mbox{\hyperlink{classModelExecutor}{Model\+Executor}} \& {\bfseries get\+Instance} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/model\+\_\+executor/Model\+Executor.\+h\item 
+src/model\+\_\+executor/Model\+Executor.\+cpp\end{DoxyCompactItemize}

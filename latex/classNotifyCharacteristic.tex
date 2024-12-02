@@ -1,0 +1,112 @@
+\hypertarget{classNotifyCharacteristic}{}\doxysection{Notify\+Characteristic$<$ T, NUM\+\_\+\+ELEMENTS $>$ Class Template Reference}
+\label{classNotifyCharacteristic}\index{NotifyCharacteristic$<$ T, NUM\_ELEMENTS $>$@{NotifyCharacteristic$<$ T, NUM\_ELEMENTS $>$}}
+
+
+{\ttfamily \#include $<$Characteristic.\+h$>$}
+
+
+
+Inheritance diagram for Notify\+Characteristic$<$ T, NUM\+\_\+\+ELEMENTS $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{classNotifyCharacteristic__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Notify\+Characteristic$<$ T, NUM\+\_\+\+ELEMENTS $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{classNotifyCharacteristic__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNotifyCharacteristic_a503ca90954f5f2b712a7b34391c334ef}{Notify\+Characteristic}} (const UUID \&uuid, T value\+Ptr\mbox{[}NUM\+\_\+\+ELEMENTS\mbox{]}, uint8\+\_\+t additional\+Properties=BLE\+\_\+\+GATT\+\_\+\+CHAR\+\_\+\+PROPERTIES\+\_\+\+NONE, Gatt\+Attribute $\ast$descriptors\mbox{[}$\,$\mbox{]}=nullptr, unsigned num\+Descriptors=0)
+\item 
+ble\+\_\+error\+\_\+t \mbox{\hyperlink{classNotifyCharacteristic_ad1ea1bed0aee3fcdd90010bf51802feb}{get}} (Gatt\+Server \&server, T \&dst) const
+\item 
+ble\+\_\+error\+\_\+t \mbox{\hyperlink{classNotifyCharacteristic_ac1389cb77a60060ded8cd28fbaca58d1}{set}} (Gatt\+Server \&server, const uint8\+\_\+t value\mbox{[}$\,$\mbox{]}, bool local\+\_\+only=false) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T, unsigned NUM\+\_\+\+ELEMENTS$>$\newline
+class Notify\+Characteristic$<$ T, NUM\+\_\+\+ELEMENTS $>$}
+
+Read, Write, Notify, Indicate Characteristic declaration helper.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of data held by the characteristic. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classNotifyCharacteristic_a503ca90954f5f2b712a7b34391c334ef}\label{classNotifyCharacteristic_a503ca90954f5f2b712a7b34391c334ef}} 
+\index{NotifyCharacteristic$<$ T, NUM\_ELEMENTS $>$@{NotifyCharacteristic$<$ T, NUM\_ELEMENTS $>$}!NotifyCharacteristic@{NotifyCharacteristic}}
+\index{NotifyCharacteristic@{NotifyCharacteristic}!NotifyCharacteristic$<$ T, NUM\_ELEMENTS $>$@{NotifyCharacteristic$<$ T, NUM\_ELEMENTS $>$}}
+\doxysubsubsection{\texorpdfstring{NotifyCharacteristic()}{NotifyCharacteristic()}}
+{\footnotesize\ttfamily template$<$typename T , unsigned NUM\+\_\+\+ELEMENTS$>$ \\
+\mbox{\hyperlink{classNotifyCharacteristic}{Notify\+Characteristic}}$<$ T, NUM\+\_\+\+ELEMENTS $>$\+::\mbox{\hyperlink{classNotifyCharacteristic}{Notify\+Characteristic}} (\begin{DoxyParamCaption}\item[{const UUID \&}]{uuid,  }\item[{T}]{value\+Ptr\mbox{[}\+NUM\+\_\+\+ELEMENTS\mbox{]},  }\item[{uint8\+\_\+t}]{additional\+Properties = {\ttfamily BLE\+\_\+GATT\+\_\+CHAR\+\_\+PROPERTIES\+\_\+NONE},  }\item[{Gatt\+Attribute $\ast$}]{descriptors\mbox{[}$\,$\mbox{]} = {\ttfamily nullptr},  }\item[{unsigned}]{num\+Descriptors = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a characteristic that can be read or written and emit notification or indication.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em uuid} & The UUID of the characteristic. \\
+\hline
+\mbox{\texttt{ in}}  & {\em initial\+\_\+value} & Initial value contained by the characteristic. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classNotifyCharacteristic_ad1ea1bed0aee3fcdd90010bf51802feb}\label{classNotifyCharacteristic_ad1ea1bed0aee3fcdd90010bf51802feb}} 
+\index{NotifyCharacteristic$<$ T, NUM\_ELEMENTS $>$@{NotifyCharacteristic$<$ T, NUM\_ELEMENTS $>$}!get@{get}}
+\index{get@{get}!NotifyCharacteristic$<$ T, NUM\_ELEMENTS $>$@{NotifyCharacteristic$<$ T, NUM\_ELEMENTS $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily template$<$typename T , unsigned NUM\+\_\+\+ELEMENTS$>$ \\
+ble\+\_\+error\+\_\+t \mbox{\hyperlink{classNotifyCharacteristic}{Notify\+Characteristic}}$<$ T, NUM\+\_\+\+ELEMENTS $>$\+::get (\begin{DoxyParamCaption}\item[{Gatt\+Server \&}]{server,  }\item[{T \&}]{dst }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the value of this characteristic.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em server} & Gatt\+Server instance that contain the characteristic value. \\
+\hline
+\mbox{\texttt{ in}}  & {\em dst} & Variable that will receive the characteristic value.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+BLE\+\_\+\+ERROR\+\_\+\+NONE in case of success or an appropriate error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNotifyCharacteristic_ac1389cb77a60060ded8cd28fbaca58d1}\label{classNotifyCharacteristic_ac1389cb77a60060ded8cd28fbaca58d1}} 
+\index{NotifyCharacteristic$<$ T, NUM\_ELEMENTS $>$@{NotifyCharacteristic$<$ T, NUM\_ELEMENTS $>$}!set@{set}}
+\index{set@{set}!NotifyCharacteristic$<$ T, NUM\_ELEMENTS $>$@{NotifyCharacteristic$<$ T, NUM\_ELEMENTS $>$}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily template$<$typename T , unsigned NUM\+\_\+\+ELEMENTS$>$ \\
+ble\+\_\+error\+\_\+t \mbox{\hyperlink{classNotifyCharacteristic}{Notify\+Characteristic}}$<$ T, NUM\+\_\+\+ELEMENTS $>$\+::set (\begin{DoxyParamCaption}\item[{Gatt\+Server \&}]{server,  }\item[{const uint8\+\_\+t}]{value\mbox{[}$\,$\mbox{]},  }\item[{bool}]{local\+\_\+only = {\ttfamily false} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Assign a new value to this characteristic.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em server} & Gatt\+Server instance that will receive the new value. \\
+\hline
+\mbox{\texttt{ in}}  & {\em value} & The new value to set. \\
+\hline
+\mbox{\texttt{ in}}  & {\em local\+\_\+only} & Flag that determine if the change should be kept locally or forwarded to subscribed clients. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/ble\+\_\+service/Characteristic.\+h\end{DoxyCompactItemize}
