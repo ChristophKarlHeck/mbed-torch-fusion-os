@@ -1,2 +1,0 @@
-/usr/local/gcc-arm/bin/arm-none-eabi-ar qc libexecutorch_delegate_ethos_u.a CMakeFiles/executorch_delegate_ethos_u.dir/runtime/ArmBackendEthosU.cpp.obj CMakeFiles/executorch_delegate_ethos_u.dir/runtime/VelaBinStream.cpp.obj
-/usr/local/gcc-arm/bin/arm-none-eabi-ranlib libexecutorch_delegate_ethos_u.a

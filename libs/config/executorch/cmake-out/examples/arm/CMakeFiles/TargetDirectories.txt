@@ -1,3 +1,0 @@
-/home/chris/et-tut-1/executorch/cmake-out/examples/arm/CMakeFiles/arm_portable_ops_lib.dir
-/home/chris/et-tut-1/executorch/cmake-out/examples/arm/CMakeFiles/edit_cache.dir
-/home/chris/et-tut-1/executorch/cmake-out/examples/arm/CMakeFiles/rebuild_cache.dir
