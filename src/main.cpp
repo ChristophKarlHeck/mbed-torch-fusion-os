@@ -47,6 +47,7 @@ int main()
     while (true) {
 
 		// Execute Model with received inputs
+		print_heap_stats();
 		std::vector<float> inputs = {3.4, 2.3, 3.1, 4.5};
 		model_executor.setModelInput(method, inputs);
 		model_executor.executeModel(method, method_name, 100);

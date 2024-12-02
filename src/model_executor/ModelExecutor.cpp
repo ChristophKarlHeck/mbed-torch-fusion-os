@@ -1,5 +1,5 @@
 #include "model_executor/ModelExecutor.h"
-#include "add/model_pte.h"
+#include "add2/model_pte.h"
 
 //__attribute__((section(".sram.data"), aligned(16)))
 uint8_t method_allocator_pool[4 * 1024U];
@@ -34,6 +34,8 @@ ModelExecutor::ModelExecutor(void)
 void ModelExecutor::initRuntime(void)
 {
     torch::executor::runtime_init();
+    printf("First 4 bytes of model_pte: %c%c%c%c\n",
+    model_pte[0], model_pte[1], model_pte[2], model_pte[3]);
 }
 
 Result<torch::executor::Program> ModelExecutor::loadModelBuffer(void)
