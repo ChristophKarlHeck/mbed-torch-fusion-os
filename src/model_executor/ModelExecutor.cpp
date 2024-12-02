@@ -121,6 +121,28 @@ std::vector<torch::executor::Span<uint8_t>> ModelExecutor::setUpPlannedBuffer(
         planned_spans.push_back({planned_buffers.back().get(), buffer_size});
     }
 
+    for (auto& buffer : planned_buffers) {
+        if (reinterpret_cast<uintptr_t>(buffer.get()) % 16 != 0) {
+            printf("Error: Buffer %p not aligned!\n", buffer.get());
+        }
+    }
+
+    auto first_buffer = planned_buffers.empty() ? nullptr : planned_buffers[0].get();
+    printf("First buffer address: %p\n", first_buffer);
+
+    for (size_t i = 0; i < planned_buffers.size(); ++i) {
+        printf("Buffer %zu: %p\n", i, planned_buffers[i].get());
+    }
+
+    for (size_t i = 0; i < planned_buffers.size(); ++i) {
+        printf("Buffer %zu first byte: 0x%02X\n", i, planned_buffers[i].get()[0]);
+    }
+
+    printf("Buffer 0 content:\n");
+    for (size_t i = 0; i < 32; ++i) {
+        printf("Byte %zu: 0x%02X\n", i, planned_buffers[0].get()[i]);
+    }
+
     return planned_spans;
 }
 

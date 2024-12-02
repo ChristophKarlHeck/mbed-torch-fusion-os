@@ -42,6 +42,8 @@ int main()
     Result<torch::executor::Method> method = model_executor.loadMethod(program, method_allocator, planned_spans, method_name);
     model_executor.prepareInputs(method, method_name);
 
+	printf("Number of model input values: %u\n",model_executor.getNumberOfInputValues(method));
+
 	int counter = 0;
 
     while (true) {
@@ -50,6 +52,7 @@ int main()
 		print_heap_stats();
 		std::vector<float> inputs = {3.4, 2.3, 3.1, 4.5};
 		model_executor.setModelInput(method, inputs);
+		model_executor.printModelInput(method);
 		model_executor.executeModel(method, method_name, 100);
 
 		counter = counter + 1;
