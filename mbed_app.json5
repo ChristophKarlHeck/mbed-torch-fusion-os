@@ -6,6 +6,9 @@
             "platform.stdio-baud-rate": 115200,
             "platform.heap-stats-enabled": true,
             "platform.stack-stats-enabled": true,
+            "platform.sys-stats-enabled": true,
+            "platform.cpu-stats-enabled": true,
+            "platform.thread-stats-enabled": true,
             
         },
         "NUCLEO_WB55RG": {

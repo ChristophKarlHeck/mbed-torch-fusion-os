@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.19)
 cmake_policy(VERSION 3.19)
 
 # Enable OPENOCD upload method for NUCLEO_WB55RG
-file(COPY ${CMAKE_SOURCE_DIR}/scripts/config/mbed-os/NUCLEO_WB55RG.cmake
+file(COPY ${CMAKE_SOURCE_DIR}/scripts/config/NUCLEO_WB55RG.cmake
      DESTINATION ${CMAKE_SOURCE_DIR}/mbed-os/targets/upload_method_cfg)
 
 
@@ -32,11 +32,12 @@ add_executable(SoftMaxTorchRunner ${SOURCES})
 target_link_libraries(SoftMaxTorchRunner PUBLIC
      mbed-os # Can also link to mbed-baremetal here
      "-Wl,--whole-archive"
-     ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/extension/runner_util/libextension_runner_util.a
-     ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/libexecutorch.a
-     ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/libexecutorch_no_prim_ops.a
-     ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/kernels/portable/libportable_kernels.a
-     ${CMAKE_CURRENT_SOURCE_DIR}/libs/executorch/cmake-out/examples/arm/libarm_portable_ops_lib.a
+     #/home/chris/executorch/cmake-out/lib/libextension_runner_util.a
+     /home/chris/executorch/cmake-out/lib/libexecutorch.a
+     /home/chris/executorch/cmake-out/lib/libexecutorch_no_prim_ops.a
+     /home/chris/executorch/cmake-out/lib/libportable_kernels.a
+     #"-Wl,--whole-archive"
+     /home/chris/executorch/cmake-out/examples/arm/libarm_portable_ops_lib.a
      "-Wl,--no-whole-archive"
      ) 
 
@@ -44,7 +45,7 @@ target_link_libraries(SoftMaxTorchRunner PUBLIC
 target_include_directories(SoftMaxTorchRunner
      PUBLIC 
           ${CMAKE_CURRENT_SOURCE_DIR}/include #need it for executorch includes and logger.h
-          ${CMAKE_CURRENT_SOURCE_DIR}/libs #for executorch headers
+          /home/chris/ #for executorch headers
           ${CMAKE_CURRENT_SOURCE_DIR}/models     
 )
 

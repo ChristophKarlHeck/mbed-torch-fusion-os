@@ -1,7 +1,7 @@
 #include "model_executor/ModelExecutor.h"
-#include "add2/model_pte.h"
+#include "add3/model_pte.h"
 
-//__attribute__((section(".sram.data"), aligned(16)))
+//__attribute__((section("network_model_sec"), aligned(16)))
 uint8_t method_allocator_pool[4 * 1024U];
 
 //void et_pal_init(void) {}
@@ -34,12 +34,12 @@ ModelExecutor::ModelExecutor(void)
 void ModelExecutor::initRuntime(void)
 {
     torch::executor::runtime_init();
-    printf("First 4 bytes of model_pte: %c%c%c%c\n",
-    model_pte[0], model_pte[1], model_pte[2], model_pte[3]);
 }
 
 Result<torch::executor::Program> ModelExecutor::loadModelBuffer(void)
 {
+    printf("First 4 bytes of model_pte: 0x%02X 0x%02X 0x%02X 0x%02X\n",
+       model_pte[0], model_pte[1], model_pte[2], model_pte[3]);
     auto loader = torch::executor::util::BufferDataLoader(model_pte, sizeof(model_pte));
     //ET_LOG(Info, "Model PTE file loaded. Size: %lu bytes.", sizeof(model_pte));
     Result<torch::executor::Program> program = torch::executor::Program::load(&loader);
@@ -173,20 +173,20 @@ Result<torch::executor::Method> ModelExecutor::loadMethod(
     return method;
 }
 
-void ModelExecutor::prepareInputs(
-    Result<torch::executor::Method>& method,
-    const char* method_name)
-{
-    ET_LOG(Info, "Preparing inputs...");
-    auto inputs = torch::executor::util::prepare_input_tensors(*method);
-    if (!inputs.ok()) {
-        ET_LOG(
-            Info,
-            "Preparing inputs tensors for method %s failed with status 0x%" PRIx32,
-            method_name,
-            inputs.error());
-    }
-}
+// void ModelExecutor::prepareInputs(
+//     Result<torch::executor::Method>& method,
+//     const char* method_name)
+// {
+//     ET_LOG(Info, "Preparing inputs...");
+//     auto inputs = torch::executor::util::prepare_input_tensors(*method);
+//     if (!inputs.ok()) {
+//         ET_LOG(
+//             Info,
+//             "Preparing inputs tensors for method %s failed with status 0x%" PRIx32,
+//             method_name,
+//             inputs.error());
+//     }
+// }
 
 void ModelExecutor::setModelInput(Result<torch::executor::Method>& method, std::vector<float>& inputs)
 {
@@ -243,7 +243,8 @@ void ModelExecutor::executeModel(
     int waiting_time)
 {
     ET_LOG(Info, "Starting the model execution...");
-    //thread_sleep_for(waiting_time);
+ 
+    printModelInput(method);
     Error status = method->execute();
     if (status != Error::Ok) {
         ET_LOG(

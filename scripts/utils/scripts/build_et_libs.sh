@@ -19,6 +19,8 @@ wget https://developer.arm.com/-/media/Files/downloads/gnu/13.3.rel1/binrel/arm-
 tar -xvf arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi.tar.xz
 export PATH=${PATH}:"$(pwd)/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin"
 
+# toolchain must be available in PATH
+
 if hash arm-none-eabi-gcc
 then
     echo "toolchain is ready to use"
@@ -29,34 +31,35 @@ else
 fi
 
 patch examples/arm/aot_arm_compiler.py < ../utils/patches/aot_arm_compiler.patch
+# Change to 4 inputs 
 python3 -m examples.arm.aot_arm_compiler --model_name="add"
-patch examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake < ../utils/patches/cmake_file_m4.patch
 
 cmake                                                 \
     -DCMAKE_INSTALL_PREFIX=$(pwd)/cmake-out           \
     -DEXECUTORCH_BUILD_EXECUTOR_RUNNER=OFF            \
-    -DCMAKE_BUILD_TYPE=Release                        \
-    -DEXECUTORCH_ENABLE_LOGGING=ON                    \
+    -DCMAKE_BUILD_TYPE=Debug                        \
+    -DEXECUTORCH_ENABLE_LOGGING=OFF                    \
     -DEXECUTORCH_BUILD_ARM_BAREMETAL=ON               \
-    -DEXECUTORCH_BUILD_EXTENSION_RUNNER_UTIL=ON       \
+    -DEXECUTORCH_BUILD_EXTENSION_RUNNER_UTIL=OFF       \
     -DFLATC_EXECUTABLE="$(which flatc)"               \
     -DCMAKE_TOOLCHAIN_FILE=$(pwd)/examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake        \
-    -B$(pwd)/cmake-out                          \
-    $(pwd)
+    -B$(pwd)/cmake-out                                \
+    $(pwd)/cmake-out
 
-cmake --build $(pwd)/cmake-out -j4 --target install --config Release
+cmake --build $(pwd)/cmake-out -j4 --target install --config Debug
 
 # Example for multiple not delegated operators: -DEXECUTORCH_SELECT_OPS_LIST="aten::_softmax.out,aten::add.out"
 
 cmake                                                  \
     -DCMAKE_INSTALL_PREFIX=$(pwd)/cmake-out             \
-    -DCMAKE_BUILD_TYPE=Release                         \
+    -DCMAKE_BUILD_TYPE=Debug                         \
     -DCMAKE_TOOLCHAIN_FILE=$(pwd)/examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake  \
+    -DTARGET_CPU=cortex-m4  \
     -DEXECUTORCH_SELECT_OPS_LIST="aten::add.out"  \
     -B$(pwd)/cmake-out/examples/arm                   \
     $(pwd)/examples/arm
 
-cmake --build $(pwd)/cmake-out/examples/arm --config Release
+cmake --build $(pwd)/cmake-out/examples/arm --config Debug
 
 cd $ROOT_DIR
 patch executorch/examples/arm/executor_runner/pte_to_header.py < utils/patches/pte_to_header.patch

@@ -19,12 +19,23 @@ Change the values of the following variables in the file: mbed-os/connectivity/F
 
 
 void print_heap_stats() {
+
+	printf("\nMemoryStats:");
     mbed_stats_heap_t heap_stats;
     mbed_stats_heap_get(&heap_stats);
-    printf("Current heap size: %lu / %lu bytes\n", heap_stats.current_size, heap_stats.reserved_size);
-    printf("Max heap size: %lu bytes\n", heap_stats.max_size);
-    printf("Allocations: %lu\n", heap_stats.alloc_cnt);
-    printf("Failures: %lu\n", heap_stats.alloc_fail_cnt);
+    printf("\n\tBytes allocated currently: %ld", heap_stats.current_size);
+    printf("\n\tMax bytes allocated at a given time: %ld", heap_stats.max_size);
+    printf("\n\tCumulative sum of bytes ever allocated: %ld", heap_stats.total_size);
+    printf("\n\tCurrent number of bytes allocated for the heap: %ld", heap_stats.reserved_size);
+    printf("\n\tCurrent number of allocations: %ld", heap_stats.alloc_cnt);
+    printf("\n\tNumber of failed allocations: %ld", heap_stats.alloc_fail_cnt);
+
+	printf("\nCumulative Stack Info:");
+	mbed_stats_stack_t stack_stats;
+	mbed_stats_stack_get(&stack_stats);
+    printf("\n\tMaximum number of bytes used on the stack: %ld", stack_stats.max_size);
+    printf("\n\tCurrent number of bytes allocated for the stack: %ld", stack_stats.reserved_size);
+    printf("\n\tNumber of stacks stats accumulated in the structure: %ld", stack_stats.stack_cnt);
 }
 
 int main()
@@ -40,26 +51,17 @@ int main()
     torch::executor::MemoryAllocator method_allocator = model_executor.getMemoryAllocator();
     std::vector<torch::executor::Span<uint8_t>> planned_spans = model_executor.setUpPlannedBuffer(program, method_meta);
     Result<torch::executor::Method> method = model_executor.loadMethod(program, method_allocator, planned_spans, method_name);
-    model_executor.prepareInputs(method, method_name);
+    //model_executor.prepareInputs(method, method_name);
 
 	printf("Number of model input values: %u\n",model_executor.getNumberOfInputValues(method));
 
-	int counter = 0;
-
-    while (true) {
-
-		// Execute Model with received inputs
-		print_heap_stats();
-		std::vector<float> inputs = {3.4, 2.3, 3.1, 4.5};
-		model_executor.setModelInput(method, inputs);
-		model_executor.printModelInput(method);
-		model_executor.executeModel(method, method_name, 100);
-
-		counter = counter + 1;
-		printf("Counter: %d\n", counter);
-		print_heap_stats();
-	}
 	
+	std::vector<float> inputs = {3.4, 2.3, 3.1, 4.5};
+	model_executor.setModelInput(method, inputs);
+	print_heap_stats();
+	model_executor.executeModel(method, method_name, 100);
+	model_executor.printModelOutput(method);
+
 
 	// main() is expected to loop forever.
 	// If main() actually returns the processor will halt
