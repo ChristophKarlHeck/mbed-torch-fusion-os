@@ -134,7 +134,7 @@ public:
      * @param method The method to prepare inputs for.
      * @param method_name The name of the method.
      */
-    //void prepareInputs(Result<torch::executor::Method>& method, const char* method_name);
+    void prepareInputs(Result<torch::executor::Method>& method, const char* method_name);
 
     /**
      * @brief Sets the input values for the specified method.

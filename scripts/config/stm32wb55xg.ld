@@ -154,11 +154,6 @@ SECTIONS
 
     } > RAM
 
-    /* Custom section for network model data */
-    .network_model_sec ALIGN(16) : {
-        KEEP(*(.network_model_sec))
-    } > FLASH
-
     /* Uninitialized data section
      * This region is not initialized by the C/C++ library and can be used to
      * store state across soft reboots. */
@@ -189,7 +184,7 @@ SECTIONS
         __end__ = .;
         PROVIDE(end = .);
         *(.heap*)
-        . = ORIGIN(RAM) + LENGTH(RAM) - MBED_CONF_TARGET_BOOT_STACK_SIZE;
+        . += MBED_CONF_TARGET_BOOT_STACK_SIZE;
         __HeapLimit = .;
     } > RAM
 

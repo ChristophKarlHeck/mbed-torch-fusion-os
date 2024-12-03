@@ -40,7 +40,7 @@ cmake                                                 \
     -DCMAKE_BUILD_TYPE=Debug                        \
     -DEXECUTORCH_ENABLE_LOGGING=OFF                    \
     -DEXECUTORCH_BUILD_ARM_BAREMETAL=ON               \
-    -DEXECUTORCH_BUILD_EXTENSION_RUNNER_UTIL=OFF       \
+    -DEXECUTORCH_BUILD_EXTENSION_RUNNER_UTIL=ON       \
     -DFLATC_EXECUTABLE="$(which flatc)"               \
     -DCMAKE_TOOLCHAIN_FILE=$(pwd)/examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake        \
     -B$(pwd)/cmake-out                                \

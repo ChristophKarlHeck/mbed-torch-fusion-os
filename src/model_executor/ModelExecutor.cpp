@@ -173,20 +173,20 @@ Result<torch::executor::Method> ModelExecutor::loadMethod(
     return method;
 }
 
-// void ModelExecutor::prepareInputs(
-//     Result<torch::executor::Method>& method,
-//     const char* method_name)
-// {
-//     ET_LOG(Info, "Preparing inputs...");
-//     auto inputs = torch::executor::util::prepare_input_tensors(*method);
-//     if (!inputs.ok()) {
-//         ET_LOG(
-//             Info,
-//             "Preparing inputs tensors for method %s failed with status 0x%" PRIx32,
-//             method_name,
-//             inputs.error());
-//     }
-// }
+void ModelExecutor::prepareInputs(
+    Result<torch::executor::Method>& method,
+    const char* method_name)
+{
+    ET_LOG(Info, "Preparing inputs...");
+    auto inputs = torch::executor::util::prepare_input_tensors(*method);
+    if (!inputs.ok()) {
+        ET_LOG(
+            Info,
+            "Preparing inputs tensors for method %s failed with status 0x%" PRIx32,
+            method_name,
+            inputs.error());
+    }
+}
 
 void ModelExecutor::setModelInput(Result<torch::executor::Method>& method, std::vector<float>& inputs)
 {
@@ -242,9 +242,9 @@ void ModelExecutor::executeModel(
     const char* method_name,
     int waiting_time)
 {
-    ET_LOG(Info, "Starting the model execution...");
- 
+    printf("\nInput tensor size: %d\n", method->get_input(0).payload.as_tensor.numel());
     printModelInput(method);
+    //thread_sleep_for(waiting_time);
     Error status = method->execute();
     if (status != Error::Ok) {
         ET_LOG(

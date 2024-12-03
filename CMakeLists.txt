@@ -24,7 +24,7 @@ project(MbedTorchFusionOS CXX) # TODO: change this to your project name
 
 set(SOURCES 
      ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
-     ${CMAKE_CURRENT_SOURCE_DIR}/src/model_executor/ModelExecutor.cpp
+     #${CMAKE_CURRENT_SOURCE_DIR}/src/model_executor/ModelExecutor.cpp
 )
 
 add_executable(SoftMaxTorchRunner ${SOURCES})
@@ -32,11 +32,10 @@ add_executable(SoftMaxTorchRunner ${SOURCES})
 target_link_libraries(SoftMaxTorchRunner PUBLIC
      mbed-os # Can also link to mbed-baremetal here
      "-Wl,--whole-archive"
-     #/home/chris/executorch/cmake-out/lib/libextension_runner_util.a
+     /home/chris/executorch/cmake-out/lib/libextension_runner_util.a
      /home/chris/executorch/cmake-out/lib/libexecutorch.a
      /home/chris/executorch/cmake-out/lib/libexecutorch_no_prim_ops.a
      /home/chris/executorch/cmake-out/lib/libportable_kernels.a
-     #"-Wl,--whole-archive"
      /home/chris/executorch/cmake-out/examples/arm/libarm_portable_ops_lib.a
      "-Wl,--no-whole-archive"
      ) 
@@ -44,7 +43,7 @@ target_link_libraries(SoftMaxTorchRunner PUBLIC
 ###GENRAL###
 target_include_directories(SoftMaxTorchRunner
      PUBLIC 
-          ${CMAKE_CURRENT_SOURCE_DIR}/include #need it for executorch includes and logger.h
+          #${CMAKE_CURRENT_SOURCE_DIR}/include #need it for executorch includes and logger.h
           /home/chris/ #for executorch headers
           ${CMAKE_CURRENT_SOURCE_DIR}/models     
 )
