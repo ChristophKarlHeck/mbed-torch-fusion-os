@@ -110,11 +110,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a0c3a700bb00ef55b13579712c5c1d577"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelExecutor.html#a0c3a700bb00ef55b13579712c5c1d577">getNumberOfInputValues</a> (Result&lt; torch::executor::Method &gt; &amp;method)</td></tr>
 <tr class="memdesc:a0c3a700bb00ef55b13579712c5c1d577"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the number of input values expected by the method.  <a href="classModelExecutor.html#a0c3a700bb00ef55b13579712c5c1d577">More...</a><br /></td></tr>
 <tr class="separator:a0c3a700bb00ef55b13579712c5c1d577"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ac97845e3edda814bd661981d10c905"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelExecutor.html#a8ac97845e3edda814bd661981d10c905">prepareInputs</a> (Result&lt; torch::executor::Method &gt; &amp;method, const char *method_name)</td></tr>
-<tr class="memdesc:a8ac97845e3edda814bd661981d10c905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepares input buffers for the specified method.  <a href="classModelExecutor.html#a8ac97845e3edda814bd661981d10c905">More...</a><br /></td></tr>
-<tr class="separator:a8ac97845e3edda814bd661981d10c905"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8aac03f8901c5db9e7e8d0f5d19b62b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelExecutor.html#a8aac03f8901c5db9e7e8d0f5d19b62b0">setModelInput</a> (Result&lt; torch::executor::Method &gt; &amp;method, std::vector&lt; float &gt; &amp;inputs)</td></tr>
-<tr class="memdesc:a8aac03f8901c5db9e7e8d0f5d19b62b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the input values for the specified method.  <a href="classModelExecutor.html#a8aac03f8901c5db9e7e8d0f5d19b62b0">More...</a><br /></td></tr>
+<tr class="memdesc:a8aac03f8901c5db9e7e8d0f5d19b62b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepares input buffers for the specified method.  <a href="classModelExecutor.html#a8aac03f8901c5db9e7e8d0f5d19b62b0">More...</a><br /></td></tr>
 <tr class="separator:a8aac03f8901c5db9e7e8d0f5d19b62b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a021946ac7244b5a184f4f598923cdd4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelExecutor.html#a021946ac7244b5a184f4f598923cdd4c">printModelInput</a> (Result&lt; torch::executor::Method &gt; &amp;method)</td></tr>
 <tr class="memdesc:a021946ac7244b5a184f4f598923cdd4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the input values of the specified method for debugging purposes.  <a href="classModelExecutor.html#a021946ac7244b5a184f4f598923cdd4c">More...</a><br /></td></tr>
@@ -426,43 +423,6 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a8ac97845e3edda814bd661981d10c905"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ac97845e3edda814bd661981d10c905">&#9670;&nbsp;</a></span>prepareInputs()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ModelExecutor::prepareInputs </td>
-          <td>(</td>
-          <td class="paramtype">Result&lt; torch::executor::Method &gt; &amp;&#160;</td>
-          <td class="paramname"><em>method</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>method_name</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prepares input buffers for the specified method. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">method</td><td>The method to prepare inputs for. </td></tr>
-    <tr><td class="paramname">method_name</td><td>The name of the method. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a021946ac7244b5a184f4f598923cdd4c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a021946ac7244b5a184f4f598923cdd4c">&#9670;&nbsp;</a></span>printModelInput()</h2>
 
@@ -541,7 +501,15 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets the input values for the specified method. </p>
+<p>Prepares input buffers for the specified method. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">method</td><td>The method to prepare inputs for. </td></tr>
+    <tr><td class="paramname">method_name</td><td>The name of the method.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Sets the input values for the specified method.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">method</td><td>The method to set inputs for. </td></tr>
