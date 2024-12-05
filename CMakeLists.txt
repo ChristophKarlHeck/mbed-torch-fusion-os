@@ -24,6 +24,7 @@ project(MbedTorchFusionOS CXX) # TODO: change this to your project name
 
 set(SOURCES 
      ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/utils/mbed_stats_wrapper.cpp
      #${CMAKE_CURRENT_SOURCE_DIR}/src/model_executor/ModelExecutor.cpp
 )
 
@@ -43,9 +44,9 @@ target_link_libraries(SoftMaxTorchRunner PUBLIC
 ###GENRAL###
 target_include_directories(SoftMaxTorchRunner
      PUBLIC 
-          #${CMAKE_CURRENT_SOURCE_DIR}/include #need it for executorch includes and logger.h
+          ${CMAKE_CURRENT_SOURCE_DIR}/include #need it for executorch includes and logger.h
           /home/chris/ #for executorch headers
-          ${CMAKE_CURRENT_SOURCE_DIR}/models     
+          ${CMAKE_CURRENT_SOURCE_DIR}/models
 )
 
 #add_dependencies(SoftMaxTorchRunner gen_model_header)

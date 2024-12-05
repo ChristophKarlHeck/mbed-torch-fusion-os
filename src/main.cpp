@@ -12,6 +12,8 @@
 #include <memory>
 #include <vector>
 
+#include "utils/mbed_stats_wrapper.h"
+
 #include <executorch/extension/data_loader/buffer_data_loader.h>
 #include <executorch/extension/runner_util/inputs.h>
 #include <executorch/runtime/core/memory_allocator.h>
@@ -58,12 +60,12 @@ using executorch::runtime::TensorInfo;
  * large models if you run on HW this should be lowered to fit into your
  * availible memory.
  */
-#define ET_ARM_BAREMETAL_METHOD_ALLOCATOR_POOL_SIZE (4 * 1024)
+#define ET_ARM_BAREMETAL_METHOD_ALLOCATOR_POOL_SIZE (1 * 1024)
 
 const size_t method_allocation_pool_size =
     ET_ARM_BAREMETAL_METHOD_ALLOCATOR_POOL_SIZE;
 unsigned char __attribute__((
-    section("input_data_sec"),
+    section("method_alloc_sec"),
     aligned(16))) method_allocation_pool[method_allocation_pool_size];
 
 /**
@@ -72,12 +74,12 @@ unsigned char __attribute__((
  * Currently a MemoryAllocator is used but a PlatformMemoryAllocator is probably
  * a better fit
  */
-#define ET_ARM_BAREMETAL_TEMP_ALLOCATOR_POOL_SIZE (1 * 1024)
+#define ET_ARM_BAREMETAL_TEMP_ALLOCATOR_POOL_SIZE (1*1024)
 
 const size_t temp_allocation_pool_size =
     ET_ARM_BAREMETAL_TEMP_ALLOCATOR_POOL_SIZE;
 unsigned char __attribute__((
-    section("input_data_sec"),
+    section("temp_alloc_sec"),
     aligned(16))) temp_allocation_pool[temp_allocation_pool_size];
 
 void et_pal_init(void) {}
@@ -206,7 +208,7 @@ Result<BufferCleanup> prepare_input_tensors(
 
     // If input_buffers.size <= 0, we don't have any input, fill t with 1's.
     if (input_buffers.size() <= 0) {
-      for (size_t j = 0; j < t.numel(); j++) {
+      for (int j = 0; j < t.numel(); j++) {
         switch (t.scalar_type()) {
           case ScalarType::Int:
             t.mutable_data_ptr<int>()[j] = 1;
@@ -214,6 +216,10 @@ Result<BufferCleanup> prepare_input_tensors(
           case ScalarType::Float:
             t.mutable_data_ptr<float>()[j] = 1.;
             break;
+			// Add cases for other ScalarType values if needed
+    	  default:
+        	printf("Warning: Scalar type %d not handled.\n", static_cast<int>(t.scalar_type()));
+        	break;
         }
       }
     }
@@ -238,9 +244,16 @@ int main() {
 	std::vector<std::pair<char*, size_t>> input_buffers;
 	size_t pte_size = sizeof(model_pte);
 
-	auto loader = BufferDataLoader(model_pte, pte_size);
-	printf("Model PTE file loaded. Size: %lu bytes.\n", pte_size);
+	extern char _sidata, _sdata, _edata;
+	printf("_sidata: %p, _sdata: %p, _edata: %p\n", &_sidata, &_sdata, &_edata);
 
+	printf("Model in %p: First byte as int = %d\n", model_pte, model_pte[0]);
+	printf("First 4 bytes of model_pte: 0x%02x 0x%02x 0x%02x 0x%02x\n",
+       model_pte[0], model_pte[1], model_pte[2], model_pte[3]);
+	auto loader = BufferDataLoader(model_pte, pte_size);
+	printf("Model PTE file loaded. Size: %u bytes.\n", pte_size);
+
+	mbed_lib::print_memory_usage();
 	Result<Program> program = Program::load(&loader);
 	if (!program.ok()) {
 		printf(
@@ -249,7 +262,7 @@ int main() {
 			static_cast<uint32_t>(program.error())); // Ensure error is cast properly
 	}
 
-  	printf("Model buffer loaded, has %lu methods\n", program->num_methods());
+  	printf("Model buffer loaded, has %u methods\n", program->num_methods());
 
 	const char* method_name = nullptr;
 	{
@@ -267,7 +280,7 @@ int main() {
 			(unsigned int)method_meta.error());
 	}
 
-	printf("Setup Method allocator pool. Size: %lu bytes.\n", method_allocation_pool_size);
+	printf("Setup Method allocator pool. Size: %u bytes.\n", method_allocation_pool_size);
 
 	ArmMemoryAllocator method_allocator(method_allocation_pool_size, method_allocation_pool);
 
@@ -286,6 +299,7 @@ int main() {
 		uint8_t* buffer =
 			reinterpret_cast<uint8_t*>(method_allocator.allocate(buffer_size));
 		planned_buffers.push_back(buffer);
+		mbed_lib::print_memory_usage();
 		planned_spans.push_back({planned_buffers.back(), buffer_size});
 	}
 
@@ -336,22 +350,22 @@ int main() {
 	//StopMeasurements();
 	size_t executor_memsize = method_allocator.used_size() - executor_membase;
 
-	printf("model_pte_loaded_size:     %lu bytes.", pte_size);
+	printf("model_pte_loaded_size:     %u bytes.", pte_size);
 
 	if (method_allocator.size() != 0) {
 		size_t method_allocator_used = method_allocator.used_size();
-		printf("method_allocator_used:     %zu / %zu  free: %zu ( used: %zu %% ) ",
+		printf("method_allocator_used:     %zu / %lu  free: %zu ( used: %lu %% ) ",
 			method_allocator_used,
 			method_allocator.size(),
 			method_allocator.free_size(),
 			100 * method_allocator_used / method_allocator.size());
-		printf("method_allocator_planned:  %zu bytes", planned_buffer_memsize);
-		printf("method_allocator_loaded:   %zu bytes", method_loaded_memsize);
-		printf("method_allocator_input:    %zu bytes", input_memsize);
-		printf("method_allocator_executor: %zu bytes", executor_memsize);
+		printf("method_allocator_planned:  %u bytes", planned_buffer_memsize);
+		printf("method_allocator_loaded:   %u bytes", method_loaded_memsize);
+		printf("method_allocator_input:    %u bytes", input_memsize);
+		printf("method_allocator_executor: %u bytes", executor_memsize);
 	}
 	if (temp_allocator.size() > 0) {
-		printf("temp_allocator_used:       %zu / %zu free: %zu ( used: %zu %% ) ",
+		printf("temp_allocator_used:       %zu / %lu free: %zu ( used: %lu %% ) ",
 			temp_allocator.used_size(),
 			temp_allocator.size(),
 			temp_allocator.free_size(),
@@ -370,7 +384,7 @@ int main() {
 	printf("%zu outputs: ", outputs.size());
 	status = method->get_outputs(outputs.data(), outputs.size());
 	ET_CHECK(status == Error::Ok);
-	for (int i = 0; i < outputs.size(); ++i) {
+	for (uint i = 0; i < outputs.size(); ++i) {
 		Tensor t = outputs[i].toTensor();
 		// The output might be collected and parsed so printf() is used instead
 		// of ET_LOG() here
