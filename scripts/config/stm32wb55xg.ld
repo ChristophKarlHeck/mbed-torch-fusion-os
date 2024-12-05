@@ -154,6 +154,15 @@ SECTIONS
 
     } > RAM
 
+    _sinetwork_model_sec = _edata;
+
+    .network_model_sec ALIGN(16) : AT(_sinetwork_model_sec)
+    {
+        _snetwork_model_sec = .;         /* Start of section in RAM */
+        KEEP(*(network_model_sec))      /* Include all matching symbols */
+        _enetwork_model_sec = .;         /* End of section in RAM */
+    } > RAM
+
     /* Uninitialized data section
      * This region is not initialized by the C/C++ library and can be used to
      * store state across soft reboots. */

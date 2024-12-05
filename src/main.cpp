@@ -238,6 +238,9 @@ int main() {
 	std::vector<std::pair<char*, size_t>> input_buffers;
 	size_t pte_size = sizeof(model_pte);
 
+	extern char _sidata, _sdata, _edata;
+	printf("_sidata: %p, _sdata: %p, _edata: %p\n", &_sidata, &_sdata, &_edata);
+
 	printf("Model in %p: First byte as int = %d\n", model_pte, model_pte[0]);
 	printf("First 4 bytes of model_pte: 0x%02x 0x%02x 0x%02x 0x%02x\n",
        model_pte[0], model_pte[1], model_pte[2], model_pte[3]);
