@@ -44,6 +44,7 @@ MEMORY
   RAM (rwx)   : ORIGIN = MBED_RAM_START + VECTORS_SIZE, LENGTH = 0x30000 - VECTORS_SIZE
   RAM2a (rw)  : ORIGIN = 0x20030000, LENGTH = 10K
   RAM2b (rw)  : ORIGIN = 0x20038000, LENGTH = 20K
+
 }
 
 /* Linker script to place sections and symbol values. Should be used together
@@ -146,21 +147,22 @@ SECTIONS
         KEEP(*(.fini_array))
         PROVIDE_HIDDEN (__fini_array_end = .);
 
+        . = ALIGN(16);
+        PROVIDE_HIDDEN (__network_model_sec_start = .);
+        KEEP(*(network_model_sec))
+        PROVIDE_HIDDEN (__network_model_sec_end = .);
+
+        . = ALIGN(16);
+        PROVIDE_HIDDEN (__input_data_sec_start = .);
+        KEEP(*(input_data_sec))
+        PROVIDE_HIDDEN (__input_data_sec_end = .);
+
         KEEP(*(.jcr*))
         . = ALIGN(8);
         /* All data end */
         __data_end__ = .;
         _edata = .;
 
-    } > RAM
-
-    _sinetwork_model_sec = _edata;
-
-    .network_model_sec ALIGN(16) : AT(_sinetwork_model_sec)
-    {
-        _snetwork_model_sec = .;         /* Start of section in RAM */
-        KEEP(*(network_model_sec))      /* Include all matching symbols */
-        _enetwork_model_sec = .;         /* End of section in RAM */
     } > RAM
 
     /* Uninitialized data section

@@ -238,12 +238,6 @@ int main() {
 	std::vector<std::pair<char*, size_t>> input_buffers;
 	size_t pte_size = sizeof(model_pte);
 
-	extern char _sidata, _sdata, _edata;
-	printf("_sidata: %p, _sdata: %p, _edata: %p\n", &_sidata, &_sdata, &_edata);
-
-	printf("Model in %p: First byte as int = %d\n", model_pte, model_pte[0]);
-	printf("First 4 bytes of model_pte: 0x%02x 0x%02x 0x%02x 0x%02x\n",
-       model_pte[0], model_pte[1], model_pte[2], model_pte[3]);
 	auto loader = BufferDataLoader(model_pte, pte_size);
 	printf("Model PTE file loaded. Size: %lu bytes.\n", pte_size);
 
@@ -263,7 +257,7 @@ int main() {
 		ET_CHECK_MSG(method_name_result.ok(), "Program has no methods");
 		method_name = *method_name_result;
 	}
-	printf("Running method %s", method_name);
+	printf("Running method %s\n", method_name);
 
 	Result<MethodMeta> method_meta = program->method_meta(method_name);
 	if (!method_meta.ok()) {
@@ -273,7 +267,7 @@ int main() {
 			(unsigned int)method_meta.error());
 	}
 
-	printf("Setup Method allocator pool. Size: %lu bytes.", method_allocation_pool_size);
+	printf("Setup Method allocator pool. Size: %lu bytes.\n", method_allocation_pool_size);
 
 	ArmMemoryAllocator method_allocator(method_allocation_pool_size, method_allocation_pool);
 
