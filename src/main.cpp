@@ -31,7 +31,7 @@
  *
  * e.g. This includes the pte as a big chunk of data struct into this file
  */
-#include "add3/model_pte.h"
+#include "softmax/model_pte.h"
 
 
 using executorch::aten::ScalarType;
@@ -239,6 +239,8 @@ Result<BufferCleanup> prepare_input_tensors(
 } // namespace
 
 int main() {
+	mbed_lib::print_memory_usage();
+	mbed_lib::print_cpu_stats();
 
 	executorch::runtime::runtime_init();
 	std::vector<std::pair<char*, size_t>> input_buffers;
@@ -267,7 +269,7 @@ int main() {
 	const char* method_name = nullptr;
 	{
 		const auto method_name_result = program->get_method_name(0);
-		ET_CHECK_MSG(method_name_result.ok(), "Program has no methods");
+		ET_CHECK_MSG(method_name_result.ok(), "Program has no methods\n");
 		method_name = *method_name_result;
 	}
 	printf("Running method %s\n", method_name);
@@ -275,7 +277,7 @@ int main() {
 	Result<MethodMeta> method_meta = program->method_meta(method_name);
 	if (!method_meta.ok()) {
 		printf(
-			"Failed to get method_meta for %s: 0x%x",
+			"Failed to get method_meta for %s: 0x%x\n",
 			method_name,
 			(unsigned int)method_meta.error());
 	}
@@ -293,7 +295,7 @@ int main() {
 	for (size_t id = 0; id < num_memory_planned_buffers; ++id) {
 		size_t buffer_size =
 			static_cast<size_t>(method_meta->memory_planned_buffer_size(id).get());
-		printf("Setting up planned buffer %zu, size %zu.", id, buffer_size);
+		printf("Setting up planned buffer %zu, size %zu.\n", id, buffer_size);
 
 		/* Move to it's own allocator when MemoryPlanner is in place. */
 		uint8_t* buffer =
@@ -320,15 +322,15 @@ int main() {
 	Result<Method> method = program->load_method(method_name, &memory_manager);
 	if (!method.ok()) {
 		printf(
-			"Loading of method %s failed with status 0x%" PRIx32,
+			"Loading of method %s failed with status 0x%\n" PRIx32,
 			method_name,
 			method.error());
   	}
 	size_t method_loaded_memsize =
 		method_allocator.used_size() - method_loaded_membase;
-	printf("Method loaded.");
+	printf("Method loaded.\n");
 
-	printf("Preparing inputs...");
+	printf("Preparing inputs...\n");
 	size_t input_membase = method_allocator.used_size();
 
 	auto inputs =
@@ -341,31 +343,31 @@ int main() {
 			inputs.error());
 	}
 	size_t input_memsize = method_allocator.used_size() - input_membase;
-	printf("Input prepared.");
+	printf("Input prepared.\n");
 
-	printf("Starting the model execution...");
+	printf("Starting the model execution...\n");
 	size_t executor_membase = method_allocator.used_size();
 	//StartMeasurements();
 	Error status = method->execute();
 	//StopMeasurements();
 	size_t executor_memsize = method_allocator.used_size() - executor_membase;
 
-	printf("model_pte_loaded_size:     %u bytes.", pte_size);
+	printf("model_pte_loaded_size:     %u bytes.\n", pte_size);
 
 	if (method_allocator.size() != 0) {
 		size_t method_allocator_used = method_allocator.used_size();
-		printf("method_allocator_used:     %zu / %lu  free: %zu ( used: %lu %% ) ",
+		printf("method_allocator_used:     %zu / %lu  free: %zu ( used: %lu %% ) \n",
 			method_allocator_used,
 			method_allocator.size(),
 			method_allocator.free_size(),
 			100 * method_allocator_used / method_allocator.size());
-		printf("method_allocator_planned:  %u bytes", planned_buffer_memsize);
-		printf("method_allocator_loaded:   %u bytes", method_loaded_memsize);
-		printf("method_allocator_input:    %u bytes", input_memsize);
-		printf("method_allocator_executor: %u bytes", executor_memsize);
+		printf("method_allocator_planned:  %u bytes\n", planned_buffer_memsize);
+		printf("method_allocator_loaded:   %u bytes\n", method_loaded_memsize);
+		printf("method_allocator_input:    %u bytes\n", input_memsize);
+		printf("method_allocator_executor: %u bytes\n", executor_memsize);
 	}
 	if (temp_allocator.size() > 0) {
-		printf("temp_allocator_used:       %zu / %lu free: %zu ( used: %lu %% ) ",
+		printf("temp_allocator_used:       %zu / %lu free: %zu ( used: %lu %% ) \n",
 			temp_allocator.used_size(),
 			temp_allocator.size(),
 			temp_allocator.free_size(),
@@ -373,15 +375,15 @@ int main() {
 	}
 
 	if (status != Error::Ok) {
-		printf("Execution of method %s failed with status 0x%" PRIx32,
+		printf("Execution of method %s failed with status 0x%\n" PRIx32,
 			method_name,
 			status);
 	} else {
-		printf("Model executed successfully.");
+		printf("Model executed successfully.\n");
 	}
 
 	std::vector<EValue> outputs(method->outputs_size());
-	printf("%zu outputs: ", outputs.size());
+	printf("%zu outputs: \n", outputs.size());
 	status = method->get_outputs(outputs.data(), outputs.size());
 	ET_CHECK(status == Error::Ok);
 	for (uint i = 0; i < outputs.size(); ++i) {
@@ -406,8 +408,11 @@ int main() {
 
 	}
 
-	printf("Program complete, exiting.");
 
-	printf("\04");
+	printf("\nProgram complete, exiting.\n");
+
+	mbed_lib::print_memory_usage();
+	mbed_lib::print_cpu_stats();
+
 	return 0;
 }
