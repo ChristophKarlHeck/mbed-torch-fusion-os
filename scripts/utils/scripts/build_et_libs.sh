@@ -37,29 +37,54 @@ python3 -m examples.arm.aot_arm_compiler --model_name="add"
 cmake                                                 \
     -DCMAKE_INSTALL_PREFIX=$(pwd)/cmake-out           \
     -DEXECUTORCH_BUILD_EXECUTOR_RUNNER=OFF            \
-    -DCMAKE_BUILD_TYPE=Debug                        \
-    -DEXECUTORCH_ENABLE_LOGGING=OFF                    \
+    -DCMAKE_BUILD_TYPE=Release                        \
+    -DEXECUTORCH_ENABLE_LOGGING=ON                    \
     -DEXECUTORCH_BUILD_ARM_BAREMETAL=ON               \
+    -DEXECUTORCH_BUILD_KERNELS_QUANTIZED=ON           \
     -DEXECUTORCH_BUILD_EXTENSION_RUNNER_UTIL=ON       \
     -DFLATC_EXECUTABLE="$(which flatc)"               \
     -DCMAKE_TOOLCHAIN_FILE=$(pwd)/examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake        \
     -B$(pwd)/cmake-out                                \
     $(pwd)/cmake-out
 
-cmake --build $(pwd)/cmake-out -j4 --target install --config Debug
+cmake --build $(pwd)/cmake-out -j4 --target install --config Release
 
 # Example for multiple not delegated operators: -DEXECUTORCH_SELECT_OPS_LIST="aten::_softmax.out,aten::add.out"
 
 cmake                                                  \
     -DCMAKE_INSTALL_PREFIX=$(pwd)/cmake-out             \
-    -DCMAKE_BUILD_TYPE=Debug                         \
+    -DCMAKE_BUILD_TYPE=Release                       \
     -DCMAKE_TOOLCHAIN_FILE=$(pwd)/examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake  \
     -DTARGET_CPU=cortex-m4  \
     -DEXECUTORCH_SELECT_OPS_LIST="aten::_softmax.out"  \
     -B$(pwd)/cmake-out/examples/arm                   \
     $(pwd)/examples/arm
 
-cmake --build $(pwd)/cmake-out/examples/arm --config Debug
+cmake --build $(pwd)/cmake-out/examples/arm --config Release
+
+# Build quntized aot lib
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DEXECUTORCH_BUILD_XNNPACK=OFF \
+    -DEXECUTORCH_BUILD_KERNELS_QUANTIZED=ON \
+    -DEXECUTORCH_BUILD_KERNELS_QUANTIZED_AOT=ON \
+    -DCMAKE_PREFIX_PATH=$(pwd)/executorch_venv/lib/python3.10/site-packages/torch \
+    -DPYTHON_EXECUTABLE=python3 \
+    -Bcmake-out-aot-lib \
+    .
+
+cmake --build $(pwd)/cmake-out-aot-lib -j3 -- quantized_ops_aot_lib
+
+cd examples/arm/executor_runner
+cmake -DCMAKE_TOOLCHAIN_FILE=$(pwd)/../ethos-u-setup/arm-none-eabi-gcc.cmake \
+	-DTARGET_CPU=cortex-m4 \
+	-B cmake-out \
+	-DET_DIR_PATH:PATH=$(pwd)/../../../         \
+	-DET_BUILD_DIR_PATH:PATH=$(pwd)/../../../cmake-out  \
+	-DET_PTE_FILE_PATH:PATH="softmax.pte"          \
+	-DPYTHON_EXECUTABLE=$(which python3)
+
+cmake --build cmake-out -- -j3 arm_executor_runner
 
 cd $ROOT_DIR
 patch executorch/examples/arm/executor_runner/pte_to_header.py < utils/patches/pte_to_header.patch
