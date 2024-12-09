@@ -76,7 +76,8 @@ cmake \
 cmake --build $(pwd)/cmake-out-aot-lib -j3 -- quantized_ops_aot_lib
 
 cd examples/arm/executor_runner
-cmake -DCMAKE_TOOLCHAIN_FILE=$(pwd)/../ethos-u-setup/arm-none-eabi-gcc.cmake \
+
+cmake -DCMAKE_TOOLCHAIN_FILE=../ethos-u-setup/arm-none-eabi-gcc.cmake \
 	-DTARGET_CPU=cortex-m4 \
 	-B cmake-out \
 	-DET_DIR_PATH:PATH=$(pwd)/../../../         \
