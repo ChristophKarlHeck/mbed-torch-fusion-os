@@ -24,6 +24,7 @@ project(MbedTorchFusionOS CXX) # TODO: change this to your project name
 
 set(SOURCES 
      ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/model_executor/ModelExecutor.cpp
 )
 
 add_executable(SoftMaxTorchRunner ${SOURCES})
@@ -43,7 +44,8 @@ target_link_libraries(SoftMaxTorchRunner PUBLIC
 
 ###GENRAL###
 target_include_directories(SoftMaxTorchRunner
-     PUBLIC 
+     PUBLIC
+          ${CMAKE_CURRENT_SOURCE_DIR}/include
           /home/chris/executorch_v030/ #for executorch headers
           ${CMAKE_CURRENT_SOURCE_DIR}/models
 )
