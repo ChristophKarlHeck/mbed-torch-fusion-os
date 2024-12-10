@@ -32,12 +32,14 @@ add_executable(SoftMaxTorchRunner ${SOURCES})
 
 target_link_libraries(SoftMaxTorchRunner PUBLIC
      mbed-os # Can also link to mbed-baremetal here
+     /home/chris/executorch_v040/executorch/cmake-out/lib/libextension_runner_util.a
+     /home/chris/executorch_v040/executorch/cmake-out/lib/libexecutorch.a
      "-Wl,--whole-archive"
-     /home/chris/executorch/cmake-out/lib/libextension_runner_util.a
-     /home/chris/executorch/cmake-out/lib/libexecutorch.a
-     /home/chris/executorch/cmake-out/lib/libexecutorch_no_prim_ops.a
-     /home/chris/executorch/cmake-out/lib/libportable_kernels.a
-     /home/chris/executorch/cmake-out/examples/arm/libarm_portable_ops_lib.a
+     /home/chris/executorch_v040/executorch/cmake-out/lib/libexecutorch_no_prim_ops.a
+     /home/chris/executorch_v040/executorch/cmake-out/kernels/quantized/libquantized_ops_lib.a
+     /home/chris/executorch_v040/executorch/cmake-out/examples/arm/libarm_portable_ops_lib.a
+     /home/chris/executorch_v040/executorch/cmake-out/kernels/quantized/libquantized_kernels.a
+     /home/chris/executorch_v040/executorch/cmake-out/lib/libportable_kernels.a
      "-Wl,--no-whole-archive"
      ) 
 

@@ -239,8 +239,8 @@ Result<BufferCleanup> prepare_input_tensors(
 } // namespace
 
 int main() {
-	mbed_lib::print_memory_usage();
-	mbed_lib::print_cpu_stats();
+	// mbed_lib::print_memory_usage();
+	// mbed_lib::print_cpu_stats();
 
 	executorch::runtime::runtime_init();
 	std::vector<std::pair<char*, size_t>> input_buffers;
@@ -255,7 +255,7 @@ int main() {
 	auto loader = BufferDataLoader(model_pte, pte_size);
 	printf("Model PTE file loaded. Size: %u bytes.\n", pte_size);
 
-	mbed_lib::print_memory_usage();
+	// mbed_lib::print_memory_usage();
 	Result<Program> program = Program::load(&loader);
 	if (!program.ok()) {
 		printf(
@@ -301,7 +301,7 @@ int main() {
 		uint8_t* buffer =
 			reinterpret_cast<uint8_t*>(method_allocator.allocate(buffer_size));
 		planned_buffers.push_back(buffer);
-		mbed_lib::print_memory_usage();
+		// mbed_lib::print_memory_usage();
 		planned_spans.push_back({planned_buffers.back(), buffer_size});
 	}
 
@@ -411,8 +411,8 @@ int main() {
 
 	printf("\nProgram complete, exiting.\n");
 
-	mbed_lib::print_memory_usage();
-	mbed_lib::print_cpu_stats();
+	// mbed_lib::print_memory_usage();
+	// mbed_lib::print_cpu_stats();
 
 	return 0;
 }

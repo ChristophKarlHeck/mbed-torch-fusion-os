@@ -32,7 +32,6 @@ fi
 
 patch examples/arm/aot_arm_compiler.py < ../utils/patches/aot_arm_compiler.patch
 # Change to 4 inputs 
-python3 -m examples.arm.aot_arm_compiler --model_name="add"
 
 cmake                                                 \
     -DCMAKE_INSTALL_PREFIX=$(pwd)/cmake-out           \
@@ -60,7 +59,7 @@ cmake                                                  \
     -B$(pwd)/cmake-out/examples/arm                   \
     $(pwd)/examples/arm
 
-cmake --build $(pwd)/cmake-out/examples/arm --config Release
+cmake --build $(pwd)/cmake-out/examples/arm 
 
 # Build quntized aot lib
 cmake \
@@ -75,6 +74,8 @@ cmake \
 
 cmake --build $(pwd)/cmake-out-aot-lib -j3 -- quantized_ops_aot_lib
 
+python3 -m examples.arm.aot_arm_compiler --model_name="softmax"
+
 cd examples/arm/executor_runner
 
 cmake -DCMAKE_TOOLCHAIN_FILE=../ethos-u-setup/arm-none-eabi-gcc.cmake \
@@ -85,7 +86,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=../ethos-u-setup/arm-none-eabi-gcc.cmake \
 	-DET_PTE_FILE_PATH:PATH="softmax.pte"          \
 	-DPYTHON_EXECUTABLE=$(which python3)
 
-cmake --build cmake-out -- -j3 arm_executor_runner
+cmake --build cmake-out -- -j3 VERBOSE=1 arm_executor_runner
 
 cd $ROOT_DIR
 patch executorch/examples/arm/executor_runner/pte_to_header.py < utils/patches/pte_to_header.patch
