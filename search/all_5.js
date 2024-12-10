@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['operator_3d_12',['operator=',['../classModelExecutor.html#a8d9e0692ae649702a22979c51c2282d2',1,'ModelExecutor']]]
+  ['notifycharacteristic_7',['NotifyCharacteristic',['../classNotifyCharacteristic.html',1,'NotifyCharacteristic&lt; T, NUM_ELEMENTS &gt;'],['../classNotifyCharacteristic.html#a503ca90954f5f2b712a7b34391c334ef',1,'NotifyCharacteristic::NotifyCharacteristic()']]],
+  ['notifycharacteristic_3c_20uint8_5ft_2c_206_20_3e_8',['NotifyCharacteristic&lt; uint8_t, 6 &gt;',['../classNotifyCharacteristic.html',1,'']]]
 ];
