@@ -12,7 +12,7 @@
 #include <executorch/runtime/platform/platform.h>
 #include <executorch/runtime/platform/runtime.h>
 
-#include "mbed.h" // needed for thread_sleep_for(10);
+//#include "mbed.h" // needed for thread_sleep_for(10);
 
 using namespace exec_aten;
 using namespace std;
