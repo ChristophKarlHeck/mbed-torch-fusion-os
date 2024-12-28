@@ -55,7 +55,7 @@ cmake                                                  \
     -DCMAKE_BUILD_TYPE=Release                       \
     -DCMAKE_TOOLCHAIN_FILE=$(pwd)/examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake  \
     -DTARGET_CPU=cortex-m4  \
-    -DEXECUTORCH_SELECT_OPS_LIST="aten::_softmax.out"  \
+    -DEXECUTORCH_SELECT_OPS_LIST="aten::convolution.out"  \
     -B$(pwd)/cmake-out/examples/arm                   \
     $(pwd)/examples/arm
 

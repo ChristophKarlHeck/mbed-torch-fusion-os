@@ -10,7 +10,7 @@
 
 int main() {
 
-	ModelExecutor& executor = ModelExecutor::getInstance(512); // Pass the desired pool size
+	ModelExecutor& executor = ModelExecutor::getInstance(1024); // Pass the desired pool size
 
 	// Prepare input data
 	while(true){

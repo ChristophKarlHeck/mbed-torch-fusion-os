@@ -25,7 +25,7 @@
  * which are included in the bare metal build are also orchestrated by the
  * CMakeLists file. For example use see examples/arm/run.sh
  */
-#include "softmax/model_pte.h"
+#include "cnn/model_pte.h"
 #include "model_executor/ModelExecutor.h"
 
 using namespace exec_aten;
@@ -169,6 +169,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		torch::executor::EValue input_original = method->get_input(0);
     	Tensor tensor = input_original.payload.as_tensor;
     	float* data = input_original.payload.as_tensor.mutable_data_ptr<float>();
+
+		ET_LOG(Info, "Number of input values required by model:%d", tensor.numel());
 
     	// Change input
     	for(int j = 0; j < tensor.numel(); ++j){
