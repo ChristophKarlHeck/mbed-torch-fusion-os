@@ -129,14 +129,6 @@ static <a class="el" href="classModelExecutor.html">ModelExecutor</a> &amp;&#160
 <p>Get the size in bytes of the specified memory-planned buffer. Can only be changed in network definition (Python). Before exporting model.pte</p>
 <p>Dynamically allocates buffer_size bytes on the heap using std::make_unique&lt;uint8_t[]&gt;, creating a std::unique_ptr to manage this memory. The std::unique_ptr is then moved into the planned_buffers container, transferring ownership of the heap-allocated memory to the container. No memory leaks since std::unique_ptr in planned_buffers owns the heap-allocated memory and deletes the memory when the unique_ptr is destroyed (e.g., when the vector is cleared, resized, or goes out of scope).</p>
 <p>Simply provides a lightweight view over the existing heap-allocated planned_buffers without taking ownership.</p>
-<p>Constructs a new MemoryManager.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">method_allocator</td><td>The allocator to use when loading a Method and allocating its internal structures. Must outlive the Method that uses it. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">planned_memory</td><td>The memory-planned buffers to use for mutable tensor data when executing a Method. Must outlive the Method that uses it. May be <code>nullptr</code> if the Method does not use any memory-planned tensor data. The sizes of the buffers in this HierarchicalAllocator must agree with the corresponding <code>MethodMeta::num_memory_planned_buffers()</code> and <code>MethodMeta::memory_planned_buffer_size(N)</code> values, which are embedded in the Program.</td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
