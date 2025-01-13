@@ -11,14 +11,13 @@
 
 int main() {
 
-	ModelExecutor& executor = ModelExecutor::getInstance(16384); // Pass the desired pool size
+	ModelExecutor& executor = ModelExecutor::getInstance(4096); // Pass the desired pool size
 
 	// Prepare input data
 	while(true){
 
 		std::vector<float> inputs = {1.0f, 2.0f, 3.0f, 4.0f};
 
-		mbed_lib::print_memory_info();
     	// Run the model
     	std::vector<float> results = executor.run_model(inputs);
 

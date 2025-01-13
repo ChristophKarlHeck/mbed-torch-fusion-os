@@ -281,11 +281,11 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 
 		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		// // Set variable input
-		// torch::executor::EValue input_original = method->get_input(0);
-    	// Tensor tensor = input_original.payload.as_tensor;
-    	// float* data = input_original.payload.as_tensor.mutable_data_ptr<float>();
+		torch::executor::EValue input_original = method->get_input(0);
+    	Tensor tensor = input_original.payload.as_tensor;
+    	float* data = input_original.payload.as_tensor.mutable_data_ptr<float>();
 
-		// ET_LOG(Info, "Number of input values required by model:%d", tensor.numel());
+		ET_LOG(Info, "Number of input values required by model:%d", tensor.numel());
 
     	// // Change input
     	// for(int j = 0; j < tensor.numel(); ++j){
@@ -301,6 +301,7 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 
 		ET_LOG(Info, "Starting the model execution...");
 		//delay_ms(100);
+		mbed_lib::print_memory_info();
 		Error status = method->execute();
 		if (status != Error::Ok) {
 			ET_LOG(
