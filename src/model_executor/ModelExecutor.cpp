@@ -25,7 +25,7 @@
  * which are included in the bare metal build are also orchestrated by the
  * CMakeLists file. For example use see examples/arm/run.sh
  */
-#include "cnn3/model_pte.h"
+#include "cnn2/model_pte.h"
 #include "utils/mbed_stats_wrapper.h"
 #include "model_executor/ModelExecutor.h"
 
@@ -81,14 +81,31 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		torch::executor::runtime_init();
 
 		ET_LOG(Info, "Model in %p %c", model_pte, model_pte[0]);
-
+		
+		/**
+		 * Dynamically allocating a block of memory on the heap and assigning the address of the
+		 * allocated memory to the member variable m_method_allocator_pool
+		 */
 		m_method_allocator_pool = (uint8_t*)malloc(m_allocator_pool_size);
 
 		mbed_lib::print_memory_info();
 
-		auto loader =
-			torch::executor::util::BufferDataLoader(model_pte, sizeof(model_pte));
+		/**
+		 * A DataLoader that wraps a pre-allocated buffer in network_model_sec. The FreeableBuffers
+		 * that it returns do not actually free any data.
+		 *
+		 * This can be used to wrap data that is directly embedded into the firmware
+		 * image, or to wrap data that was allocated elsewhere.
+		 */
+		auto loader = torch::executor::util::BufferDataLoader(model_pte, sizeof(model_pte));
 		ET_LOG(Info, "Model PTE file loaded. Size: %lu bytes.", sizeof(model_pte));
+
+
+		/**
+		 * A deserialized ExecuTorch program binary.
+		 * Loads a Program from the provided loader. The Program will hold a pointer
+   		 * to the loader, which must outlive the returned Program instance.
+		 */
 		Result<torch::executor::Program> program =
 			torch::executor::Program::load(&loader);
 		if (!program.ok()) {
@@ -109,6 +126,9 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		}
 		ET_LOG(Info, "Running method %s", method_name);
 
+		/**
+		 * Gathers metadata for the named method.
+		 */
 		Result<torch::executor::MethodMeta> method_meta =
 			program->method_meta(method_name);
 		if (!method_meta.ok()) {
@@ -119,29 +139,107 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 				(unsigned int)method_meta.error());
 		}
 
+		/**
+		 * MemoryAllocator does simple allocation based on a size and returns the pointer
+		 * to the memory address. It bookmarks a buffer with certain size. The
+		 * allocation is simply checking space and growing the cur_ pointer with each
+		 * allocation request.
+		 *
+		 * Simple example:
+		 *
+		 *   // User allocates a 100 byte long memory in the heap.
+		 *   uint8_t* memory_pool = malloc(100 * sizeof(uint8_t));
+		 *   MemoryAllocator allocator(100, memory_pool)
+		 *   // Pass allocator object in the Executor
+		 *
+		 *   Underneath the hood, ExecuTorch will call
+		 *   allocator.allocate() to keep iterating cur_ pointer
+		 */
 		torch::executor::MemoryAllocator method_allocator{
 			torch::executor::MemoryAllocator(
 				m_allocator_pool_size, m_method_allocator_pool)};
 
-		std::vector<std::unique_ptr<uint8_t[]>> planned_buffers; // Owns the memory
-		std::vector<torch::executor::Span<uint8_t>>
-			planned_spans; // Passed to the allocator
+		/**
+		 * Stores unique pointers (std::unique_ptr) to dynamically allocated arrays of uint8_t.
+		 * Owns the memory.
+		 */
+		std::vector<std::unique_ptr<uint8_t[]>> planned_buffers;
+
+		/**
+		 *
+		 * Represent a reference to an array (0 or more elements
+		 * consecutively in memory), i.e. a start pointer and a length.  It allows
+		 * various APIs to take consecutive elements easily and conveniently.
+		 *
+		 * This class does not own the underlying data, it is expected to be used in
+		 * situations where the data resides in some other buffer, whose lifetime
+		 * extends past that of the Span.
+		 *
+		 * Span and ArrayRef are extrememly similar with the difference being ArrayRef
+		 * views a list of constant elements and Span views a list of mutable elements.
+		 * Clients should decide between the two based on if the list elements for their
+		 * use case should be mutable.
+		 *
+		 * This is intended to be trivially copyable, so it should be passed by
+		 * value.
+		 *
+		 * Passed to the allocator
+		 */
+		std::vector<torch::executor::Span<uint8_t>> planned_spans;
+
+		/**
+		 * Get the number of memory-planned buffers this method requires.
+		 */
 		size_t num_memory_planned_buffers = method_meta->num_memory_planned_buffers();
 
 		for (size_t id = 0; id < num_memory_planned_buffers; ++id) {
-			size_t buffer_size =
-				static_cast<size_t>(method_meta->memory_planned_buffer_size(id).get());
+			/**
+			 * Get the size in bytes of the specified memory-planned buffer.
+			 * Can only be changed in network definition (Python). Before exporting model.pte
+			 */
+			size_t buffer_size = static_cast<size_t>(method_meta->memory_planned_buffer_size(id).get());
 			ET_LOG(Info, "Setting up planned buffer %zu, size %zu.", id, buffer_size);
 			
 			mbed_lib::print_memory_info();
 
+			/**
+			 * Dynamically allocates buffer_size bytes on the heap using std::make_unique<uint8_t[]>, 
+			 * creating a std::unique_ptr to manage this memory. The std::unique_ptr is then 
+			 * moved into the planned_buffers container, transferring ownership of the 
+			 * heap-allocated memory to the container.
+			 * No memory leaks since std::unique_ptr in planned_buffers owns the heap-allocated memory
+			 * and deletes the memory when the unique_ptr is destroyed (e.g., when the vector is cleared, resized, or goes out of scope).
+			 */
 			planned_buffers.push_back(std::make_unique<uint8_t[]>(buffer_size));
+
+			mbed_lib::print_memory_info();
+
+			/**
+			 * Simply provides a lightweight view over the existing heap-allocated 
+			 * planned_buffers without taking ownership.
+			 */
 			planned_spans.push_back({planned_buffers.back().get(), buffer_size});
 		}
 
 		torch::executor::HierarchicalAllocator planned_memory(
 			{planned_spans.data(), planned_spans.size()});
 
+		/**
+		 * Constructs a new MemoryManager.
+		 *
+		 * @param[in] method_allocator The allocator to use when loading a Method and
+		 *     allocating its internal structures. Must outlive the Method that uses
+		 *     it.
+		 * @param[in] planned_memory The memory-planned buffers to use for mutable
+		 *     tensor data when executing a Method. Must outlive the Method that uses
+		 *     it. May be `nullptr` if the Method does not use any memory-planned
+		 *     tensor data. The sizes of the buffers in this HierarchicalAllocator
+		 *     must agree with the corresponding
+		 *     `MethodMeta::num_memory_planned_buffers()` and
+		 *     `MethodMeta::memory_planned_buffer_size(N)` values, which are embedded
+		 *     in the Program.
+		 * 
+     	 */
 		torch::executor::MemoryManager memory_manager(
 			&method_allocator, &planned_memory);
 
