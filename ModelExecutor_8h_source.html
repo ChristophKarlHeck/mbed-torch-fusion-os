@@ -95,7 +95,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keyword">static</span> <a class="code hl_class" href="classModelExecutor.html">ModelExecutor</a>&amp; getInstance(<span class="keywordtype">size_t</span> pool_size = 512);</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="comment">// Run the model with the provided inputs</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    std::vector&lt;float&gt; run_model(std::vector&lt;float&gt; feature_vector);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    std::vector&lt;float&gt; <a class="code hl_function" href="classModelExecutor.html#a71db00db11b79c6488c7b515490f6d24">run_model</a>(std::vector&lt;float&gt; feature_vector);</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="comment">// Delete copy constructor and assignment operator to enforce singleton pattern</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="classModelExecutor.html">ModelExecutor</a>(<span class="keyword">const</span> <a class="code hl_class" href="classModelExecutor.html">ModelExecutor</a>&amp;) = <span class="keyword">delete</span>;</div>
@@ -115,6 +115,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#endif </span><span class="comment">// MODEL_EXECUTOR_H</span></div>
 <div class="ttc" id="aclassModelExecutor_html"><div class="ttname"><a href="classModelExecutor.html">ModelExecutor</a></div><div class="ttdef"><b>Definition</b> ModelExecutor.h:8</div></div>
+<div class="ttc" id="aclassModelExecutor_html_a71db00db11b79c6488c7b515490f6d24"><div class="ttname"><a href="classModelExecutor.html#a71db00db11b79c6488c7b515490f6d24">ModelExecutor::run_model</a></div><div class="ttdeci">std::vector&lt; float &gt; run_model(std::vector&lt; float &gt; feature_vector)</div><div class="ttdef"><b>Definition</b> ModelExecutor.cpp:79</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
