@@ -26,6 +26,7 @@
  * CMakeLists file. For example use see examples/arm/run.sh
  */
 #include "cnn3/model_pte.h"
+#include "utils/mbed_stats_wrapper.h"
 #include "model_executor/ModelExecutor.h"
 
 using namespace exec_aten;
@@ -83,6 +84,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 
 		m_method_allocator_pool = (uint8_t*)malloc(m_allocator_pool_size);
 
+		mbed_lib::print_memory_info();
+
 		auto loader =
 			torch::executor::util::BufferDataLoader(model_pte, sizeof(model_pte));
 		ET_LOG(Info, "Model PTE file loaded. Size: %lu bytes.", sizeof(model_pte));
@@ -129,6 +132,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 			size_t buffer_size =
 				static_cast<size_t>(method_meta->memory_planned_buffer_size(id).get());
 			ET_LOG(Info, "Setting up planned buffer %zu, size %zu.", id, buffer_size);
+			
+			mbed_lib::print_memory_info();
 
 			planned_buffers.push_back(std::make_unique<uint8_t[]>(buffer_size));
 			planned_spans.push_back({planned_buffers.back().get(), buffer_size});
