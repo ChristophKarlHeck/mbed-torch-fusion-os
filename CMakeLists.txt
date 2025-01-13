@@ -24,6 +24,7 @@ project(MbedTorchFusionOS CXX) # TODO: change this to your project name
 
 set(SOURCES 
      ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/utils/mbed_stats_wrapper.cpp
      ${CMAKE_CURRENT_SOURCE_DIR}/src/model_executor/ModelExecutor.cpp
 )
 

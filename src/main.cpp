@@ -6,14 +6,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+#include "utils/mbed_stats_wrapper.h"
 #include "model_executor/ModelExecutor.h"
 
 int main() {
 
-	ModelExecutor& executor = ModelExecutor::getInstance(1024); // Pass the desired pool size
+	ModelExecutor& executor = ModelExecutor::getInstance(5000); // Pass the desired pool size
 
 	// Prepare input data
 	while(true){
+		mbed_lib::print_memory_usage();
 		std::vector<float> inputs = {1.0f, 2.0f, 3.0f, 4.0f};
     	// Run the model
     	std::vector<float> results = executor.run_model(inputs);

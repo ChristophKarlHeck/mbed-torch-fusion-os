@@ -25,15 +25,13 @@
  * which are included in the bare metal build are also orchestrated by the
  * CMakeLists file. For example use see examples/arm/run.sh
  */
-#include "cnn2/model_pte.h"
+#include "cnn3/model_pte.h"
 #include "model_executor/ModelExecutor.h"
 
 using namespace exec_aten;
 using namespace std;
 using torch::executor::Error;
 using torch::executor::Result;
-
-#define METHOD_ALLOCATOR_POOL_SIZE (512)
 
 void et_pal_init(void) {}
 
