@@ -25,7 +25,7 @@
  * which are included in the bare metal build are also orchestrated by the
  * CMakeLists file. For example use see examples/arm/run.sh
  */
-#include "cnn2/model_pte.h"
+#include "cnn3/model_pte.h"
 #include "utils/mbed_stats_wrapper.h"
 #include "model_executor/ModelExecutor.h"
 
@@ -88,8 +88,6 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		 */
 		m_method_allocator_pool = (uint8_t*)malloc(m_allocator_pool_size);
 
-		mbed_lib::print_memory_info();
-
 		/**
 		 * A DataLoader that wraps a pre-allocated buffer in network_model_sec. The FreeableBuffers
 		 * that it returns do not actually free any data.
@@ -97,6 +95,11 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		 * This can be used to wrap data that is directly embedded into the firmware
 		 * image, or to wrap data that was allocated elsewhere.
 		 */
+		// Create a loader to get the data of the program file. There are other
+  		// DataLoaders that use mmap() or point to data that's already in memory, and
+  		// users can create their own DataLoaders to load from arbitrary sources.
+		// BufferDataLoader wraps a pre-allocated buffer. The FreeableBuffers
+ 		// that it returns do not actually free any data.
 		auto loader = torch::executor::util::BufferDataLoader(model_pte, sizeof(model_pte));
 		ET_LOG(Info, "Model PTE file loaded. Size: %lu bytes.", sizeof(model_pte));
 
@@ -106,6 +109,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		 * Loads a Program from the provided loader. The Program will hold a pointer
    		 * to the loader, which must outlive the returned Program instance.
 		 */
+		// Parse the program file. This is immutable, and can also be reused between
+  		// multiple execution invocations across multiple threads.
 		Result<torch::executor::Program> program =
 			torch::executor::Program::load(&loader);
 		if (!program.ok()) {
@@ -155,6 +160,20 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		 *   Underneath the hood, ExecuTorch will call
 		 *   allocator.allocate() to keep iterating cur_ pointer
 		 */
+		// The runtime does not use malloc/new; it allocates all memory using the
+		// MemoryManger provided by the client. Clients are responsible for allocating
+		// the memory ahead of time, or providing MemoryAllocator subclasses that can
+		// do it dynamically.
+		// The method allocator is used to allocate all dynamic C++ metadata/objects
+  		// used to represent the loaded method. This allocator is only used during
+  	    // loading a method of the program, which will return an error if there was
+        // not enough memory.
+		// The amount of memory required depends on the loaded method and the runtime
+        // code itself. The amount of memory here is usually determined by running the
+        // method and seeing how much memory is actually used, though it's possible to
+        // subclass MemoryAllocator so that it calls malloc() under the hood (see
+        // MallocMemoryAllocator).
+		// In this example we use a statically allocated memory pool.
 		torch::executor::MemoryAllocator method_allocator{
 			torch::executor::MemoryAllocator(
 				m_allocator_pool_size, m_method_allocator_pool)};
@@ -163,6 +182,10 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		 * Stores unique pointers (std::unique_ptr) to dynamically allocated arrays of uint8_t.
 		 * Owns the memory.
 		 */
+		// Each buffer typically corresponds to a different hardware memory bank. Most
+		// mobile environments will only have a single buffer. Some embedded
+		// environments may have more than one for, e.g., slow/large DRAM and
+		// fast/small SRAM, or for memory associated with particular cores.
 		std::vector<std::unique_ptr<uint8_t[]>> planned_buffers;
 
 		/**
@@ -200,7 +223,7 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 			size_t buffer_size = static_cast<size_t>(method_meta->memory_planned_buffer_size(id).get());
 			ET_LOG(Info, "Setting up planned buffer %zu, size %zu.", id, buffer_size);
 			
-			mbed_lib::print_memory_info();
+			//mbed_lib::print_memory_info();
 
 			/**
 			 * Dynamically allocates buffer_size bytes on the heap using std::make_unique<uint8_t[]>, 
@@ -212,8 +235,6 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 			 */
 			planned_buffers.push_back(std::make_unique<uint8_t[]>(buffer_size));
 
-			mbed_lib::print_memory_info();
-
 			/**
 			 * Simply provides a lightweight view over the existing heap-allocated 
 			 * planned_buffers without taking ownership.
@@ -221,30 +242,19 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 			planned_spans.push_back({planned_buffers.back().get(), buffer_size});
 		}
 
+		//mbed_lib::print_memory_info();
 		torch::executor::HierarchicalAllocator planned_memory(
 			{planned_spans.data(), planned_spans.size()});
 
-		/**
-		 * Constructs a new MemoryManager.
-		 *
-		 * @param[in] method_allocator The allocator to use when loading a Method and
-		 *     allocating its internal structures. Must outlive the Method that uses
-		 *     it.
-		 * @param[in] planned_memory The memory-planned buffers to use for mutable
-		 *     tensor data when executing a Method. Must outlive the Method that uses
-		 *     it. May be `nullptr` if the Method does not use any memory-planned
-		 *     tensor data. The sizes of the buffers in this HierarchicalAllocator
-		 *     must agree with the corresponding
-		 *     `MethodMeta::num_memory_planned_buffers()` and
-		 *     `MethodMeta::memory_planned_buffer_size(N)` values, which are embedded
-		 *     in the Program.
-		 * 
-     	 */
+		// Assemble all of the allocators into the MemoryManager that the Executor
+  		// will use.
 		torch::executor::MemoryManager memory_manager(
 			&method_allocator, &planned_memory);
 
-		Result<torch::executor::Method> method =
-			program->load_method(method_name, &memory_manager);
+		// Load the method from the program, using the provided allocators. Running
+		// the method can mutate the memory-planned buffers, so the method should only
+		// be used by a single thread at at time, but it can be reused.
+		Result<torch::executor::Method> method = program->load_method(method_name, &memory_manager);
 		if (!method.ok()) {
 			ET_LOG(
 				Info,
@@ -255,6 +265,10 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		ET_LOG(Info, "Method loaded.");
 
 		ET_LOG(Info, "Preparing inputs...");
+
+		// Allocate input tensors and set all of their elements to 1. The `inputs`
+  		// variable owns the allocated memory and must live past the last call to
+  		// `execute()`.
 		auto inputs = torch::executor::util::prepare_input_tensors(*method);
 		if (!inputs.ok()) {
 			ET_LOG(
@@ -266,22 +280,24 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		ET_LOG(Info, "Input prepared.");
 
 		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-		// Set variable input
-		torch::executor::EValue input_original = method->get_input(0);
-    	Tensor tensor = input_original.payload.as_tensor;
-    	float* data = input_original.payload.as_tensor.mutable_data_ptr<float>();
+		// // Set variable input
+		// torch::executor::EValue input_original = method->get_input(0);
+    	// Tensor tensor = input_original.payload.as_tensor;
+    	// float* data = input_original.payload.as_tensor.mutable_data_ptr<float>();
 
-		ET_LOG(Info, "Number of input values required by model:%d", tensor.numel());
+		// ET_LOG(Info, "Number of input values required by model:%d", tensor.numel());
 
-    	// Change input
-    	for(int j = 0; j < tensor.numel(); ++j){
-        	data[j] = feature_vector[j];
-    	}
+    	// // Change input
+    	// for(int j = 0; j < tensor.numel(); ++j){
+        // 	data[j] = feature_vector[j];
+    	// }
 
-		// Set input 
-		method->set_input(input_original,0);
+		// // Set input 
+		// method->set_input(input_original,0);
 
 		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+		//mbed_lib::print_memory_info();
 
 		ET_LOG(Info, "Starting the model execution...");
 		//delay_ms(100);
