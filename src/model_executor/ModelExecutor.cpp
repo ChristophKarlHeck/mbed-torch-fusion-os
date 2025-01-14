@@ -296,9 +296,31 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		// method->set_input(input_original,0);
 
 		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		// Print Input
 
-		//mbed_lib::print_memory_info();
+		size_t input_size = method->inputs_size();
+    	const torch::executor::EValue input_new = method->get_input(0);
+    	for (unsigned i = 0; i < input_size; ++i) {
+        	Tensor te = input_new.payload.as_tensor;
+        	for (int j = 0; j < te.numel(); ++j) { // numel returns the number of elements in the tensor
+            	if (te.scalar_type() == ScalarType::Int) {
+                	printf(
+                    	"Input[%d][%d]: %d\n",
+                    	i,
+                    	j,
+                    	te.const_data_ptr<int>()[j]);
+            	} else {
+                	printf(
+                    	"Input[%d][%d]: %f\n",
+                    	i,
+                    	j,
+                    	te.const_data_ptr<float>()[j]);
+            	}
+        	}
+    	}
 
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		
 		ET_LOG(Info, "Starting the model execution...");
 		//delay_ms(100);
 		mbed_lib::print_memory_info();
