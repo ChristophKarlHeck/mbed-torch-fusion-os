@@ -32,6 +32,7 @@ fi
 
 patch examples/arm/aot_arm_compiler.py < ../utils/patches/aot_arm_compiler.patch
 # Devtools in v040
+# https://github.com/pytorch/executorch/blob/25bf93e9babf809db1d7ccc965b0eadf92d9144e/backends/cadence/runtime/executor_main.sh#L17
 cmake \
     -DCMAKE_INSTALL_PREFIX=$(pwd)/cmake-out           \
     -DCMAKE_BUILD_TYPE=Release                        \
@@ -40,6 +41,17 @@ cmake \
     -DPYTHON_EXECUTABLE="$(which python3)"               \
     -B$(pwd)/cmake-out                                 \
     $(pwd)/cmake-out
+
+cmake --build $(pwd)/cmake-out -j4 --target install --config Release
+
+cmake \
+    -DCMAKE_PREFIX_PATH="${PWD}/cmake-out/lib/cmake/ExecuTorch;${PWD}/cmake-out/third-party/gflags" \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DPYTHON_EXECUTABLE="$(which python3)" \
+    -B$(pwd)/cmake-out/examples/devtools \
+    $(pwd)/examples/devtools
+
+cmake --build $(pwd)/cmake-out/examples/devtools -j4 --config Release
 
 # Basic libraries in v030
 cmake                                                 \
@@ -57,6 +69,7 @@ cmake                                                 \
 
 cmake --build $(pwd)/cmake-out -j4 --target install --config Release
 
+# OPS List for final CNN 
 # Example for multiple not delegated operators: -DEXECUTORCH_SELECT_OPS_LIST="aten::_softmax.out,aten::add.out"
 
 cmake                                                  \
