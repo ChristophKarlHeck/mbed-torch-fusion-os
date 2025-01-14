@@ -77,7 +77,7 @@ cmake                                                  \
     -DCMAKE_BUILD_TYPE=Release                       \
     -DCMAKE_TOOLCHAIN_FILE=$(pwd)/examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake  \
     -DTARGET_CPU=cortex-m4  \
-    -DEXECUTORCH_SELECT_OPS_LIST="aten::convolution.out,aten::mm.out,aten::add.out,aten::relu.out,aten::linear.out,aten::upsample_bilinear2d.vec_out,aten::_upsample_bilinear2d_aa.out,aten::unsqueeze_copy.out,aten::view_copy.out,aten::max_pool2d_with_indices.out,aten::squeeze_copy.dims_out,executorch_prim::et_view.default,aten::permute_copy.out,aten::addmm.out,aten::_softmax.out"  \
+    -DEXECUTORCH_SELECT_OPS_LIST="aten::convolution.out,aten::mean.out,aten::mm.out,aten::add.out,aten::relu.out,aten::linear.out,aten::upsample_bilinear2d.vec_out,aten::_upsample_bilinear2d_aa.out,aten::unsqueeze_copy.out,aten::view_copy.out,aten::max_pool2d_with_indices.out,aten::squeeze_copy.dims_out,executorch_prim::et_view.default,aten::permute_copy.out,aten::addmm.out,aten::_softmax.out"  \
     -B$(pwd)/cmake-out/examples/arm                   \
     $(pwd)/examples/arm
 
