@@ -31,14 +31,21 @@ else
 fi
 
 patch examples/arm/aot_arm_compiler.py < ../utils/patches/aot_arm_compiler.patch
-# Change to 4 inputs 
+# Devtools in v040
+cmake \
+    -DCMAKE_INSTALL_PREFIX=$(pwd)/cmake-out           \
+    -DCMAKE_BUILD_TYPE=Release                        \
+    -DEXECUTORCH_BUILD_DEVTOOLS=ON                    \
+    -DEXECUTORCH_ENABLE_EVENT_TRACER=ON               \
+    -DPYTHON_EXECUTABLE="$(which python3)"               \
+    -B$(pwd)/cmake-out                                 \
+    $(pwd)/cmake-out
 
+# Basic libraries in v030
 cmake                                                 \
     -DCMAKE_INSTALL_PREFIX=$(pwd)/cmake-out           \
     -DEXECUTORCH_BUILD_EXECUTOR_RUNNER=OFF            \
     -DCMAKE_BUILD_TYPE=Release                        \
-    -DEXECUTORCH_BUILD_DEVTOOLS=ON                    \
-    -DEXECUTORCH_ENABLE_EVENT_TRACER=ON               \
     -DEXECUTORCH_ENABLE_LOGGING=ON                    \
     -DEXECUTORCH_BUILD_ARM_BAREMETAL=ON               \
     -DEXECUTORCH_BUILD_KERNELS_QUANTIZED=ON           \
