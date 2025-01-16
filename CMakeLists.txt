@@ -28,9 +28,9 @@ set(SOURCES
      ${CMAKE_CURRENT_SOURCE_DIR}/src/model_executor/ModelExecutor.cpp
 )
 
-add_executable(SoftMaxTorchRunner ${SOURCES})
+add_executable(MbedTorchFusionOS ${SOURCES})
 
-target_link_libraries(SoftMaxTorchRunner PUBLIC
+target_link_libraries(MbedTorchFusionOS PUBLIC
      mbed-os # Can also link to mbed-baremetal here
      /home/chris/executorch_v030/executorch/cmake-out/lib/libextension_runner_util.a
      "-Wl,--whole-archive"
@@ -44,17 +44,17 @@ target_link_libraries(SoftMaxTorchRunner PUBLIC
      ) 
 
 ###GENRAL###
-target_include_directories(SoftMaxTorchRunner
+target_include_directories(MbedTorchFusionOS
      PUBLIC
           ${CMAKE_CURRENT_SOURCE_DIR}/include
           /home/chris/executorch_v030/ #for executorch headers
           ${CMAKE_CURRENT_SOURCE_DIR}/models
 )
 
-#add_dependencies(SoftMaxTorchRunner gen_model_header)
+#add_dependencies(MbedTorchFusionOS gen_model_header)
 
 ###GENRAL####
-mbed_set_post_build(SoftMaxTorchRunner) # Must call this for each target to set up bin file creation, code upload, etc
+mbed_set_post_build(MbedTorchFusionOS) # Must call this for each target to set up bin file creation, code upload, etc
 
 
 ###GENRAL###
