@@ -71,13 +71,14 @@ cmake --build $(pwd)/cmake-out -j4 --target install --config Release
 
 # OPS List for final CNN 
 # Example for multiple not delegated operators: -DEXECUTORCH_SELECT_OPS_LIST="aten::_softmax.out,aten::add.out"
+# ,aten::mean.out,aten::mm.out,aten::add.out,aten::linear.out,aten::upsample_bilinear2d.vec_out,aten::_upsample_bilinear2d_aa.out,aten::view_copy.out,executorch_prim::et_view.default"  \
 
 cmake                                                  \
     -DCMAKE_INSTALL_PREFIX=$(pwd)/cmake-out             \
     -DCMAKE_BUILD_TYPE=Release                       \
     -DCMAKE_TOOLCHAIN_FILE=$(pwd)/examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake  \
     -DTARGET_CPU=cortex-m4  \
-    -DEXECUTORCH_SELECT_OPS_LIST="aten::convolution.out,aten::mean.out,aten::mm.out,aten::add.out,aten::relu.out,aten::linear.out,aten::upsample_bilinear2d.vec_out,aten::_upsample_bilinear2d_aa.out,aten::unsqueeze_copy.out,aten::view_copy.out,aten::max_pool2d_with_indices.out,aten::squeeze_copy.dims_out,executorch_prim::et_view.default,aten::permute_copy.out,aten::addmm.out,aten::_softmax.out,aten::select_copy.int_out,aten::cat.out"  \
+    -DEXECUTORCH_SELECT_OPS_LIST="aten::convolution.out,aten::relu.out,aten::unsqueeze_copy.out,aten::permute_copy.out,aten::max_pool2d_with_indices.out,aten::squeeze_copy.dims_out,aten::cat.out,aten::_softmax.out,aten::addmm.out,aten::select_copy.int_out" \
     -B$(pwd)/cmake-out/examples/arm                   \
     $(pwd)/examples/arm
 

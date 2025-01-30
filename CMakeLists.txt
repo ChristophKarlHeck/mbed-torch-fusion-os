@@ -33,8 +33,8 @@ add_executable(MbedTorchFusionOS ${SOURCES})
 target_link_libraries(MbedTorchFusionOS PUBLIC
      mbed-os # Can also link to mbed-baremetal here
      /home/chris/executorch_v030/executorch/cmake-out/lib/libextension_runner_util.a
-     "-Wl,--whole-archive"
      /home/chris/executorch_v030/executorch/cmake-out/lib/libexecutorch.a # should be removed from whole archive if view operator is not used
+     "-Wl,--whole-archive"
      /home/chris/executorch_v030/executorch/cmake-out/lib/libexecutorch_no_prim_ops.a
      /home/chris/executorch_v030/executorch/cmake-out/kernels/quantized/libquantized_ops_lib.a
      /home/chris/executorch_v030/executorch/cmake-out/examples/arm/libarm_portable_ops_lib.a
