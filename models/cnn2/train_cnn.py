@@ -25,11 +25,8 @@ class Conv1DModel(pl.LightningModule):
         x = self.conv1d(x)
         x = F.relu(x)
         x = self.pool(x) # compress to one convolution block
-        print(x.shape)
         x = torch.transpose(x, 1, 2)
-        print(x.shape)
         x = torch.cat((x[:,:,0],x[:,:,1]), dim=1)
-        print(x.shape)
         x = self.linear(x)
         x = F.relu(x) # ReLu is not linear. At least one non-linear to recognize non-linear pattern
         x = F.softmax(self.output(x),dim=1) # Sum = 1
