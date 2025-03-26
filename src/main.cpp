@@ -11,7 +11,8 @@
 
 int main() {
 
-	ModelExecutor& executor = ModelExecutor::getInstance(16384); // Pass the desired pool size
+	mbed_lib::print_memory_info("1");
+	ModelExecutor& executor = ModelExecutor::getInstance(8192); // Pass the desired pool size
 
 	// Prepare input data
 	while(true){

@@ -25,7 +25,7 @@
  * which are included in the bare metal build are also orchestrated by the
  * CMakeLists file. For example use see examples/arm/run.sh
  */
-#include "cnn_trained/model_pte.h"
+#include "fcn/model_pte.h"
 #include "utils/mbed_stats_wrapper.h"
 #include "model_executor/ModelExecutor.h"
 
@@ -88,6 +88,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		 */
 		m_method_allocator_pool = (uint8_t*)malloc(m_allocator_pool_size);
 
+		mbed_lib::print_memory_info("2");
+
 		/**
 		 * A DataLoader that wraps a pre-allocated buffer in network_model_sec. The FreeableBuffers
 		 * that it returns do not actually free any data.
@@ -102,6 +104,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
  		// that it returns do not actually free any data.
 		auto loader = torch::executor::util::BufferDataLoader(model_pte, sizeof(model_pte));
 		ET_LOG(Info, "Model PTE file loaded. Size: %lu bytes.", sizeof(model_pte));
+
+		mbed_lib::print_memory_info("3");
 
 
 		/**
@@ -123,6 +127,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 
 		ET_LOG(Info, "Model buffer loaded, has %lu methods", program->num_methods());
 
+		mbed_lib::print_memory_info("4");
+
 		const char* method_name = nullptr;
 		{
 			const auto method_name_result = program->get_method_name(0);
@@ -130,6 +136,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 			method_name = *method_name_result;
 		}
 		ET_LOG(Info, "Running method %s", method_name);
+
+		mbed_lib::print_memory_info("5");
 
 		/**
 		 * Gathers metadata for the named method.
@@ -143,6 +151,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 				method_name,
 				(unsigned int)method_meta.error());
 		}
+
+		mbed_lib::print_memory_info("6");
 
 		/**
 		 * MemoryAllocator does simple allocation based on a size and returns the pointer
@@ -178,6 +188,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 			torch::executor::MemoryAllocator(
 				m_allocator_pool_size, m_method_allocator_pool)};
 
+		mbed_lib::print_memory_info("7");
+
 		/**
 		 * Stores unique pointers (std::unique_ptr) to dynamically allocated arrays of uint8_t.
 		 * Owns the memory.
@@ -187,6 +199,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		// environments may have more than one for, e.g., slow/large DRAM and
 		// fast/small SRAM, or for memory associated with particular cores.
 		std::vector<std::unique_ptr<uint8_t[]>> planned_buffers;
+
+		mbed_lib::print_memory_info("8");
 
 		/**
 		 *
@@ -210,6 +224,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		 */
 		std::vector<torch::executor::Span<uint8_t>> planned_spans;
 
+		mbed_lib::print_memory_info("9");
+
 		/**
 		 * Get the number of memory-planned buffers this method requires.
 		 */
@@ -223,7 +239,7 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 			size_t buffer_size = static_cast<size_t>(method_meta->memory_planned_buffer_size(id).get());
 			ET_LOG(Info, "Setting up planned buffer %zu, size %zu.", id, buffer_size);
 			
-			//mbed_lib::print_memory_info();
+			mbed_lib::print_memory_info("10");
 
 			/**
 			 * Dynamically allocates buffer_size bytes on the heap using std::make_unique<uint8_t[]>, 
@@ -234,22 +250,30 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 			 * and deletes the memory when the unique_ptr is destroyed (e.g., when the vector is cleared, resized, or goes out of scope).
 			 */
 			planned_buffers.push_back(std::make_unique<uint8_t[]>(buffer_size));
-
+			mbed_lib::print_memory_info("10.5");
 			/**
 			 * Simply provides a lightweight view over the existing heap-allocated 
 			 * planned_buffers without taking ownership.
 			 */
 			planned_spans.push_back({planned_buffers.back().get(), buffer_size});
+			mbed_lib::print_memory_info("11");
+
 		}
+
+		mbed_lib::print_memory_info("12");
 
 		//mbed_lib::print_memory_info();
 		torch::executor::HierarchicalAllocator planned_memory(
 			{planned_spans.data(), planned_spans.size()});
 
+		mbed_lib::print_memory_info("13");
+
 		// Assemble all of the allocators into the MemoryManager that the Executor
   		// will use.
 		torch::executor::MemoryManager memory_manager(
 			&method_allocator, &planned_memory);
+
+		mbed_lib::print_memory_info("14");
 
 		// Load the method from the program, using the provided allocators. Running
 		// the method can mutate the memory-planned buffers, so the method should only
@@ -263,6 +287,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 				method.error());
 		}
 		ET_LOG(Info, "Method loaded.");
+
+		mbed_lib::print_memory_info("15");
 
 		ET_LOG(Info, "Preparing inputs...");
 
@@ -279,6 +305,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		}
 		ET_LOG(Info, "Input prepared.");
 
+		mbed_lib::print_memory_info("16");
+
 		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		// // Set variable input
 		torch::executor::EValue input_original = method->get_input(0);
@@ -294,6 +322,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 
 		// // Set input 
 		// method->set_input(input_original,0);
+
+		mbed_lib::print_memory_info("17");
 
 		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		// Print Input
@@ -323,7 +353,7 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		
 		ET_LOG(Info, "Starting the model execution...");
 		//delay_ms(100);
-		mbed_lib::print_memory_info();
+	
 		Error status = method->execute();
 		if (status != Error::Ok) {
 			ET_LOG(
@@ -334,6 +364,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		} else {
 			ET_LOG(Info, "Model executed successfully.");
 		}
+
+		mbed_lib::print_memory_info("18");
 
 		std::vector<torch::executor::EValue> outputs(method->outputs_size());
 		ET_LOG(Info, "%zu outputs: ", outputs.size());
@@ -365,7 +397,8 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		free(m_method_allocator_pool);
 		m_method_allocator_pool = nullptr; // Optional but recommended to avoid dangling pointers
 		//delay_ms(100); // Delays for 100 milliseconds
-	
+
+		mbed_lib::print_memory_info("19");
 
 	return results;
 }

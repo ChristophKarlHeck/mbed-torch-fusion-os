@@ -38,7 +38,10 @@ namespace mbed_lib {
         }
     }
 
-    void print_memory_info() {
+    void print_memory_info(const char *label) {
+
+        printf("Memory info for: %s\r\n", label);
+
         // allocate enough room for every thread's stack statistics
         int cnt = osThreadGetCount();
         mbed_stats_stack_t *stats = (mbed_stats_stack_t*) malloc(cnt * sizeof(mbed_stats_stack_t));
