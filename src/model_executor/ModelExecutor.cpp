@@ -316,12 +316,12 @@ std::vector<float> ModelExecutor::run_model(std::vector<float> feature_vector){
 		ET_LOG(Info, "Number of input values required by model:%d", tensor.numel());
 
     	// // Change input
-    	// for(int j = 0; j < tensor.numel(); ++j){
-        // 	data[j] = feature_vector[j];
-    	// }
+    	for(int j = 0; j < tensor.numel(); ++j){
+        	data[j] = feature_vector[j];
+    	}
 
 		// // Set input 
-		// method->set_input(input_original,0);
+		method->set_input(input_original,0);
 
 		mbed_lib::print_memory_info("17");
 
